@@ -1,0 +1,3 @@
+# Don't track content of these folders
+server/node_modules/
+spiderwaveacr/node_modules/  
