@@ -1,0 +1,28 @@
+/* Full-width input fields */
+.Input{
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.InputElement{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.Invalid{
+	border: 1px solid red;
+	background-color: salmon;
+}
+
+.ValidationError {
+    color: red;
+    margin: 5px 0;
+} 
+.Label{
+	font-weight: bold;
+	display: block;
+	margin-bottom: 8px;
+}

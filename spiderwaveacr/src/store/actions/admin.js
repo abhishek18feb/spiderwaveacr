@@ -5,16 +5,16 @@ export const authStart =() =>{
 	};
 };
 
-export const authSuccess=(token, userId)=>{
+export const authSuccess=(admintoken, userId)=>{ 
 	return{
 		type: actionTypes.ADMIN_AUTH_SUCCESS,
-		idToken: token,
+		idToken: admintoken,
 		userId: userId
 	};
 };
 
 export const authFail=(error)=>{
-	console.log('error'+error)
+	console.log('action'+error)
 	return {
 		type: actionTypes.ADMIN_AUTH_FAIL,
 		error: error

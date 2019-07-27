@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionsTypes';
 import {updateObject} from '../../shared/utility';
 
 const initialState={
-	token: null,
+	admintoken: null,
 	userId: null,
 	error: null,
 	loading: false,
@@ -17,7 +17,7 @@ const setAuthRedirectPath = (state,action)=>{
 }
 const authSuccess = (state,action)=>{
 	return updateObject(state, {
-		token: action.idToken,
+		admintoken: action.idToken,
 		userId: action.userId,
 		error: null,
 		loading: false
@@ -32,7 +32,7 @@ const authFail = (state, action)=>{
 }
 
 const authLogout = (state,action)=>{
-	return updateObject (state, {token:null, userId:null});
+	return updateObject (state, {admintoken:null, userId:null});
 };
 
 const reducer = (state=initialState, action)=>{

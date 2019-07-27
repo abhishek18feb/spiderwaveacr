@@ -3,10 +3,9 @@ import * as actions from '../actions/index';
 import axios from 'axios';
 
 export function* logoutSaga(action){
-	yield call([localStorage, 'removeItem'], 'token')
+	yield call([localStorage, 'removeItem'], 'admintoken')
 	yield call([localStorage, 'removeItem'], 'expirationTime')
 	yield call([localStorage, 'removeItem'], 'userId')
-	yield call([localStorage, 'removeItem'], 'token')
 	yield put(actions.logoutSucceed());
 }
 
@@ -24,33 +23,28 @@ export function* authUserSaga(action){
 					"password":action.password
 				}
 		let url = 'http://localhost:3300/admins/login';
-		console.log(action.isSignup);
 		if(!action.isSignup){
 			url = 'http://localhost:3300/admins/signup';
 		}
-		console.log(authData);
 		try{
 			const response = yield axios.post(url, authData)
 			const expirationTime = yield new Date(new Date().getTime()+response.data.expiresIn*1000);
-			yield localStorage.setItem('token', response.data.token);
+			yield localStorage.setItem('admintoken', response.data.token);
 			yield localStorage.setItem('expirationTime', expirationTime);
 			yield localStorage.setItem('userId', response.data.data._id);
 			yield put(actions.authSuccess(response.data.token,response.data.data._id));
 			yield put(actions.checkAuthTimeout(response.data.expiresIn))
+			yield put(actions.setAuthRedirectPath('/admin/dashboard'))
 		}
 		catch(error){
-			// if (error.response) {
-		 //      console.log(error.response.data.error);
-		 //      console.log(error.response.status);
-		 //      console.log(error.response.headers);
-		 //    }
-			yield put(actions.authFail(error.response.data.error));
+		 	//console.log(error.response.data.message);
+			yield put(actions.authFail(error.response.data.message));
 		}
 }
 
 export function* authCheckStateSaga(action){
-	const token = yield localStorage.getItem('token')
-	if(!token){
+	const admintoken = yield localStorage.getItem('admintoken')
+	if(!admintoken){
 		yield put(actions.logout())
 	} else{
 		const expirationDate = yield new Date(yield localStorage.getItem('expirationTime'))
@@ -59,7 +53,7 @@ export function* authCheckStateSaga(action){
 			yield put(actions.logout())
 		}else{
 			const userId = yield localStorage.getItem('userId')
-			yield put(actions.authSuccess(token, userId))
+			yield put(actions.authSuccess(admintoken, userId))
 			yield put(actions.checkAuthTimeout((expirationDate.getTime() -  new Date().getTime())/1000));
 		}
 	}
