@@ -1,10 +1,11 @@
-import React, { Suspense, lazy} from 'react';
+import React, { Suspense} from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import './App.css';
 import Home from './Frontend/Home/Home';
 import {connect} from 'react-redux';
 import * as actions from './store/actions/index';
 const Login = React.lazy(() => import('./Backend/Login/Login'));
+const Logout = React.lazy(() => import('./Backend/Login/Logout/Logout'));
 const Dashboard = React.lazy(() => import('./Backend/Dashboard/Dashboard'));
 
 class App extends React.Component{
@@ -47,7 +48,11 @@ class App extends React.Component{
                     <Route path={`${url}/dashboard`} component={Dashboard} exact />
                     :<Redirect to={`${url}`} />
                   }
-                  
+                  {
+                    this.props.isAuthenticated?
+                    <Route path={`${url}/logout`} component={Logout} exact />
+                    :<Redirect to={`${url}`} />
+                  }
                   {/*<Redirect from={`${url}/`} to={`${url}/login`} />*/}
                   
                 </>

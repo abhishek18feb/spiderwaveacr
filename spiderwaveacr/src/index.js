@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose,combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga'
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { watchAuth } from './store/sagas';
 import adminReducer from './store/reducers/admin';
 
