@@ -6,6 +6,9 @@ export {
 	logoutSucceed,
 	authStart,
 	authSuccess,
-	checkAuthTimeout,
-	authFail
+	checkAuthTimeout, 
+	authFail,
+	forgotPwd,
+	authForgotSuccess,
+	authForgotFail
 } from './admin'; 

@@ -5,6 +5,7 @@ import Home from './Frontend/Home/Home';
 import {connect} from 'react-redux';
 import * as actions from './store/actions/index';
 const Login = React.lazy(() => import('./Backend/Login/Login'));
+const Forgot = React.lazy(() => import('./Backend/Forgot/Forgot'));
 const Logout = React.lazy(() => import('./Backend/Login/Logout/Logout'));
 const Dashboard = React.lazy(() => import('./Backend/Dashboard/Dashboard'));
 
@@ -43,6 +44,7 @@ class App extends React.Component{
               render={({ match: { url } }) => (
                 <>
                   <Route path={`${url}/`} component={Login} exact />
+                  <Route path={`${url}/forgot`} component={Forgot} exact />
                   {
                     this.props.isAuthenticated?
                     <Route path={`${url}/dashboard`} component={Dashboard} exact />

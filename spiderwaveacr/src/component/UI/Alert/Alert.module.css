@@ -5,6 +5,12 @@
   color: white;
 }
 
+.Success {
+  padding: 20px;
+  background-color: #4CAF50;
+  color: white;
+}
+
 .Closebtn {
   margin-left: 15px;
   color: white;

@@ -6,6 +6,8 @@ const initialState={
 	userId: null,
 	error: null,
 	loading: false,
+	forgotResponse: null,
+	forgotResponseMsg:null,
 	authRedirectPath:"/"
 };
 const authStart=(state, action)=>{
@@ -35,6 +37,20 @@ const authLogout = (state,action)=>{
 	return updateObject (state, {admintoken:null, userId:null});
 };
 
+const setAuthForgotSuccess = (state,action)=>{
+	return updateObject(state,{
+		forgotResponse:action.forgotResponse,
+		forgotResponseMsg:action.forgotResponseMsg
+	});
+};
+
+const setAuthForgotFail = (state,action)=>{
+	return updateObject(state,{
+		forgotResponse:action.forgotResponse,
+		forgotResponseMsg:action.forgotResponseMsg
+	});
+};
+
 const reducer = (state=initialState, action)=>{
 	switch(action.type){
 		case actionTypes.ADMIN_AUTH_START: return authStart(state,action);
@@ -42,6 +58,9 @@ const reducer = (state=initialState, action)=>{
 		case actionTypes.ADMIN_AUTH_FAIL: return authFail(state, action);
 		case actionTypes.ADMIN_AUTH_LOGOUT: return authLogout(state, action);
 		case actionTypes.SET_ADMIN_AUTH_REDIRECT_PATH: return setAuthRedirectPath(state, action);
+		
+		case actionTypes.ADMIN_AUTH_FORGOT_SUCCESS: return setAuthForgotSuccess(state, action);
+		case actionTypes.ADMIN_AUTH_FORGOT_FAIL: return setAuthForgotFail(state, action);
 		default: return state;
 	}
 }

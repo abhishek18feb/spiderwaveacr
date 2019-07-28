@@ -6,5 +6,6 @@ var check_auth = require('../middleware/check-auth');
 /* GET users listing. */
 router.post('/login', AdminController.login);
 router.post('/signup', AdminController.signup);
+router.post('/forgot_password', AdminController.forgot_password);
 
 module.exports = router;

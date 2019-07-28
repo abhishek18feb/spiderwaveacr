@@ -48,9 +48,31 @@ export const auth = (email, password, isSignup)=>{
 		type: actionTypes.ADMIN_AUTH_USER,
 		email: email,
 		password: password,
-		isSignup: isSignup
+		isSignup: isSignup 
 	};
 };
+
+export const forgotPwd = (email)=>{
+	return {
+		type: actionTypes.ADMIN_AUTH_FORGOT,
+		email:email
+	}
+}
+export const authForgotSuccess=(forgotResponse,forgotResponseMsg)=>{
+	return{
+		type: actionTypes.ADMIN_AUTH_FORGOT_SUCCESS,
+		forgotResponse:forgotResponse,
+		forgotResponseMsg:forgotResponseMsg
+	}
+}
+export const authForgotFail=(forgotResponse,forgotResponseMsg)=>{
+	return {
+		type:actionTypes.ADMIN_AUTH_FORGOT_FAIL,
+		forgotResponse:forgotResponse,
+		forgotResponseMsg:forgotResponseMsg
+	}
+}
+
 
 export const setAuthRedirectPath = (path)=>{
 	return {

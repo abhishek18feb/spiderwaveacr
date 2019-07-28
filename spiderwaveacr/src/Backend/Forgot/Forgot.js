@@ -1,16 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link, Redirect} from 'react-router-dom';
-import loginStyle from './Login.module.css';
+import {Redirect, Link} from 'react-router-dom';
+import forgotStyle from './Forgot.module.css';
 import Input from '../../component/UI/Input/Input';
+import Button from '../../component/UI/Button/Button';
 import {updateObject, checkValidity} from '../../shared/utility';
-import {Danger} from '../../component/UI/Alert/Alert';
+import {Danger, Success} from '../../component/UI/Alert/Alert';
 import * as actions from '../../store/actions/index';
 
 
 class Login extends React.Component{
   constructor(props){
     super(props);
+    console.log('redirect path'+this.props.authRedirectPath)
   }
   state={
     controls:{
@@ -28,31 +30,16 @@ class Login extends React.Component{
                 valid:false,
                 touched:false,
                 label:'Username'
-              },
-          password: {
-                elementType: 'password',
-                elementConfig: {
-                  type: 'password',
-                  placeholder: 'Password'
-                },
-                value: '',
-                validation: {
-                  required: true,
-                  minLength:6
-                },
-                valid:false,
-                touched:false,
-                label:'Password'
               }
+        
     },
     isSignup:true
   }
+
   componentDidMount(){
-    
+    console.log(this.props.authRedirectPath)
   }
-  shouldComponentUpdate(nextProps, nextState){
-    return true;
-  }
+  
   inputChangedHandler=(event, controlName)=>{
     const updatedControls = updateObject(this.state.controls, {
       [controlName]:updateObject(this.state.controls[controlName],
@@ -67,18 +54,7 @@ class Login extends React.Component{
 
   submitHandler=(event)=>{
     event.preventDefault();
-    this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup)
-    // var interval = setInterval(()=>{
-    //     //timesRun += 1;
-    //     if(this.props.isAuthenticated){
-    //         console.log('Authenticated'+this.props.isAuthenticated)
-    //         clearInterval(interval);
-    //     }else if(this.props.error){
-    //       console.log(this.props.error)
-    //       clearInterval(interval);
-    //     }
-    //     //do whatever here..
-    // }, 1000);
+    this.props.onForgot(this.state.controls.email.value)
   }
 
   render(){ 
@@ -99,19 +75,17 @@ class Login extends React.Component{
       />
     ))
     return(
-      <div className={loginStyle.center}>
-        {this.props.isAuthenticated?<Redirect to="/admin/dashboard" />:''}
-        {this.props.error?<Danger message={this.props.error} />:''}
-        <form className={[loginStyle.modal_content,loginStyle.animate].join(' ')} onSubmit={this.submitHandler}>
-          <div className={loginStyle.container}>
+      <div className={forgotStyle.center}>
+        {this.props.forgotResponseMsg?this.props.forgotResponse?<Success message={this.props.forgotResponseMsg} />:<Danger message={this.props.forgotResponseMsg} />:''}
+        <form className={[forgotStyle.modal_content,forgotStyle.animate].join(' ')} onSubmit={this.submitHandler}>
+          <div className={forgotStyle.container}>
             {form}
-            <button type="submit">Login</button>
-            
+            <Button btnType="submit" btnClass="Default" btnText="Submit" />
           </div>
         </form>
-        <div className={loginStyle.container} style={{ backgroundColor:'#f1f1f1' }}>
+        <div className={forgotStyle.container} style={{ backgroundColor:'#f1f1f1' }}>
           <label>
-            <span className={loginStyle.psw}>Forgot <Link to="/admin/forgot">password?</Link></span>
+            <span className={forgotStyle.psw}>Have account <Link to="/admin">Login?</Link></span>
           </label>
         </div>
       </div>
@@ -121,14 +95,13 @@ class Login extends React.Component{
 
 const mapStateToProps = state=>{
   return {
-    error: state.admin.error,
-    isAuthenticated: state.admin.admintoken !== null,
-    authRedirectPath: state.admin.authRedirectPath
+    forgotResponse: state.admin.forgotResponse,
+    forgotResponseMsg: state.admin.forgotResponseMsg
   }
 }
 const mapDispatchToProps = dispatch=>{
   return {
-    onAuth:(email, password, isSignup)=>dispatch(actions.auth(email, password, isSignup))
+    onForgot:(email)=>dispatch(actions.forgotPwd(email))
   }
 }
 

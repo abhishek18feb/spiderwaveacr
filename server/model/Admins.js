@@ -5,7 +5,8 @@ const adminsSchema = mongoose.Schema({
     name: {type:String, Required:true},
     email:{type:String, Required:true},
     mobile:{type:String, Required:true},
-    password:{type:String, Required:true}
+    password:{type:String, Required:true},
+    resetToken:{type:String}
 });
 
 

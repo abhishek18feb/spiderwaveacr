@@ -2,11 +2,13 @@ const Admin = require('../model/Admins');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-
+const uuidv4 = require('uuid/v4');
+const emailTemplate = require('../middleware/forgot-email');
+const path = require('path');
 
 exports.signup = function(req, res, next){
 	//console.log('req.body')
-	console.log(req.body)
+	//console.log(req.body)
 	Admin.find({ email: req.body.email })
     .exec()
     .then(admin=>{
@@ -110,4 +112,41 @@ exports.login = function(req, res, next){
             error: err
         });
     });
+}
+exports.forgot_password = function(req, res, next){
+    Admin.find({ email: req.body.email })
+    .exec()
+    .then(admin =>{
+        console.log(admin[0])
+        if(admin.length){
+            const resetToken = uuidv4();
+            Admin.updateOne({email: req.body.email },{resetToken:resetToken})
+            .then(response=>{
+                emailTemplate.sendForgotEmail(admin[0].name,req.body.email,resetToken);
+                return res.status(200).json({
+                    message: 'Please check your email',
+                    success:true
+                }); 
+            })
+            .catch(err=>{
+                return res.status(401).json({
+                    message: 'Something went wrong',
+                    success:false
+                });  
+            });
+        }else{
+            return res.status(401).json({
+                message: 'Admin not found, User doesn\'t exist',
+                success:false
+            });
+        }
+    })
+    .catch(err=>{
+        res.status(500).json({
+            error: err
+        });
+    });
+
+
+    
 }
