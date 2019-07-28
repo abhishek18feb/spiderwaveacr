@@ -5,9 +5,9 @@ const Input=(props)=>{
 	let inputElement=null;
 	let inputClasses=[classes.InputElement];
 	let validationError=null;
-	if(props.invalid && props.shouldValidate && props.touched){
+	if(!props.invalid && props.shouldValidate && props.touched){
 		inputClasses.push(classes.invalid);
-		validationError = <p className={classes.ValidationError}>Please enter a valid value!</p>;
+		validationError = <p className={[classes.ValidationError, 'custom_err'].join(' ')}>Please enter a valid value!</p>;
 	}
 	switch(props.elementType){
 		case('text'):

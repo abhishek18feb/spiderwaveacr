@@ -32,7 +32,7 @@ exports.sendForgotEmail = (name, username, uuid)=>{
         },
         locals: {
           name: name,
-          url:'http://localhost:3000/admins/reset-password?rest='+uuid
+          url:'http://localhost:3000/admin/reset-password?reset='+uuid
         }
       })
       .then(console.log)

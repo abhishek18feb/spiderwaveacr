@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect, Link} from 'react-router-dom';
-import forgotStyle from './Forgot.module.css';
+import resetStyle from './Reset.module.css';
 import Input from '../../component/UI/Input/Input';
 import Button from '../../component/UI/Button/Button';
 import {updateObject, checkValidity} from '../../shared/utility';
@@ -9,12 +9,12 @@ import {Danger} from '../../component/UI/Alert/Alert';
 import * as actions from '../../store/actions/index';
 
 
-class Login extends React.Component{
+class Reset extends React.Component{
   constructor(props){
     super(props);
     console.log('redirect path'+this.props.authRedirectPath)
   }
-  state={
+  state={ 
     controls:{
           password: {
                 elementType: 'password',
@@ -47,7 +47,8 @@ class Login extends React.Component{
                 label:'Confirm Password'
               }
     },
-    isSignup:true
+    isSignup:true,
+    formIsValid:false
   }
 
   componentDidMount(){
@@ -59,21 +60,33 @@ class Login extends React.Component{
       [controlName]:updateObject(this.state.controls[controlName],
       {
         value:event.target.value,
-        valid: !checkValidity(event.target.value, this.state.controls[controlName].validation),
+        valid:checkValidity(event.target.value, this.state.controls[controlName].validation),
         touched:true
       }) 
     })
-    this.setState({controls: updatedControls});
+    const updatedResetForm = updateObject(this.state.orderForm,{
+      [controlName]:updatedControls
+    });
+    let formIsValid=true;
+    for(let inputIdentifier in updatedResetForm){
+      formIsValid = updatedControls[inputIdentifier].valid && formIsValid;
+    }
+    if(this.state.controls.password.value.length && this.state.controls.confirm_password.value.length && this.state.controls.password.value!==this.state.controls.confirm_password.value){
+      formIsValid=true
+      document.getElementsByClassName('custom_err').innerHTML='Both Password should be equal'
+    }else{
+      formIsValid=false
+    }
+    this.setState({controls: updatedControls, formIsValid: formIsValid});
   }
 
   submitHandler=(event)=>{
+    let search = window.location.search;
+    let params = new URLSearchParams(search);
+    let resetToken = params.get('reset');
+    console.log(resetToken);
     event.preventDefault();
-    this.props.onForgot(this.state.controls.password.value, this.state.controls.confirm_password.value)
-  }
-
-  componentWillReceiveProps(nextProps)
-  {
-      
+    this.props.onReset(this.state.controls.password.value, this.state.controls.confirm_password.value, resetToken)
   }
 
   render(){ 
@@ -94,18 +107,18 @@ class Login extends React.Component{
       />
     ))
     return(
-      <div className={forgotStyle.center}>
+      <div className={resetStyle.center}>
         {this.props.isAuthenticated?<Redirect to="/admin/dashboard" />:''}
         {this.props.error?<Danger message={this.props.error} />:''}
-        <form className={[forgotStyle.modal_content,forgotStyle.animate].join(' ')} onSubmit={this.submitHandler}>
-          <div className={forgotStyle.container}>
+        <form className={[resetStyle.modal_content,resetStyle.animate].join(' ')} onSubmit={this.submitHandler}>
+          <div className={resetStyle.container}>
             {form}
-            <Button btnType="submit" btnClass="Default" btnText="Submit" />
+            <Button btnType="submit" btnClass="Default" btnText="Submit" disabled={!this.state.formIsValid} />
           </div>
         </form>
-        <div className={forgotStyle.container} style={{ backgroundColor:'#f1f1f1' }}>
+        <div className={resetStyle.container} style={{ backgroundColor:'#f1f1f1' }}>
           <label>
-            <span className={forgotStyle.psw}>Have account <Link to="/admin">Login?</Link></span>
+            <span className={resetStyle.psw}>Have account <Link to="/admin">Login?</Link></span>
           </label>
         </div>
       </div>
@@ -122,11 +135,11 @@ const mapStateToProps = state=>{
 }
 const mapDispatchToProps = dispatch=>{
   return {
-    onForgot:(email)=>dispatch(actions.forgotPwd(email))
+    onReset:(password, confirm_password, resetToken)=>dispatch(actions.adminResetPassword(password, confirm_password, resetToken))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login); 
+export default connect(mapStateToProps, mapDispatchToProps)(Reset); 
 
 
 

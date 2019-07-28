@@ -1,66 +1,52 @@
 import React, { Suspense} from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import './App.css';
 import Home from './Frontend/Home/Home';
+import Dashboard from './Backend/Dashboard/Dashboard';
+import Login from './Backend/Login/Login';
 import {connect} from 'react-redux';
+import asyncComponent from './hoc/asyncComponent';
 import * as actions from './store/actions/index';
-const Login = React.lazy(() => import('./Backend/Login/Login'));
-const Forgot = React.lazy(() => import('./Backend/Forgot/Forgot'));
-const Logout = React.lazy(() => import('./Backend/Login/Logout/Logout'));
-const Dashboard = React.lazy(() => import('./Backend/Dashboard/Dashboard'));
 
+const Forgot = asyncComponent(()=>{
+                  return import('./Backend/Forgot/Forgot');
+                });
+const Reset = asyncComponent(()=>{
+                return import('./Backend/Reset/Reset');
+              }); 
+const Logout = asyncComponent(()=>{
+                return import('./Backend/Login/Logout/Logout');
+              }); 
+  
 class App extends React.Component{
   componentDidMount(){
     this.props.onTryAutoSignup();
   }
   render(){
-      // let routes = (
-      //       <Switch>
-      //         <Route path="/auth" component={asyncAuth} />
-      //         <Route path="/" exact component={BurgerBuilder} />
-      //         <Redirect to="/" />
-      //       </Switch>
-      //       );
-      //   if(this.props.isAuthenticated){
-      //     routes =(
-      //       <Switch>
-      //         <Route path="/checkout" component={asyncCheckout} />
-      //         <Route path="/orders" component={asyncOrders} />
-      //         <Route path="/logout" component={Logout} />
-      //         <Route path="/auth" component={asyncAuth} />
-      //         <Route path="/" exact component={BurgerBuilder} />
-      //         <Redirect to="/" />
-      //       </Switch>
-      //      )
-      //   }
-
-      return (
-        <div className="App">
-          <Suspense fallback={<div>Loading...</div>}>
+      let routes = (
+          <Switch>
+            <Route path='/admin/logout' component={Logout} exact />
+            <Route path='/admin/reset-password' component={Reset} exact />
+            <Route path='/admin/forgot' component={Forgot} exact />
+            <Route path="/admin" component={Login} exact />
             <Route path="/" exact component={Home} />
             
-            <Route
-              path="/admin"
-              render={({ match: { url } }) => (
-                <>
-                  <Route path={`${url}/`} component={Login} exact />
-                  <Route path={`${url}/forgot`} component={Forgot} exact />
-                  {
-                    this.props.isAuthenticated?
-                    <Route path={`${url}/dashboard`} component={Dashboard} exact />
-                    :<Redirect to={`${url}`} />
-                  }
-                  {
-                    this.props.isAuthenticated?
-                    <Route path={`${url}/logout`} component={Logout} exact />
-                    :<Redirect to={`${url}`} />
-                  }
-                  {/*<Redirect from={`${url}/`} to={`${url}/login`} />*/}
-                  
-                </>
-              )}
-             />
-          </Suspense>
+          </Switch>
+      );
+      if(this.props.isAuthenticated){
+          console.log('authenticated')
+          routes =(
+          <Switch>
+            <Route path='/admin/dashboard' component={Dashboard} exact />
+            <Route path='/admin/logout' component={Logout} exact />
+            <Route path="/admin" component={Login} exact />
+            <Route path="/" exact component={Home} />
+          </Switch>
+           )
+      }
+      return (
+        <div className="App">
+          {routes}
         </div>
       );
     }

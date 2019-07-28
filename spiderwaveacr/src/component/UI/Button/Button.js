@@ -5,10 +5,10 @@ const Button =(props)=>{
 	let btnElement=null;
 	switch(props.btnClass){
 		case ('Default'):
-			btnElement=<button type={props.btnType} className={classes.Default} onClick={props.click}>{props.btnText}</button>
+			btnElement=<button type={props.btnType} className={classes.Default} onClick={props.click} disabled={props.disabled}>{props.btnText}</button>
 		break;
 		default:
-		  	btnElement=<button type={props.btnType} className={classes.Default} onClick={props.click}>{props.btnText}</button>
+		  	btnElement=<button type={props.btnType} className={classes.Default} onClick={props.click} disabled={props.disabled}>{props.btnText}</button>
 	}
 
 	return btnElement;

@@ -25,8 +25,6 @@ class Dashboard extends Component{
 				  <div className="header">
 				    <a href="#default" className="logo">CompanyLogo</a>
 				    <div className="header-right">
-				      <a href="#contact">Contact</a>
-				      <a href="#about">About</a>
 				      <Link className="active" to="/admin/logout">Logout</Link>
 				    </div>
 				  </div>

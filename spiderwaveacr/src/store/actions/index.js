@@ -8,7 +8,10 @@ export {
 	authSuccess,
 	checkAuthTimeout, 
 	authFail,
-	forgotPwd,
+	authForgotPwd,
 	authForgotSuccess,
-	authForgotFail
+	authForgotFail,
+	adminResetPassword,
+	adminResetSuccess,
+	adminResetFail
 } from './admin'; 

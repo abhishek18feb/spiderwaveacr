@@ -101,7 +101,7 @@ const mapStateToProps = state=>{
 }
 const mapDispatchToProps = dispatch=>{
   return {
-    onForgot:(email)=>dispatch(actions.forgotPwd(email))
+    onForgot:(email)=>dispatch(actions.authForgotPwd(email))
   }
 }
 

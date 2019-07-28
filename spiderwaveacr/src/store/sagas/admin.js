@@ -41,7 +41,7 @@ export function* authUserSaga(action){
 	}
 }
 
-export function* forgotPwdSaga(action){
+export function* authForgotPwdSaga(action){
 	const authData = {
 				"email":action.email
 			}
@@ -51,8 +51,23 @@ export function* forgotPwdSaga(action){
 		console.log(response);
 		yield put(actions.authForgotSuccess(response.data.success,response.data.message));
 	}catch(error){
-	 	console.log(error.response.data.message);
 		yield put(actions.authForgotFail(null, error.response.data.message));
+	}
+}
+
+export function* adminResetPasswordSaga(action){
+	const authData={
+		password:action.password,
+		confirm_password:action.confirm_password,
+		resetToken:action.resetToken
+	}
+	let url='http://localhost:3300/admins/reset_password'
+	try{
+		const response = yield axios.post(url, authData)
+		yield put(actions.adminResetSuccess(response.data.success,response.data.message))
+	}catch(error){
+	 	console.log(error.response.data.message);
+		yield put(actions.adminResetFail(null, error.response.data.message))
 	}
 }
 

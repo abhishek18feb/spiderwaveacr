@@ -48,7 +48,6 @@ class Login extends React.Component{
     isSignup:true
   }
   componentDidMount(){
-    
   }
   shouldComponentUpdate(nextProps, nextState){
     return true;
@@ -98,9 +97,14 @@ class Login extends React.Component{
           changed={(event)=>this.inputChangedHandler(event, formElement.id)}
       />
     ))
+    let authRedirect=null;
+    if(this.props.isAuthenticated){
+      console.log('/admin/dashboard')
+      authRedirect = <Redirect to='/admin/dashboard' />
+    }
     return(
       <div className={loginStyle.center}>
-        {this.props.isAuthenticated?<Redirect to="/admin/dashboard" />:''}
+        {authRedirect}
         {this.props.error?<Danger message={this.props.error} />:''}
         <form className={[loginStyle.modal_content,loginStyle.animate].join(' ')} onSubmit={this.submitHandler}>
           <div className={loginStyle.container}>

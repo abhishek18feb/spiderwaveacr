@@ -52,7 +52,7 @@ export const auth = (email, password, isSignup)=>{
 	};
 };
 
-export const forgotPwd = (email)=>{
+export const authForgotPwd = (email)=>{
 	return {
 		type: actionTypes.ADMIN_AUTH_FORGOT,
 		email:email
@@ -72,7 +72,28 @@ export const authForgotFail=(forgotResponse,forgotResponseMsg)=>{
 		forgotResponseMsg:forgotResponseMsg
 	}
 }
-
+export const adminResetPassword=(password, confirm_password,resetToken)=>{
+	return {
+		type:actionTypes.ADMIN_AUTH_RESET,
+		password:password,
+		confirm_password:confirm_password,
+		resetToken:resetToken
+	};
+};
+export const adminResetSuccess=(resetResponse, resetResponseMsg)=>{
+	return {
+		type:actionTypes.ADMIN_RESET_SUCCESS,
+		resetResponse:resetResponse,
+		resetResponseMsg:resetResponseMsg
+	};
+};
+export const adminResetFail=(resetResponse, resetResponseMsg)=>{
+	return {
+		type:actionTypes.ADMIN_RESET_FAIL,
+		resetResponse:resetResponse,
+		resetResponseMsg:resetResponseMsg
+	};
+};
 
 export const setAuthRedirectPath = (path)=>{
 	return {
