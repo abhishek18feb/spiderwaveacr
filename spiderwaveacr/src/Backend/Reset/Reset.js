@@ -12,7 +12,6 @@ import * as actions from '../../store/actions/index';
 class Reset extends React.Component{
   constructor(props){
     super(props);
-    console.log('redirect path'+this.props.authRedirectPath)
   }
   state={ 
     controls:{
@@ -52,7 +51,7 @@ class Reset extends React.Component{
   }
 
   componentDidMount(){
-    console.log(this.props.authRedirectPath)
+
   }
   
   inputChangedHandler=(event, controlName)=>{
@@ -90,6 +89,7 @@ class Reset extends React.Component{
   }
 
   render(){ 
+    console.log(this.props.resetResponseMsg);
     const formElementArray=[];
     for(let key in this.state.controls){
       formElementArray.push({id:key, config:this.state.controls[key]})
@@ -108,8 +108,9 @@ class Reset extends React.Component{
     ))
     return(
       <div className={resetStyle.center}>
-        {this.props.isAuthenticated?<Redirect to="/admin/dashboard" />:''}
-        {this.props.error?<Danger message={this.props.error} />:''}
+
+        {this.props.resetResponse?<Redirect to="/admin" />:''}
+        {this.props.resetResponseMsg?<Danger message={this.props.resetResponseMsg} />:''}
         <form className={[resetStyle.modal_content,resetStyle.animate].join(' ')} onSubmit={this.submitHandler}>
           <div className={resetStyle.container}>
             {form}
@@ -129,8 +130,8 @@ class Reset extends React.Component{
 const mapStateToProps = state=>{
   return {
     error: state.admin.error,
-    isAuthenticated: state.admin.admintoken !== null,
-    authRedirectPath: state.admin.authRedirectPath
+    resetResponse: state.admin.resetResponse,
+    resetResponseMsg: state.admin.resetResponseMsg 
   }
 }
 const mapDispatchToProps = dispatch=>{

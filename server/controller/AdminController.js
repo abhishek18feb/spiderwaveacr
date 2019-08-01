@@ -150,3 +150,48 @@ exports.forgot_password = function(req, res, next){
 
     
 }
+
+exports.reset_password  = (req, res,next)=>{
+    console.log(req.body)
+    if(req.body.password==req.body.confirm_password){
+       Admin.findOne({resetToken: req.body.resetToken})
+        .exec()
+        .then(admin=>{
+            if(admin){
+                bcrypt.hash(req.body.password, 10, function(err, hash) {
+                    if(err){
+                       return res.status(500).json({
+                            error: err
+                       })
+                    }
+                    else{
+                       console.log(admin);
+                        Admin.updateOne({email: admin.email },{$set:{password:hash, resetToken:''}})
+                        .then(response=>{
+                            return res.status(200).json({
+                                message: 'Password updated successfully',
+                                success:true
+                            }); 
+                        })
+                        .catch(err=>{
+                            return res.status(401).json({
+                                message: 'Something went wrong',
+                                success:false
+                            });  
+                        });
+                   }
+               })
+            }
+        })
+        .catch(error=>{
+            res.status(500).json({
+                error: err
+            });
+        }) 
+    }else{
+        res.status(500).json({
+            message: 'Both Password should be equal'
+        });
+    }
+    
+}

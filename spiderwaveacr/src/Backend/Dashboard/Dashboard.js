@@ -1,5 +1,7 @@
 import React, {Component, useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
+import Flash from '../../component/UI/Flash/Flash';
+import Bus from '../../shared/Bus';
 import './Dashboard.css'
 
 class Dashboard extends Component{
@@ -11,6 +13,7 @@ class Dashboard extends Component{
 	componentDidMount() {
 	  this.updateWindowDimensions();
 	  window.addEventListener('resize', this.updateWindowDimensions);
+	  
 	}
 	
 	updateWindowDimensions() {
@@ -19,8 +22,11 @@ class Dashboard extends Component{
 	render(){
 		// const { height, width } = this.getWindowDimensions();
 		console.log(this.state.height, this.state.width)
+		window.flash = (message, type="success") => Bus.emit('flash', ({message, type}))
+	    window.flash('Login successfully!', 'success')
 		return(
 			<div>
+				<Flash />
 				<header>
 				  <div className="header">
 				    <a href="#default" className="logo">CompanyLogo</a>

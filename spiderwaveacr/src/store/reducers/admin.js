@@ -55,7 +55,7 @@ const setAuthForgotFail = (state,action)=>{
 const setAuthResetSuccess=(state,action)=>{
 	return updateObject(state,{
 		resetResponse:action.resetResponse,
-		resetResponseMsg:action.resetResponseMsg
+		resetResponseMsg:action.resetResponseMsg 
 	});
 };
 const setAuthResetFail=(state,action)=>{

@@ -7,5 +7,6 @@ var check_auth = require('../middleware/check-auth');
 router.post('/login', AdminController.login);
 router.post('/signup', AdminController.signup);
 router.post('/forgot_password', AdminController.forgot_password);
+router.post('/reset_password', AdminController.reset_password);
 
 module.exports = router;
