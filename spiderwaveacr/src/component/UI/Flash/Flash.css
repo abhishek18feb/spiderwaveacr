@@ -1,13 +1,6 @@
 .Alert {
-	color: white;
-	border-radius: 10px;
-	position: absolute;
-	top: 50px;
-	right: 10px;
 	padding: 20px;
-	display: flex;
-	align-items: center;
-	z-index: 1111;
+    color: white;
 }
 .Alert p {
 	margin: 0;
@@ -19,7 +12,15 @@
 	background: lightgreen;
 }
 .Close {
-	color: white;
-	cursor: pointer;
-	margin-right: 10px;
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.Close:hover {
+  color: black;
 }

@@ -16,16 +16,21 @@ export const Flash = (props) => {
             setType(type);
             setTimeout(() => {
                 setVisibility(false);
+                
             }, 4000);
         });
-                
+        return ()=>{
+                        setVisibility(false)
+                        setMessage(false)
+                        setType(false)
+                    }  
 
     }, []);
 
     useEffect(() => {
-        if(document.querySelector('.close') !== null) {
+        if(document.querySelector('.Close') !== null) {
             document.
-            querySelector('.close').
+            querySelector('.Close').
             addEventListener('click', () => setVisibility(false));
         }
         //console.log('flash messge') 
@@ -33,7 +38,7 @@ export const Flash = (props) => {
     
     return (
          visibility && <div className={`Alert Alert-${type}`}>
-                <span className="close"><strong>X</strong></span>
+                <span className="Close"><strong>X</strong></span>
                 <p>{message}</p>
             </div>
     )

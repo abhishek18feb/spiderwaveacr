@@ -100,7 +100,9 @@ class Login extends React.Component{
     let authRedirect=null;
     if(this.props.isAuthenticated){
       console.log('/admin/dashboard')
+      
       authRedirect = <Redirect to='/admin/dashboard' />
+      
     }
     return(
       <div className={loginStyle.center}>
