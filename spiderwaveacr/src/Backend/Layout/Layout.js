@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Flash from '../../component/UI/Flash/Flash';
+import * as styles from './Layout.module.css';
+import {NavLink} from 'react-router-dom';
 
 class Layout extends React.Component{
 	render(){
@@ -8,19 +10,18 @@ class Layout extends React.Component{
 		<div>
 			<Flash />
 			<header>
-			  <div className="header">
-			    <a href="#default" className="logo">CompanyLogo</a>
-			    <div className="header-right">
-			      <Link className="active" to="/admin/logout">Logout</Link>
+			  <div className={styles.header}>
+			    <a href="#default" className={styles.logo}>CompanyLogo</a>
+			    <div className={styles.header_right}>
+			      <Link className={styles.active} to="/admin/logout">Logout</Link>
 			    </div>
 			  </div>
 			</header>
 			<section>
-			  <nav style={{minHeight:this.props.windowHeight-160}}>
-			    <ul className="sidebar">
-			      <li><a href="#" className="active">London</a></li>
-			      <li><a href="#">Paris</a></li>
-			      <li><a href="#">Tokyo</a></li>
+			  <nav style={{minHeight:this.props.windowHeight}}>
+			    <ul className={styles.sidebar}>
+			      <li><NavLink to='/admin/dashboard/' activeClassName={styles.active}>Dashboard</NavLink></li>
+			      <li><NavLink to='/admin/settings/' activeClassName={styles.active}>Setting</NavLink></li>
 			    </ul>
 			  </nav>
 			  {this.props.children}

@@ -18,11 +18,16 @@ const Logout = asyncComponent(()=>{
                 return import('./Backend/Login/Logout/Logout');
               }); 
   
+const Setting = asyncComponent(()=>{
+                return import('./Backend/Setting/Setting');
+              }); 
+
 class App extends React.Component{
   componentDidMount(){
     this.props.onTryAutoSignup();
   }
   render(){
+      console.log(window.location.pathname)
       let routes = (
           <Switch>
             <Route path='/admin/logout' component={Logout} exact />
@@ -38,14 +43,20 @@ class App extends React.Component{
           routes =(
           <Switch>
             <Route path='/admin/dashboard' component={Dashboard} exact />
+            <Route path='/admin/settings' component={Setting} exact />
             <Route path='/admin/logout' component={Logout} exact />
             <Route path="/admin" component={Login} exact />
             <Route path="/" exact component={Home} />
           </Switch>
            )
       }
+      let redirect='';
+      if(!this.props.isAuthenticated && (window.location.pathname).match(/admin/g)){
+        redirect=<Redirect to="/admin" />
+      }
       return (
         <div className="App">
+          {redirect}
           {routes}
         </div>
       );

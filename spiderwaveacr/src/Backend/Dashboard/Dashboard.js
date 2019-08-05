@@ -23,7 +23,7 @@ class Dashboard extends Component{
 		window.flash = (message, type="success") => Bus.emit('flash', ({message, type}))
       	window.flash('Login successfully!', 'success')
 		return(
-			<Layout windowHeight={this.state.height} windowWidth={this.state.width}>
+			<Layout windowHeight={this.state.height-160} windowWidth={this.state.width}>
 				<article style={{minHeight:this.state.height-160}}>
 			    <h1>London</h1>
 			    <p>London is the capital city of England. It is the most populous city in the  United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>

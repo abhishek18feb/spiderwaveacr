@@ -48,7 +48,7 @@ export const auth = (email, password, isSignup)=>{
 		type: actionTypes.ADMIN_AUTH_USER,
 		email: email,
 		password: password,
-		isSignup: isSignup 
+		isSignup: isSignup  
 	};
 };
 
@@ -107,3 +107,5 @@ export const authCheckState = () => {
 		type: actionTypes.ADMIN_AUTH_CHECK_STATE
 	}
 }
+
+

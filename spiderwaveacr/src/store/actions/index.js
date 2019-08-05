@@ -15,3 +15,7 @@ export {
 	adminResetSuccess,
 	adminResetFail
 } from './admin'; 
+
+export {
+	updateSiteSetting
+} from './site_setting';

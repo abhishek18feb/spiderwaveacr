@@ -16,6 +16,9 @@ const Input=(props)=>{
 		case('password'):
 			inputElement=<input {...props.elementConfig} className={inputClasses.join(' ')} onChange={props.changed} />
 		break;
+		case('file'):
+			inputElement=<input {...props.elementConfig} className={inputClasses.join(' ')} onChange={props.changed} />
+		break;
 		case('textarea'):
 			inputElement=(<textarea className={inputClasses.join(' ')} onChange={props.changed}>{props.value}</textarea>)
 		break;
