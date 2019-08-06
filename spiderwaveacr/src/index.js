@@ -8,21 +8,25 @@ import { createStore, applyMiddleware, compose,combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom'
-import { watchAuth } from './store/sagas';
+import { watchAuth,watchSiteSetting } from './store/sagas';
 import adminReducer from './store/reducers/admin';
+import siteSettingReducer from './store/reducers/site_setting';
 
 const sagaMiddleware = createSagaMiddleware()
 const composeEnhancers = process.env.NODE_ENV==='development'?window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__:null || compose;
 const rootReducers = combineReducers({
-	admin: adminReducer
+	admin: adminReducer,
+	siteSetting: siteSettingReducer
+
 });
 
-const store = createStore(
+const store = createStore( 
 			rootReducers,
 			composeEnhancers(applyMiddleware(sagaMiddleware))
 		);
 
 sagaMiddleware.run(watchAuth);
+sagaMiddleware.run(watchSiteSetting);
 
 ReactDOM.render(
 				<Provider store={store}>

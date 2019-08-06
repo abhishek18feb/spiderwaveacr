@@ -9,12 +9,13 @@ var storage = multer.diskStorage({
     cb(null, './public/logo')
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now()+path.extname(file.originalname))
+    cb(null, 'logo'+path.extname(file.originalname))
   }
 })
 var upload = multer({ storage: storage })
 /* GET users listing. */
 router.post('/update_site_setting', check_auth,upload.single('logo'), SiteSettingController.update_site_setting);
+router.post('/fetch_site_setting', check_auth, SiteSettingController.fetch_site_setting);
 
 
 module.exports = router;

@@ -17,5 +17,10 @@ export {
 } from './admin'; 
 
 export {
-	updateSiteSetting
+	updateSiteSetting,
+	updateSiteSettingSuccess,
+	updateSiteSettingFail,
+	fetchSiteSetting,
+	fetchSiteSettingSuccess,
+	fetchSiteSettingFail
 } from './site_setting';
