@@ -21,6 +21,9 @@ const Logout = asyncComponent(()=>{
 const Setting = asyncComponent(()=>{
                 return import('./Backend/Setting/Setting');
               }); 
+const CMSAdd = asyncComponent(()=>{
+                return import('./Backend/Cms/Add/Add');
+              });
 
 class App extends React.Component{
   componentDidMount(){
@@ -43,6 +46,7 @@ class App extends React.Component{
           routes =(
           <Switch>
             <Route path='/admin/dashboard' component={Dashboard} exact />
+            <Route path='/admin/cms/add' component={CMSAdd} exact />
             <Route path='/admin/settings' component={Setting} exact />
             <Route path='/admin/logout' component={Logout} exact />
             <Route path="/admin" component={Login} exact />

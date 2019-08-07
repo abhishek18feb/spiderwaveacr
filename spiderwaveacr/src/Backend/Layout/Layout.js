@@ -22,6 +22,7 @@ class Layout extends React.Component{
 			    <ul className={styles.sidebar}>
 			      <li><NavLink to='/admin/dashboard/' activeClassName={styles.active}>Dashboard</NavLink></li>
 			      <li><NavLink to='/admin/settings/' activeClassName={styles.active}>Setting</NavLink></li>
+			      <li><NavLink to='/admin/cms/add/' activeClassName={styles.active}>CMS Add</NavLink></li>
 			    </ul>
 			  </nav>
 			  {this.props.children}

@@ -114,102 +114,6 @@ class Setting extends PureComponent{
 	}
 	componentDidMount() {
 	  this.updateWindowDimensions();
-	    var intervalID =setTimeout(()=>{
-	  	if(this.props.siteSettingResponse){
-	  		let updatedControls={
-								email:{
-					            	elementType: 'text',
-					            	elementConfig: {
-					            		type: 'email',
-					            		placeholder: 'Display Email'
-					            	},
-					            	value: this.props.siteSettingResponse.email,
-					            	validation: {
-					            		required: true,
-					            		isEmail: true
-					            	},
-					            	valid: true,
-					            	touched:false,
-					            	label:'Email'
-					            },
-								phone:{
-					            	elementType: 'input',
-					            	elementConfig: {
-					            		type: 'text',
-					            		placeholder: 'Display Phone'
-					            	},
-					            	value: this.props.siteSettingResponse.phone,
-					            	validation: {
-					            		required: true
-					            	},
-					            	valid: true,
-					            	touched:false,
-					            	label:'Phone'
-					            },
-								facebook:{
-					            	elementType: 'input',
-					            	elementConfig: {
-					            		type: 'text',
-					            		placeholder: 'Facebook Id'
-					            	},
-					            	value: this.props.siteSettingResponse.facebook,
-					            	validation: {
-					            		required: false
-					            	},
-					            	valid: true,
-					            	touched:false,
-					            	label:'Facebook'
-					            },
-								instagram:{
-					            	elementType: 'input',
-					            	elementConfig: {
-					            		type: 'text',
-					            		placeholder: 'Instagram Share',
-					            	},
-					            	value: this.props.siteSettingResponse.instagram,
-					            	validation: {
-					            		required: false
-					            	},
-					            	valid: true,
-					            	touched:false,
-					            	label:'Instagram'
-					            },
-								twitter:{
-					            	elementType: 'input',
-					            	elementConfig: {
-					            		type: 'text',
-					            		placeholder: 'Instagram Share'
-					            	},
-					            	value: this.props.siteSettingResponse.twitter,
-					            	validation: {
-					            		required: false
-					            	},
-					            	valid: true,
-					            	touched:false,
-					            	label:'Twitter'
-					            },
-								logo:{
-					            	elementType: 'input',
-					            	elementConfig: {
-					            		type: 'file',
-					            		placeholder: 'Instagram Share'
-					            	},
-					            	value: '',
-					            	validation: {
-					            		required: false
-					            	},
-					            	valid: true,
-					            	touched:false,
-					            	label:'Upload Logo'
-					            }
-					    }
-			console.log(updatedControls);
-			this.setState({controls:updatedControls, formIsValid:true,imagePreviewUrl: this.props.siteSettingResponse.logopath})
-			clearTimeout();
-	  	}
-	  }, 5000)
-	  
-	
 	}
 	
 	
@@ -313,8 +217,108 @@ class Setting extends PureComponent{
 			</Layout>
 		)
 	}
+	 componentDidUpdate(prevProps, prevState) {
+	    if (this.props.siteSettingResponse !== prevProps.siteSettingResponse) {
+	      console.log('Site setting response')
+	      console.log(this.props.siteSettingResponse)
+	      if(this.props.siteSettingResponse){
+		  		let updatedControls={
+									email:{
+						            	elementType: 'text',
+						            	elementConfig: {
+						            		type: 'email',
+						            		placeholder: 'Display Email'
+						            	},
+						            	value: this.props.siteSettingResponse.email,
+						            	validation: {
+						            		required: true,
+						            		isEmail: true
+						            	},
+						            	valid: true,
+						            	touched:false,
+						            	label:'Email'
+						            },
+									phone:{
+						            	elementType: 'input',
+						            	elementConfig: {
+						            		type: 'text',
+						            		placeholder: 'Display Phone'
+						            	},
+						            	value: this.props.siteSettingResponse.phone,
+						            	validation: {
+						            		required: true
+						            	},
+						            	valid: true,
+						            	touched:false,
+						            	label:'Phone'
+						            },
+									facebook:{
+						            	elementType: 'input',
+						            	elementConfig: {
+						            		type: 'text',
+						            		placeholder: 'Facebook Id'
+						            	},
+						            	value: this.props.siteSettingResponse.facebook,
+						            	validation: {
+						            		required: false
+						            	},
+						            	valid: true,
+						            	touched:false,
+						            	label:'Facebook'
+						            },
+									instagram:{
+						            	elementType: 'input',
+						            	elementConfig: {
+						            		type: 'text',
+						            		placeholder: 'Instagram Share',
+						            	},
+						            	value: this.props.siteSettingResponse.instagram,
+						            	validation: {
+						            		required: false
+						            	},
+						            	valid: true,
+						            	touched:false,
+						            	label:'Instagram'
+						            },
+									twitter:{
+						            	elementType: 'input',
+						            	elementConfig: {
+						            		type: 'text',
+						            		placeholder: 'Instagram Share'
+						            	},
+						            	value: this.props.siteSettingResponse.twitter,
+						            	validation: {
+						            		required: false
+						            	},
+						            	valid: true,
+						            	touched:false,
+						            	label:'Twitter'
+						            },
+									logo:{
+						            	elementType: 'input',
+						            	elementConfig: {
+						            		type: 'file',
+						            		placeholder: 'Instagram Share'
+						            	},
+						            	value: '',
+						            	validation: {
+						            		required: false
+						            	},
+						            	valid: true,
+						            	touched:false,
+						            	label:'Upload Logo'
+						            }
+						    }
+				console.log(updatedControls);
+				this.setState({controls:updatedControls, formIsValid:true,imagePreviewUrl: this.props.siteSettingResponse.logopath})
+				clearTimeout();
+		  	}
+	    }
+	  }
 
 }
+
+
 
 const mapStateToProps = state=>{
   return {
