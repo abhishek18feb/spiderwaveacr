@@ -101,3 +101,10 @@ footer {
   color: white;
   height: 10%;
 }
+
+.menu ul { margin-left: 15px; } 
+.menu li {margin-left: 0px; cursor: pointer;}
+.inactive_sub_menu { margin-bottom: 15px;}
+.inactive_sub_menu ul{display: none;}
+.active_sub_menu {display: block; margin-bottom: 15px;background-color: #666;}
+

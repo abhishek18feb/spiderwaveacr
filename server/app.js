@@ -10,6 +10,7 @@ mongoose.connect('mongodb://localhost/apiderwaveacr', { useNewUrlParser: true })
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admins');
+var cmsRouter = require('./routes/cms');
 var siteSettingRouter = require('./routes/sitesetting');
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admins', adminRouter);
 app.use('/site-setting', siteSettingRouter);
+app.use('/cms', cmsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

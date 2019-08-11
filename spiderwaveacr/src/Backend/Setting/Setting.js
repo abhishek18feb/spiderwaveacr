@@ -220,7 +220,7 @@ class Setting extends PureComponent{
 	 componentDidUpdate(prevProps, prevState) {
 	    if (this.props.siteSettingResponse !== prevProps.siteSettingResponse) {
 	      console.log('Site setting response')
-	      console.log(this.props.siteSettingResponse)
+	      console.log(this.props.siteSettingResponse)  
 	      if(this.props.siteSettingResponse){
 		  		let updatedControls={
 									email:{

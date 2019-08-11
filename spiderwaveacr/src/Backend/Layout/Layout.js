@@ -4,7 +4,20 @@ import Flash from '../../component/UI/Flash/Flash';
 import * as styles from './Layout.module.css';
 import {NavLink} from 'react-router-dom';
 
-class Layout extends React.Component{
+class Layout extends React.PureComponent{
+	constructor(props){
+		super(props);
+		this.state={activeKey:undefined}
+	}
+
+	toggleList(key){
+		console.log(key);
+		this.setState({activeKey:key})
+	}
+	componentDidMount(){
+		console.log(this.state.activeKey);
+	}
+
 	render(){
 		return (
 		<div>
@@ -20,9 +33,18 @@ class Layout extends React.Component{
 			<section>
 			  <nav style={{minHeight:this.props.windowHeight}}>
 			    <ul className={styles.sidebar}>
-			      <li><NavLink to='/admin/dashboard/' activeClassName={styles.active}>Dashboard</NavLink></li>
-			      <li><NavLink to='/admin/settings/' activeClassName={styles.active}>Setting</NavLink></li>
-			      <li><NavLink to='/admin/cms/add/' activeClassName={styles.active}>CMS Add</NavLink></li>
+			      	<li><NavLink to='/admin/dashboard/' activeClassName={styles.active}>Dashboard</NavLink></li>
+			      	<li><NavLink to='/admin/settings/' activeClassName={styles.active}>Setting</NavLink></li>
+			      	<ul className={styles.menu}>
+						<li key="cms" 
+							className={((this.state.activeKey==="cms")||(this.props.activeKey==="cms"))?styles.active_sub_menu:styles.inactive_sub_menu}
+							onClick={(e)=>this.toggleList("cms")} >
+							<Link to='/admin/cms/add/'>Cms</Link>
+							<ul className="sub-menu">
+					      		<li><NavLink to='/admin/cms/add/' activeClassName={styles.active}>Add</NavLink></li>
+							</ul>
+						</li>
+					</ul>
 			    </ul>
 			  </nav>
 			  {this.props.children}

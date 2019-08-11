@@ -8,9 +8,12 @@ import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import {Redirect} from 'react-router-dom';
 import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/base64uploadadapter';
 import Bus from '../../../shared/Bus';
 import './Add.css'
+
+
 
 class Add extends Component{
 	constructor(props){
@@ -26,11 +29,21 @@ class Add extends Component{
 	updateWindowDimensions() {
 	  this.setState({ width: window.innerWidth, height: window.innerHeight });
 	}
+	
+
+
 	render(){
+		ClassicEditor
+	    .create( document.querySelector('#editor'), {
+	        plugins: [Base64UploadAdapter]
+	        
+	    } )
+	    .then(res=>console.log(res))
+	    .catch(err=>console.log(err));
 		return (
-			<Layout windowHeight={this.state.height-160} windowWidth={this.state.width}>
-				<article style={{minHeight:this.state.height-160}}>
-			    	<h3>Using CSS to style an HTML Form</h3>
+			<Layout windowHeight={this.state.height} windowWidth={this.state.width} activeKey="cms">
+				<article style={{minHeight:this.state.height}}>
+			    	<h3>Add New Cms</h3>
 					<div className="Add">
 					  <form action="/action_page.php">
 					    <label htmlFor="fname">Slug</label>
@@ -39,8 +52,17 @@ class Add extends Component{
 					    <label htmlFor="lname">CMS Name</label>
 					    <input type="text" id="lname" name="lastname" placeholder="Your last name.." />
 
+					    <label htmlFor="title">CMS Title</label>
+					    <input type="text" id="lname" name="lastname" placeholder="Enter Cms Title" />
+
+					    <label htmlFor="title">Meta Keywords</label>
+					    <input type="text" id="lname" name="lastname" placeholder="Enter Meta Keywords" />
+
+					    <label htmlFor="title">Meta Description</label>
+					    <input type="text" id="lname" name="lastname" placeholder="Enter Meta Description" />
+
 					    <label htmlFor="country">Description</label>
-					    <CKEditor
+					    <CKEditor id="editor"
 		                    editor={ ClassicEditor }
 		                    data="<p>Hello from CKEditor 5!</p>"
 		                    onInit={ editor => {
