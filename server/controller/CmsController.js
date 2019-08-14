@@ -125,3 +125,19 @@ exports.delete_cms = (req, res, next) => {
       });
   });
 }
+
+exports.check_unique = (req, res, next) =>{
+	//console.log(req.body)
+	Cms.countDocuments(req.body)
+	.exec()
+	.then(result=>{
+		res.status(200).json({
+          	result: result,
+      	});
+	})
+	.catch(err=>{
+		res.status(500).json({
+          	error: err
+      	});
+	})
+}

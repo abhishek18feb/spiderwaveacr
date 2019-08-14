@@ -11,6 +11,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/base64uploadadapter';
 import Bus from '../../../shared/Bus';
+import { Validation } from '../validate';
 import './Add.css'
 
 
@@ -18,7 +19,42 @@ import './Add.css'
 class Add extends Component{
 	constructor(props){
 		super(props)
-		this.state = { width: 0, height: 0 };
+		this.state = {
+			controls:{
+				page_name:{
+					value:'',
+					validation:{required:true, unique:true},
+					isValid:false,
+					validationMsg:''
+				},
+				
+				title:{
+					value:'',
+					validation:{required:true, unique:true},
+					isValid:false,
+					validationMsg:''
+				},
+				meta_keywords:{
+					value:'',
+					validation:{},
+					isValid:true,
+				},
+				meta_desc:{
+					value:'',
+					validation:{},
+					isValid:true,
+				},
+				content:{
+					value:'',
+					validation:{},
+					isValid:true,
+				}
+			}, 
+			formIsValid:false,
+			width: 0, 
+			height: 0 
+		};
+		this.handleChange = this.handleChange.bind(this);
   		this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 	}
 	componentDidMount() {
@@ -30,36 +66,52 @@ class Add extends Component{
 	  this.setState({ width: window.innerWidth, height: window.innerHeight });
 	}
 	
+	handleChange (evt) {
+	    // check it out: we get the evt.target.name (which will be either "email" or "password")
+	    // and use it to target the key on our `state` object with the same name, using bracket syntax
+	    let updatedControls = this.state.controls;
+	    let event = evt;
+	    updatedControls[evt.target.name].value=evt.target.value;
+	    Validation([evt.target.name], evt.target.value, updatedControls[evt.target.name].validation, this.props.admintoken)
+	    .then(response=>{
+	    	updatedControls[response.name].isValid=response.isValid;
+	    	updatedControls[response.name].validationMsg=response.validationMsg;
+	    	this.setState({controls:updatedControls})
+	    	console.log(updatedControls)
+	    });
+	}
+	onEditorChange( data ) {
+		let updatedControls = this.state.controls;
+	    console.log(updatedControls);
+	    updatedControls.content.value=data;
+	    console.log({controls:updatedControls})
+	    this.setState({controls:updatedControls})
+        
+    }
 
 
 	render(){
-		ClassicEditor
-	    .create( document.querySelector('#editor'), {
-	        plugins: [Base64UploadAdapter]
-	        
-	    } )
-	    .then(res=>console.log(res))
-	    .catch(err=>console.log(err));
+	
+	    
 		return (
 			<Layout windowHeight={this.state.height} windowWidth={this.state.width} activeKey="cms">
 				<article style={{minHeight:this.state.height}}>
 			    	<h3>Add New Cms</h3>
 					<div className="Add">
 					  <form action="/action_page.php">
-					    <label htmlFor="fname">Slug</label>
-					    <input type="text" id="fname" name="firstname" placeholder="Your name.." />
-
 					    <label htmlFor="lname">CMS Name</label>
-					    <input type="text" id="lname" name="lastname" placeholder="Your last name.." />
-
+					    <input type="text" id="lname" name="page_name" value={this.state.controls.page_name.value} onChange={this.handleChange} placeholder="Enter Page Name" />
+					    <span className="err">{this.state.controls.page_name.validationMsg}</span>
+					    
 					    <label htmlFor="title">CMS Title</label>
-					    <input type="text" id="lname" name="lastname" placeholder="Enter Cms Title" />
-
+					    <input type="text" id="title" name="title" onChange={this.handleChange} placeholder="Enter Cms Title" />
+					    <span className="err">{this.state.controls.page_name.validationMsg}</span>
+					    
 					    <label htmlFor="title">Meta Keywords</label>
-					    <input type="text" id="lname" name="lastname" placeholder="Enter Meta Keywords" />
+					    <input type="text" id="meta_keywords" name="meta_keywords" onChange={this.handleChange} placeholder="Enter Meta Keywords" />
 
 					    <label htmlFor="title">Meta Description</label>
-					    <input type="text" id="lname" name="lastname" placeholder="Enter Meta Description" />
+					    <input type="text" id="meta_desc" name="meta_desc" onChange={this.handleChange} placeholder="Enter Meta Description" />
 
 					    <label htmlFor="country">Description</label>
 					    <CKEditor id="editor"
@@ -69,10 +121,11 @@ class Add extends Component{
 		                        // You can store the "editor" and use when it is needed.
 		                        console.log( 'Editor is ready to use!', editor );
 		                    } }
-		                    onChange={ ( event, editor ) => {
-		                        const data = editor.getData();
-		                        console.log( { event, editor, data } );
-		                    } }
+		                     onChange={ ( event, editor ) => {
+					            const data = editor.getData();
+					            this.onEditorChange(data);
+					            console.log( { event, editor, data } );
+					          } }
 		                    onBlur={ editor => {
 		                        console.log( 'Blur.', editor );
 		                    } }
@@ -90,4 +143,16 @@ class Add extends Component{
 	}
 }
 
-export default Add;
+const mapStateToProps = state=>{
+  return {
+    error: state.siteSetting.siteSettingError,
+    siteSettingResponse: state.siteSetting.siteSettingResponse,
+    siteSettingResponseMsg:state.siteSetting.siteSettingResponseMsg,
+    isAuthenticated: state.admin.admintoken !== null,
+    authRedirectPath: state.admin.authRedirectPath,
+    admintoken: state.admin.admintoken,
+
+  }
+}
+
+export default connect(mapStateToProps, null)(Add);
