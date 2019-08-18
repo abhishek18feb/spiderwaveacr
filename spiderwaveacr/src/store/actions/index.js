@@ -24,3 +24,33 @@ export {
 	fetchSiteSettingSuccess,
 	fetchSiteSettingFail
 } from './site_setting';
+
+export {
+	addCms,
+	addCmsSuccess,
+	addCmsFail,
+	adminFetchCms,
+	adminFetchCmsSuccess,
+	adminFetchCmsFail,
+	adminGetSingleCms,
+	adminGetSingleCmsSuccess,
+	adminGetSingleCmsFail,
+	updateCms,
+	updateCmsSuccess,
+	updateCmsFail
+} from './cms';
+
+export {
+	addService,
+	addServiceSuccess,
+	addServiceFail,
+	adminFetchService,
+	adminFetchServiceSuccess,
+	adminFetchServiceFail,
+	adminGetSingleService,
+	adminGetSingleServiceSuccess,
+	adminGetSingleServiceFail,
+	updateService,
+	updateServiceSuccess,
+	updateServiceFail
+} from './service'

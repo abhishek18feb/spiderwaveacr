@@ -24,6 +24,15 @@ const Setting = asyncComponent(()=>{
 const CMSAdd = asyncComponent(()=>{
                 return import('./Backend/Cms/Add/Add');
               });
+const CMSList = asyncComponent(()=>{
+                  return import('./Backend/Cms/List/List');
+                })
+const CMSEdit = asyncComponent(()=>{
+                  return import('./Backend/Cms/Edit/Edit');
+                })
+const ServiceAdd = asyncComponent(()=>{
+                  return import('./Backend/Service/Add/Add');
+                })
 
 class App extends React.Component{
   componentDidMount(){
@@ -46,7 +55,10 @@ class App extends React.Component{
           routes =(
           <Switch>
             <Route path='/admin/dashboard' component={Dashboard} exact />
+            <Route path='/admin/service/add' component={ServiceAdd} exact />
             <Route path='/admin/cms/add' component={CMSAdd} exact />
+            <Route path='/admin/cms/list' component={CMSList} exact />
+            <Route path='/admin/cms/edit/:cmsId' component={CMSEdit} exact />
             <Route path='/admin/settings' component={Setting} exact />
             <Route path='/admin/logout' component={Logout} exact />
             <Route path="/admin" component={Login} exact />

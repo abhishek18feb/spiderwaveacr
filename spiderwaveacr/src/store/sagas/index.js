@@ -2,6 +2,9 @@ import { takeEvery, all, takeLatest } from 'redux-saga/effects'
 import * as actionTypes from '../actions/actionsTypes';
 import { logoutSaga, checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga,authForgotPwdSaga,adminResetPasswordSaga } from './admin';
 import { updateSiteSettingSaga, fetchSiteSettingSaga } from './site_setting';
+import {addCmsSaga, adminFetchCmsSaga, adminGetSingleCmsSaga, updateCmsSaga} from './cms';
+import {addServiceSaga, adminFetchServiceSaga, adminGetSingleServiceSaga, updateServiceSaga} from './service';
+
 export function* watchAuth(){
 	yield all([
 		takeEvery(actionTypes.ADMIN_AUTH_INITIATE_LOGOUT, logoutSaga),
@@ -18,5 +21,23 @@ export function* watchSiteSetting(){
 	yield all([
 		takeEvery(actionTypes.ADMIN_UPDATE_SITE_SETTING, updateSiteSettingSaga),
 		takeEvery(actionTypes.ADMIN_FETCH_SITE_SETTING, fetchSiteSettingSaga)
+	])
+}
+
+export function* watchCms(){
+	yield all([
+		takeEvery(actionTypes.ADMIN_ADD_CMS, addCmsSaga),
+		takeEvery(actionTypes.ADMIN_FETCH_CMS, adminFetchCmsSaga),
+		takeEvery(actionTypes.ADMIN_FETCH_SINGLE_CMS, adminGetSingleCmsSaga),
+		takeEvery(actionTypes.ADMIN_UPDATE_CMS, updateCmsSaga)
+	])
+}
+
+export function* watchService(){
+	yield all([
+		takeEvery(actionTypes.ADMIN_FETCH_SERVICE, addServiceSaga),
+		takeEvery(actionTypes.ADMIN_FETCH_SERVICE, adminFetchServiceSaga),
+		takeEvery(actionTypes.ADMIN_FETCH_SINGLE_SERVICE, adminGetSingleServiceSaga),
+		takeEvery(actionTypes.ADMIN_UPDATE_SERVICE, updateServiceSaga)
 	])
 }

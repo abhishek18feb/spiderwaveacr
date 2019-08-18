@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const Validation = async (name, value, rules, token)=>{
+export const Validation = async (name, value, rules, token, id)=>{
 	let isValid = true;
 	let validationMsg = '';
     if (!rules) {
@@ -8,18 +8,18 @@ export const Validation = async (name, value, rules, token)=>{
     }
 	if(rules.required){
 		isValid=value.trim()!='' && isValid
-		validationMsg = [name]+' is required field'
+		validationMsg = (!isValid)?[name]+' is required field':''
 	}
 	
-	if(rules.unique){
+	if(rules.unique && value.length){
 		let response = await axios({
 			method:'post',
 			url: "http://localhost:3300/cms/check_unique",
-			data:{[name]:value},
+			data:{[name]:value, _id:id},
 			headers: {'Authorization': 'Berear '+token}
 		})
 		isValid = !response.data.result && isValid
-		validationMsg = [name]+' should be unique'
+		validationMsg = (!isValid)?[name]+' should be unique':''
 	}
 	return {isValid, validationMsg, name};
 }

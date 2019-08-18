@@ -10,7 +10,6 @@ const Button =(props)=>{
 		default:
 		  	btnElement=<button type={props.btnType} className={classes.Default} onClick={props.click} disabled={props.disabled}>{props.btnText}</button>
 	}
-
 	return btnElement;
 }
 

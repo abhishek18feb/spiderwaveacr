@@ -29,7 +29,7 @@ exports.signup = function(req, res, next){
                             email: req.body.email,
                             name: req.body.name,
                             mobile:req.body.mobile,
-                            expiresIn:"3600",
+                            //expiresIn:"3600",
                             password: hash
                         });
                     admin.save()

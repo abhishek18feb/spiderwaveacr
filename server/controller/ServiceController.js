@@ -1,9 +1,9 @@
-const Cms = require('../model/Cms');
+const Service = require('../model/Service');
 const mongoose = require('mongoose');
 
 exports.get_all = (req, res, next)=>{
-	Cms.find()
-	.select('page_slug page_name title meta_keywords meta_desc content _id')
+	Service.find()
+	.select('title meta_keywords meta_desc content _id')
 	.exec()
 	.then(result=>{
 		console.log(result)
@@ -12,8 +12,6 @@ exports.get_all = (req, res, next)=>{
 				cms:result.map(result=>{
 				return {
 					_id: result._id,
-					page_slug: result.page_slug,
-					page_name:result.page_name,
 					title: result.title,
 					meta_keywords:result.meta_keywords,
 					meta_desc: result.meta_desc,
@@ -32,33 +30,27 @@ exports.get_all = (req, res, next)=>{
 	})
 }
 
-exports.addCms = (req,res,next)=>{
+exports.addService = (req,res,next)=>{
 	console.log(req.body)
-	Cms.find({page_name: req.body.page_name})
+	Service.find({title: req.body.title})
 	.exec()
-	.then(cms=>{
-		if(cms.length){
+	.then(service=>{
+		if(service.length){
 			return res.status(409).json({
-				message: "You already added this cms"
+				message: "You already added this service"
 			})
 		}else{
-			let pageSlug=req.body.page_name.split(" ").join("-").split(" ");
-			pageSlug=String(pageSlug).toLowerCase();
-			const cms = new Cms({
+			const service = new Service({
 				_id:new mongoose.Types.ObjectId,
-				page_name:req.body.page_name,
-				page_slug:pageSlug,
 				title:req.body.title,
 				meta_keywords:req.body.meta_keywords,
 				meta_desc:req.body.meta_desc,
 				content:req.body.content
 			})
-			cms.save().then(result=>{
+			service.save().then(result=>{
 				return res.status(201).json({
-					message:"Cms saved successfully",
+					message:"Service saved successfully",
 					data:{
-						page_name:result.page_name,
-						page_slug:result.page_slug,
 						title:result.title,
 						mets_keywords:result.meta_desc,
 						meta_desc: result.meta_desc,
@@ -72,11 +64,11 @@ exports.addCms = (req,res,next)=>{
 	})
 }
 
-exports.get_single_cms = (req, res, next) => {
+exports.get_single_service = (req, res, next) => {
   var id = req.params.cmsId;
   console.log(id);
-  Cms.findById({"_id":id})
-  .select("page_slug page_name title meta_keywords meta_desc content _id")
+  Service.findById({"_id":id})
+  .select("title meta_keywords meta_desc content _id")
   .exec()
   .then(doc =>{
       console.log(doc)
@@ -93,33 +85,33 @@ exports.get_single_cms = (req, res, next) => {
   }).catch(err=>{ res.status(500).json({ error:err}); });
 }
 
-exports.update_cms = (req, res, next) => {
+exports.update_service = (req, res, next) => {
   const id = req.params.cmsId;
   console.log(id)
   console.log(req.body)
-  Cms.update({"_id":id}, {$set: req.body})
+  Service.update({"_id":id}, {$set: req.body})
   .exec()
   .then(doc=>{
       res.status(200).json({
-          message: "Cms with "+id+" updated",
+          message: "Service with "+id+" updated",
       })
   })
   .catch(err=>{
       res.status(500).json({
-          message: "There was an error in updating the product",
+          message: "There was an error in updating the service",
           error: err
       })
   });
 }
 
-exports.delete_cms = (req, res, next) => {
+exports.delete_service = (req, res, next) => {
   const id = req.params.cmsId;
   console.log(id);
-  Cms.remove({_id: id})
+  Service.remove({_id: id})
   .exec()
   .then(result=>{
       res.status(200).json({
-          message: 'Cms Deleted Successfully',
+          message: 'Service Deleted Successfully',
       });
   })
   .catch(err=>{
@@ -131,7 +123,7 @@ exports.delete_cms = (req, res, next) => {
 
 exports.check_unique = (req, res, next) =>{
 	console.log(req.body)
-	Cms.countDocuments(req.body)
+	Service.countDocuments(req.body)
 	//Cms.countDocuments({$and:{_id:{$ne:req.body._id}, $or:{page_name:req.body.page_name, title:req.body.title}}})
 	.exec()
 	.then(result=>{
