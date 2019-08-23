@@ -9,7 +9,7 @@ exports.get_all = (req, res, next)=>{
 		console.log(result)
 		const response={
 				count: result.length,
-				cms:result.map(result=>{
+				service:result.map(result=>{
 				return {
 					_id: result._id,
 					title: result.title,
@@ -65,7 +65,7 @@ exports.addService = (req,res,next)=>{
 }
 
 exports.get_single_service = (req, res, next) => {
-  var id = req.params.cmsId;
+  var id = req.params.serviceId;
   console.log(id);
   Service.findById({"_id":id})
   .select("title meta_keywords meta_desc content _id")

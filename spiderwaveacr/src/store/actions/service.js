@@ -1,7 +1,7 @@
 import * as actionTypes from './actionsTypes';
 
 export const addService = (formData, adminToken) =>{
-
+	console.log(formData)
 	return {
 		type: actionTypes.ADMIN_ADD_SERVICE,
 		formData: formData,

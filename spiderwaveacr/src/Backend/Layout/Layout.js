@@ -50,7 +50,7 @@ class Layout extends React.PureComponent{
 						<li key="service" 
 							className={((this.state.activeKey==="service")||(this.props.activeKey==="service"))?styles.active_sub_menu:styles.inactive_sub_menu}
 							onClick={(e)=>this.toggleList("service")} >
-							<Link to='/admin/service/add'>Service</Link>
+							<Link to='/admin/service/list'>Service</Link>
 							<ul className="sub-menu">
 					      		<li><NavLink to='/admin/service/list' activeClassName={styles.active}>List</NavLink></li>
 					      		<li><NavLink to='/admin/service/add/' activeClassName={styles.active}>Add</NavLink></li>

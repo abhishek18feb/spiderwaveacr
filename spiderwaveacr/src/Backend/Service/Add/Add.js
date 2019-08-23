@@ -11,6 +11,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 //import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/base64uploadadapter';
 import Bus from '../../../shared/Bus';
+import { Validation } from '../validate';
 import './Add.css'
 
 
@@ -62,26 +63,26 @@ class Add extends Component{
 	    let updatedControls = this.state.controls;
 	    let event = evt;
 	    updatedControls[evt.target.name].value=evt.target.value;
-	    // Validation([evt.target.name], evt.target.value, updatedControls[evt.target.name].validation, this.props.admintoken)
-	    // .then(response=>{
-	    // 	updatedControls[response.name].isValid=response.isValid;
-	    // 	updatedControls[response.name].validationMsg=response.validationMsg;
-	    // 	this.setState({controls:updatedControls})
-	    // 	if(this.state.controls.page_name.isValid && this.state.controls.title.isValid){
-	    // 		this.setState({formIsValid:true})
-		   //  }else{
-		   //  	this.setState({formIsValid:false})
-		   //  }
-	    // });
+	    Validation([evt.target.name], evt.target.value, updatedControls[evt.target.name].validation, this.props.admintoken)
+	    .then(response=>{
+	    	updatedControls[response.name].isValid=response.isValid;
+	    	updatedControls[response.name].validationMsg=response.validationMsg;
+	    	this.setState({controls:updatedControls})
+	    	if(this.state.controls.title.isValid){
+	    		this.setState({formIsValid:true})
+		    }else{
+		    	this.setState({formIsValid:false})
+		    }
+	    });
 	    
 	}
 	onEditorChange( data ) {
-		console.log(data);
 		let updatedControls = this.state.controls;
 	    updatedControls.content.value=data;
 	    this.setState({controls:updatedControls})
         
     }
+
     submitHandler = (event)=>{
     	event.preventDefault();
     	let formData={};
@@ -92,16 +93,7 @@ class Add extends Component{
     	this.props.addService(formData, this.props.admintoken);
     }
 	render(){
-		ClassicEditor
-		.create( document.querySelector( '#editor' ), {
-			ckfinder: {
-				uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
-			},
-			toolbar: [ 'ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo' ]
-		} )
-		.catch( error => {
-			console.error( error );
-		} );
+
 		return (
 			<Layout windowHeight={this.state.height} windowWidth={this.state.width} activeKey="service">
 				<article style={{minHeight:this.state.height}}>
@@ -119,9 +111,8 @@ class Add extends Component{
 					    <input type="text" id="meta_desc" name="meta_desc" onChange={this.handleChange} placeholder="Enter Meta Description" />
 
 					    <label htmlFor="country">Description</label>
-					    <CKEditor id="editor"
+					      <CKEditor id="editor"
 		                    editor={ ClassicEditor }
-
 		                    data=""
 		                    onChange={ ( event, editor ) => {
 						            const data = editor.getData();
@@ -129,6 +120,7 @@ class Add extends Component{
 						        }
 						    }
 		                />
+
 					    <input type="submit" value="Submit" disabled = { !this.state.formIsValid } />
 					  </form>
 					</div>

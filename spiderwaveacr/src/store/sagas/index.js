@@ -35,7 +35,7 @@ export function* watchCms(){
 
 export function* watchService(){
 	yield all([
-		takeEvery(actionTypes.ADMIN_FETCH_SERVICE, addServiceSaga),
+		takeEvery(actionTypes.ADMIN_ADD_SERVICE, addServiceSaga),
 		takeEvery(actionTypes.ADMIN_FETCH_SERVICE, adminFetchServiceSaga),
 		takeEvery(actionTypes.ADMIN_FETCH_SINGLE_SERVICE, adminGetSingleServiceSaga),
 		takeEvery(actionTypes.ADMIN_UPDATE_SERVICE, updateServiceSaga)

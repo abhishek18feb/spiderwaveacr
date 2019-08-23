@@ -33,6 +33,12 @@ const CMSEdit = asyncComponent(()=>{
 const ServiceAdd = asyncComponent(()=>{
                   return import('./Backend/Service/Add/Add');
                 })
+const ServiceList = asyncComponent(()=>{
+                  return import('./Backend/Service/List/List');
+                })
+const ServiceEdit = asyncComponent(()=>{
+                  return import('./Backend/Service/Edit/Edit');
+                })
 
 class App extends React.Component{
   componentDidMount(){
@@ -56,6 +62,8 @@ class App extends React.Component{
           <Switch>
             <Route path='/admin/dashboard' component={Dashboard} exact />
             <Route path='/admin/service/add' component={ServiceAdd} exact />
+            <Route path='/admin/service/list' component={ServiceList} exact />
+            <Route path='/admin/service/edit/:serviceId' component={ServiceEdit} exact />
             <Route path='/admin/cms/add' component={CMSAdd} exact />
             <Route path='/admin/cms/list' component={CMSList} exact />
             <Route path='/admin/cms/edit/:cmsId' component={CMSEdit} exact />

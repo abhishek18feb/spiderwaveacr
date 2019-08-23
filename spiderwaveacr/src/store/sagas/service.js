@@ -2,10 +2,11 @@ import {put, delay, call} from 'redux-saga/effects';
 import * as actions from '../actions/index';
 import axios from 'axios';
 
-export function* addServiceSaga(action){
+export function* addServiceSaga(action){ 
 	let url = 'http://localhost:3300/service/addService'
+	console.log(action.formData);
 	try{
-		const response = yield axios({
+		const response = yield axios({ 
 			method:'post',
 			url:url, 
 			data: action.formData,
@@ -36,7 +37,8 @@ export function* adminFetchServiceSaga(action){
 }
 
 export function* adminGetSingleServiceSaga(action){
-	let url = "http://localhost:3300/cms/get_single_service/"+action.id
+	console.log(action.id);
+	let url = "http://localhost:3300/service/get_single_service/"+action.id
 	try {
 		const response = yield axios({
 			method:'get',
