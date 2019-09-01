@@ -19,7 +19,7 @@ const Logout = asyncComponent(()=>{
               }); 
   
 const Setting = asyncComponent(()=>{
-                return import('./Backend/Setting/Setting');
+                return import('./Backend/Setting/Setting'); 
               }); 
 const CMSAdd = asyncComponent(()=>{
                 return import('./Backend/Cms/Add/Add');
@@ -60,6 +60,7 @@ class App extends React.Component{
           console.log('authenticated')
           routes =(
           <Switch>
+            <Route exact path="/" component={Home} />
             <Route path='/admin/dashboard' component={Dashboard} exact />
             <Route path='/admin/service/add' component={ServiceAdd} exact />
             <Route path='/admin/service/list' component={ServiceList} exact />
@@ -70,7 +71,7 @@ class App extends React.Component{
             <Route path='/admin/settings' component={Setting} exact />
             <Route path='/admin/logout' component={Logout} exact />
             <Route path="/admin" component={Login} exact />
-            <Route path="/" exact component={Home} />
+            
           </Switch>
            )
       }

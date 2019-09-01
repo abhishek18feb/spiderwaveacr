@@ -1,6 +1,6 @@
 import { put, delay, call } from 'redux-saga/effects';
 import * as actions from '../actions/index';
-import axios from 'axios';
+import axios from '../../axios';
 
 export function* logoutSaga(action){
 	yield call([localStorage, 'removeItem'], 'admintoken')
@@ -21,9 +21,9 @@ export function* authUserSaga(action){
 				"email":action.email,
 				"password":action.password
 			}
-	let url = 'http://localhost:3300/admins/login';
+	let url = '/admins/login';
 	if(!action.isSignup){
-		url = 'http://localhost:3300/admins/signup';
+		url = '/admins/signup';
 	}
 	try{
 		const response = yield axios.post(url, authData)
@@ -45,7 +45,7 @@ export function* authForgotPwdSaga(action){
 	const authData = {
 				"email":action.email
 			}
-	let url = 'http://localhost:3300/admins/forgot_password';
+	let url = '/admins/forgot_password';
 	try{
 		const response = yield axios.post(url, authData)
 		console.log(response);
@@ -61,7 +61,7 @@ export function* adminResetPasswordSaga(action){
 		confirm_password:action.confirm_password,
 		resetToken:action.resetToken
 	}
-	let url='http://localhost:3300/admins/reset_password'
+	let url='/admins/reset_password'
 	try{
 		const response = yield axios.post(url, authData)
 		yield put(actions.adminResetSuccess(response.data.success,response.data.message))

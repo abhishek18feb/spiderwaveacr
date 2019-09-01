@@ -93,7 +93,7 @@ class Edit extends Component{
 		return (
 			<Layout windowHeight={this.state.height} windowWidth={this.state.width} activeKey="service">
 				<article style={{minHeight:this.state.height}}>
-			    	<h3>Add New Service</h3>
+			    	<h3>Edit Service</h3>
 					<div className="Add">
 						{redirect} 
 					  <form onSubmit={this.submitHandler}>
