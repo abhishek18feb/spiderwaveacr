@@ -86,7 +86,7 @@ exports.get_single_service = (req, res, next) => {
 }
 
 exports.update_service = (req, res, next) => {
-  const id = req.params.cmsId;
+  const id = req.params.serviceId; 
   console.log(id)
   console.log(req.body)
   Service.update({"_id":id}, {$set: req.body})
@@ -105,7 +105,7 @@ exports.update_service = (req, res, next) => {
 }
 
 exports.delete_service = (req, res, next) => {
-  const id = req.params.cmsId;
+  const id = req.params.serviceId;
   console.log(id);
   Service.remove({_id: id})
   .exec()
