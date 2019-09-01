@@ -42,7 +42,7 @@ class Layout extends React.PureComponent{
 							<Link to='/admin/cms/list'>Cms</Link>
 							<ul className="sub-menu">
 					      		<li><NavLink to='/admin/cms/list' activeClassName={styles.active}>List</NavLink></li>
-					      		{/*<li><NavLink to='/admin/cms/add/' activeClassName={styles.active}>Add</NavLink></li>*/}
+					      		<li><NavLink to='/admin/cms/add/' activeClassName={styles.active}>Add</NavLink></li>
 							</ul>
 						</li>
 					</ul>

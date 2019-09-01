@@ -92,12 +92,13 @@ class Add extends Component{
     	console.log(formData)
     	this.props.addService(formData, this.props.admintoken);
     }
-	render(){
-
+	render(){ 
+		let redirect = (this.props.addServiceResponse)?<Redirect to="/admin/service/list" />:''
 		return (
 			<Layout windowHeight={this.state.height} windowWidth={this.state.width} activeKey="service">
 				<article style={{minHeight:this.state.height}}>
 			    	<h3>Add New Service</h3>
+			    	{redirect} 
 					<div className="Add">
 					  <form onSubmit={this.submitHandler}>
 					    <label htmlFor="title">Service Title</label>
@@ -132,9 +133,9 @@ class Add extends Component{
 
 const mapStateToProps = state=>{
   return {
-    error: state.siteSetting.siteSettingError,
-    siteSettingResponse: state.siteSetting.siteSettingResponse,
-    siteSettingResponseMsg:state.siteSetting.siteSettingResponseMsg,
+    serviceError: state.service.serviceError,
+    addServiceResponse: state.service.addServiceResponse,
+    addServiceResponseMsg:state.service.addServiceResponseMsg,
     isAuthenticated: state.admin.admintoken !== null,
     authRedirectPath: state.admin.authRedirectPath,
     admintoken: state.admin.admintoken,

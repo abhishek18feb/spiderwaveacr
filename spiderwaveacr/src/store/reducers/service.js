@@ -49,13 +49,29 @@ const fetchSingleServiceFail = (state, action)=>{
 	});
 };
 
+const addServiceSuccess = (state,action) =>{
+	return updateObject(state, {
+			addServiceResponse: true,
+			addServiceResponseMsg:action.updateServiceResponseMsg,
+			serviceError:null		
+		});
+}; 
+
+const addServiceFail = (state, action)=>{
+	return updateObject(state, {
+		addServiceResponse: false,
+		addServiceResponseMsg: action.updateServiceResponseMsg,
+		serviceError: true
+	});
+};
+
 const updateServiceSuccess = (state,action) =>{
 	return updateObject(state, {
 			updateServiceResponse: true,
 			updateServiceResponseMsg:action.updateServiceResponseMsg,
 			serviceError:null		
 		});
-};
+}; 
 
 const updateServiceFail = (state, action)=>{
 	return updateObject(state, {
@@ -71,6 +87,9 @@ const reducer = (state=initialState, action)=>{
 		case actionTypes.ADMIN_FETCH_SERVICE_FAIL: return fetchServiceFail(state, action)
 		case actionTypes.ADMIN_FETCH_SINGLE_SERVICE_SUCCESS: return fetchSingleServiceSuccess(state, action)
 		case actionTypes.ADMIN_FETCH_SINGLE_SERVICE_FAIL: return fetchSingleServiceFail(state, action)
+
+		case actionTypes.ADMIN_ADD_SERVICE_SUCCESS: return addServiceSuccess(state, action)
+		case actionTypes.ADMIN_ADD_SERVICE_FAIL: return addServiceFail(state, action)
 
 		case actionTypes.ADMIN_UPDATE_SERVICE_SUCCESS: return updateServiceSuccess(state, action)
 		case actionTypes.ADMIN_UPDATE_SERVICE_FAIL: return updateServiceFail(state, action)

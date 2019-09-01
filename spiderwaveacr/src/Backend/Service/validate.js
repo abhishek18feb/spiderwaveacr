@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../axios';
 
 export const Validation = async (name, value, rules, token, id)=>{
 	let isValid = true;
@@ -14,7 +14,7 @@ export const Validation = async (name, value, rules, token, id)=>{
 	if(rules.unique && value.length){
 		let response = await axios({
 			method:'post',
-			url: "http://localhost:3300/service/check_unique",
+			url: "/service/check_unique",
 			data:{[name]:value, _id:id},
 			headers: {'Authorization': 'Berear '+token}
 		})

@@ -192,14 +192,14 @@ class Setting extends PureComponent{
 	    if(!this.props.isAuthenticated){
 	    	redirect=<Redirect to="/admin/" />
 	    }
-	    if(this.props.siteSettingResponse){
-	    	window.flash = (message, type="success") => Bus.emit('flash', ({message, type}))
-      		window.flash(this.props.siteSettingResponseMsg, 'success')
-	    }
-	    if(this.props.error){
-	    	window.flash = (message, type="error") => Bus.emit('flash', ({message, type}))
-      		window.flash(this.props.siteSettingResponseMsg, 'error')
-	    }
+	    // if(this.props.siteSettingResponse){
+	    // 	window.flash = (message, type="success") => Bus.emit('flash', ({message, type}))
+     //  		window.flash(this.props.siteSettingResponseMsg, 'success')
+	    // }
+	    // if(this.props.error){
+	    // 	window.flash = (message, type="error") => Bus.emit('flash', ({message, type}))
+     //  		window.flash(this.props.siteSettingResponseMsg, 'error')
+	    // }
 		return(
 			<Layout windowHeight={this.state.height+100} windowWidth={this.state.width}>
 				{redirect}
