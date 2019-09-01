@@ -3,7 +3,7 @@ import * as actions from '../actions/index';
 import axios from 'axios';
 
 export function* addServiceSaga(action){ 
-	let url = 'http://localhost:3300/service/addService'
+	let url = '/service/addService'
 	console.log(action.formData);
 	try{
 		const response = yield axios({ 
@@ -21,7 +21,7 @@ export function* addServiceSaga(action){
 } 
 
 export function* adminFetchServiceSaga(action){
-	let url = "http://localhost:3300/service/"
+	let url = "/service/"
 	try{
 		const response = yield axios({
 			method:'get',
@@ -38,7 +38,7 @@ export function* adminFetchServiceSaga(action){
 
 export function* adminGetSingleServiceSaga(action){
 	console.log(action.id);
-	let url = "http://localhost:3300/service/get_single_service/"+action.id
+	let url = "/service/get_single_service/"+action.id
 	try {
 		const response = yield axios({
 			method:'get',
@@ -54,7 +54,7 @@ export function* adminGetSingleServiceSaga(action){
 }
 
 export function* updateServiceSaga(action){
-	let url = "http://localhost:3300/service/update_service/"+action.id
+	let url = "/service/update_service/"+action.id
 	try{
 		const response = yield axios({
 			method:'patch',

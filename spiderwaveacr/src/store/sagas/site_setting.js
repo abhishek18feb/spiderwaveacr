@@ -6,7 +6,7 @@ export function* updateSiteSettingSaga(action){
 	// const formData = {
 	// 			"formData":action.formData
 	// 		}
-	let url = 'http://localhost:3300/site-setting/update_site_setting';
+	let url = '/site-setting/update_site_setting';
 	console.log(action.formData)
 	try{
 		const response = yield axios({
@@ -22,7 +22,7 @@ export function* updateSiteSettingSaga(action){
 	}
 }
 export function* fetchSiteSettingSaga(action){
-	let url = 'http://localhost:3300/site-setting/fetch_site_setting';
+	let url = '/site-setting/fetch_site_setting';
 	try{
 		const response = yield axios({
 			method:'post',

@@ -1,9 +1,9 @@
 import {put, delay, call} from 'redux-saga/effects';
 import * as actions from '../actions/index';
-import axios from 'axios';
+import axios from '../../axios';
 
 export function* addCmsSaga(action){
-	let url = 'http://localhost:3300/cms/addCms'
+	let url = '/cms/addCms'
 	try{
 		const response = yield axios({
 			method:'post',
@@ -20,7 +20,7 @@ export function* addCmsSaga(action){
 } 
 
 export function* adminFetchCmsSaga(action){
-	let url = "http://localhost:3300/cms/"
+	let url = "/cms/"
 	try{
 		const response = yield axios({
 			method:'get',
@@ -36,7 +36,7 @@ export function* adminFetchCmsSaga(action){
 }
 
 export function* adminGetSingleCmsSaga(action){
-	let url = "http://localhost:3300/cms/get_single_cms/"+action.id
+	let url = "/cms/get_single_cms/"+action.id
 	try {
 		const response = yield axios({
 			method:'get',
@@ -52,7 +52,7 @@ export function* adminGetSingleCmsSaga(action){
 }
 
 export function* updateCmsSaga(action){
-	let url = "http://localhost:3300/cms/update_cms/"+action.id
+	let url = "/cms/update_cms/"+action.id
 	try{
 		const response = yield axios({
 			method:'patch',
