@@ -15,7 +15,8 @@ import cmsReducer from './store/reducers/cms';
 import serviceReducer from './store/reducers/service';
 
 const sagaMiddleware = createSagaMiddleware()
-const composeEnhancers = process.env.NODE_ENV==='development'?window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__:null || compose;
+//const composeEnhancers = process.env.NODE_ENV==='development'?window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__:null || compose;
+const composeEnhancers = compose;
 const rootReducers = combineReducers({
 	admin: adminReducer,
 	siteSetting: siteSettingReducer,
