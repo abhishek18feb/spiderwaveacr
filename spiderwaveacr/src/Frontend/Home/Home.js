@@ -1,31 +1,17 @@
 import React from 'react';
 import Header from '../Element/Header/Header';
+import HeaderMenu from '../Element/Menu/HeaderMenu';
+import Contact from '../Element/Contact/Contact';
+import Address from '../Element/Address/Address';
+import Footer from '../Element/Footer/Footer';
 import './Home.css'
 
 
 function Home(props){
 	return(
 		<React.Fragment>
-			<div class="w3-top">
-				<div class="w3-bar w3-white w3-wide w3-padding w3-card">
-					<a href="#home" class="w3-bar-item w3-button"><b>Spider</b> Waveacr</a>
-					
-					<div class="w3-right w3-hide-small">
-						<a href="#projects" class="w3-bar-item w3-button">Projects</a>
-						<a href="#about" class="w3-bar-item w3-button">About</a>
-						<a href="#contact" class="w3-bar-item w3-button">Contact</a>
-					</div>
-				</div>
-			</div>
-
-			
-			<header class="w3-display-container w3-content w3-wide" style={{maxWidth:"1500px"}} id="home">
-				<img class="w3-image" src="https://www.w3schools.com/w3images/architect.jpg" alt="Architecture" width="1500" height="800" />
-				<div class="w3-display-middle w3-margin-top w3-center">
-					<h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Spider</b></span> <span class="w3-hide-small w3-text-light-grey">WaveAcr</span></h1>
-				</div>
-			</header>
-
+			<Header />
+			<HeaderMenu />
 			
 			<div class="w3-content w3-padding" style={{maxWidth:"1564px"}}>
 
@@ -133,36 +119,14 @@ function Home(props){
 					</div>
 				</div>
 
-				<div class="w3-container w3-padding-32" id="contact">
-					<h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
-					<p>Lets get in touch and talk about your next project.</p>
-					<form action="/action_page.php" target="_blank">
-						<input class="w3-input w3-border" type="text" placeholder="Name" required name="Name" />
-						<input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email" />
-						<input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required name="Subject" />
-						<input class="w3-input w3-section w3-border" type="text" placeholder="Comment" required name="Comment" />
-						<button class="w3-button w3-black w3-section" type="submit">
-							<i class="fa fa-paper-plane"></i> SEND MESSAGE
-						</button>
-					</form>
-				</div>
-
+				<Contact />
+				<Address />
 				
-				<div class="w3-container">
-					<img src="https://www.w3schools.com/w3images/map.jpg" class="w3-image" style={{width:"100%"}} />
-				</div>
+				
 
 			</div>
 
-			<footer class="w3-center w3-black w3-padding-16">
-				<i class="fa fa-facebook-official w3-hover-opacity"></i>
-				<i class="fa fa-instagram w3-hover-opacity"></i>
-				<i class="fa fa-snapchat w3-hover-opacity"></i>
-				<i class="fa fa-pinterest-p w3-hover-opacity"></i>
-				<i class="fa fa-twitter w3-hover-opacity"></i>
-				<i class="fa fa-linkedin w3-hover-opacity"></i>
-				<p>Powered by <a href="https://www.appingenious.com/" title="W3.CSS" target="_blank" class="w3-hover-text-green">Appingenious</a></p>
-			</footer>
+			<Footer />
 		</React.Fragment>
 	)
 }
