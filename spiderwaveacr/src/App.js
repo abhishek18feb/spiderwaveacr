@@ -7,6 +7,7 @@ import Login from './Backend/Login/Login';
 import {connect} from 'react-redux';
 import asyncComponent from './hoc/asyncComponent';
 import * as actions from './store/actions/index';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Forgot = asyncComponent(()=>{
                   return import('./Backend/Forgot/Forgot');
