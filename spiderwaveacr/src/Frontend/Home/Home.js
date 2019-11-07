@@ -4,6 +4,7 @@ import HeaderMenu from '../Element/Menu/HeaderMenu';
 import Contact from '../Element/Contact/Contact';
 import Address from '../Element/Address/Address';
 import Footer from '../Element/Footer/Footer';
+import Service from '../Component/Service/Service';
 import './Home.css'
 
 
@@ -13,108 +14,111 @@ function Home(props){
 			<Header />
 			<HeaderMenu />
 			
-			<div class="w3-content w3-padding" style={{maxWidth:"1564px"}}>
+			<Service />
+
+
+			<div className="w3-content w3-padding" style={{maxWidth:"1564px"}}>
 
 				
-				<div class="w3-container w3-padding-32" id="projects">
-					<h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Projects</h3>
+				<div className="w3-container w3-padding-32" id="projects">
+					<h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">Projects</h3>
 				</div>
 
-				<div class="w3-row-padding">
-					<div class="w3-col l3 m6 w3-margin-bottom">
-						<div class="w3-display-container">
-							<div class="w3-display-topleft w3-black w3-padding">Summer House</div>
+				<div className="w3-row-padding">
+					<div className="w3-col l3 m6 w3-margin-bottom">
+						<div className="w3-display-container">
+							<div className="w3-display-topleft w3-black w3-padding">Summer House</div>
 							<img src="https://www.w3schools.com/w3images/house5.jpg" alt="House" style={{width:"100%"}} />
 						</div>
 					</div>
-					<div class="w3-col l3 m6 w3-margin-bottom">
-						<div class="w3-display-container">
-							<div class="w3-display-topleft w3-black w3-padding">Brick House</div>
+					<div className="w3-col l3 m6 w3-margin-bottom">
+						<div className="w3-display-container">
+							<div className="w3-display-topleft w3-black w3-padding">Brick House</div>
 							<img src="https://www.w3schools.com/w3images/house2.jpg" alt="House" style={{width:"100%"}} />
 						</div>
 					</div>
-					<div class="w3-col l3 m6 w3-margin-bottom">
-						<div class="w3-display-container">
-							<div class="w3-display-topleft w3-black w3-padding">Renovated</div>
+					<div className="w3-col l3 m6 w3-margin-bottom">
+						<div className="w3-display-container">
+							<div className="w3-display-topleft w3-black w3-padding">Renovated</div>
 							<img src="https://www.w3schools.com/w3images/house3.jpg" alt="House" style={{width:"100%"}} />
 						</div>
 					</div>
-					<div class="w3-col l3 m6 w3-margin-bottom">
-						<div class="w3-display-container">
-							<div class="w3-display-topleft w3-black w3-padding">Barn House</div>
+					<div className="w3-col l3 m6 w3-margin-bottom">
+						<div className="w3-display-container">
+							<div className="w3-display-topleft w3-black w3-padding">Barn House</div>
 							<img src="https://www.w3schools.com/w3images/house4.jpg" alt="House" style={{width:"100%"}} />
 						</div>
 					</div>
 				</div>
 
-				<div class="w3-row-padding">
-					<div class="w3-col l3 m6 w3-margin-bottom">
-						<div class="w3-display-container">
-							<div class="w3-display-topleft w3-black w3-padding">Summer House</div>
+				<div className="w3-row-padding">
+					<div className="w3-col l3 m6 w3-margin-bottom">
+						<div className="w3-display-container">
+							<div className="w3-display-topleft w3-black w3-padding">Summer House</div>
 							<img src="https://www.w3schools.com/w3images/house2.jpg" alt="House" style={{width:"99%"}} />
 						</div>
 					</div>
-					<div class="w3-col l3 m6 w3-margin-bottom">
-						<div class="w3-display-container">
-							<div class="w3-display-topleft w3-black w3-padding">Brick House</div>
+					<div className="w3-col l3 m6 w3-margin-bottom">
+						<div className="w3-display-container">
+							<div className="w3-display-topleft w3-black w3-padding">Brick House</div>
 							<img src="https://www.w3schools.com/w3images/house5.jpg" alt="House" style={{width:"99%"}} />
 						</div>
 					</div>
-					<div class="w3-col l3 m6 w3-margin-bottom">
-						<div class="w3-display-container">
-							<div class="w3-display-topleft w3-black w3-padding">Renovated</div>
+					<div className="w3-col l3 m6 w3-margin-bottom">
+						<div className="w3-display-container">
+							<div className="w3-display-topleft w3-black w3-padding">Renovated</div>
 							<img src="https://www.w3schools.com/w3images/house4.jpg" alt="House" style={{width:"99%"}} />
 						</div>
 					</div>
-					<div class="w3-col l3 m6 w3-margin-bottom">
-						<div class="w3-display-container">
-							<div class="w3-display-topleft w3-black w3-padding">Barn House</div>
+					<div className="w3-col l3 m6 w3-margin-bottom">
+						<div className="w3-display-container">
+							<div className="w3-display-topleft w3-black w3-padding">Barn House</div>
 							<img src="https://www.w3schools.com/w3images/house3.jpg" alt="House" style={{width:"99%"}} />
 						</div>
 					</div>
 				</div>
 
-				<div class="w3-container w3-padding-32" id="about">
-					<h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+				<div className="w3-container w3-padding-32" id="about">
+					<h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 					</p>
 				</div>
 
-				<div class="w3-row-padding w3-grayscale">
-					<div class="w3-col l3 m6 w3-margin-bottom">
+				<div className="w3-row-padding w3-grayscale">
+					<div className="w3-col l3 m6 w3-margin-bottom">
 						<img src="https://www.w3schools.com/w3images/team2.jpg" alt="John" style={{width:"100%"}} />
 						<h3>John Doe</h3>
-						<p class="w3-opacity">CEO & Founder</p>
+						<p className="w3-opacity">CEO & Founder</p>
 						<p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
 						<p>
-							<button class="w3-button w3-light-grey w3-block">Contact</button>
+							<button className="w3-button w3-light-grey w3-block">Contact</button>
 						</p>
 					</div>
-					<div class="w3-col l3 m6 w3-margin-bottom">
+					<div className="w3-col l3 m6 w3-margin-bottom">
 						<img src="https://www.w3schools.com/w3images/team1.jpg" alt="Jane" style={{width:"100%"}} />
 						<h3>Jane Doe</h3>
-						<p class="w3-opacity">Architect</p>
+						<p className="w3-opacity">Architect</p>
 						<p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
 						<p>
-							<button class="w3-button w3-light-grey w3-block">Contact</button>
+							<button className="w3-button w3-light-grey w3-block">Contact</button>
 						</p>
 					</div>
-					<div class="w3-col l3 m6 w3-margin-bottom">
+					<div className="w3-col l3 m6 w3-margin-bottom">
 						<img src="https://www.w3schools.com/w3images/team3.jpg" alt="Mike" style={{width:"100%"}} />
 						<h3>Mike Ross</h3>
-						<p class="w3-opacity">Architect</p>
+						<p className="w3-opacity">Architect</p>
 						<p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
 						<p>
-							<button class="w3-button w3-light-grey w3-block">Contact</button>
+							<button className="w3-button w3-light-grey w3-block">Contact</button>
 						</p>
 					</div>
-					<div class="w3-col l3 m6 w3-margin-bottom">
+					<div className="w3-col l3 m6 w3-margin-bottom">
 						<img src="https://www.w3schools.com/w3images/team4.jpg" alt="Dan" style={{width:"100%"}} />
 						<h3>Dan Star</h3>
-						<p class="w3-opacity">Architect</p>
+						<p className="w3-opacity">Architect</p>
 						<p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
 						<p>
-							<button class="w3-button w3-light-grey w3-block">Contact</button>
+							<button className="w3-button w3-light-grey w3-block">Contact</button>
 						</p>
 					</div>
 				</div>
