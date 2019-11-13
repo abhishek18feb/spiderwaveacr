@@ -1,6 +1,6 @@
 .left{
     float: left; 
-    width: 30%;
+    width: 10%;
     height: 200px;
     border: 1px solid black;
    }
@@ -14,7 +14,7 @@
    
    .center{
     float: left; 
-    width: 38.9%;
+    width: calc(80% - 2px);
     height: 200px;
     border: 1px solid black;
     margin: 1px;
@@ -25,7 +25,24 @@
    
    .right{
     float: right; 
-    width: 30%;
+    width: 10%;
     height: 200px;
     border: 1px solid black;
    }
+.left-button{
+    margin: 0;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(127%);
+}
+.right-button{
+    margin: 0;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(127%);
+}
+.vertical-center {
+    margin-top: 0;
+    -ms-transform: translateY(-50%);
+    transform: translateY(127%);
+  }

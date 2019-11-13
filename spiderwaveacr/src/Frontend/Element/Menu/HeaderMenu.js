@@ -11,7 +11,7 @@ const HeaderMenu = props => {
 					<div className="w3-right w3-hide-small">
 						<a href="#projects" className="w3-bar-item w3-button">Login/Signup</a>
 						<a href="#contact" className="w3-bar-item w3-button">Contact Us</a>
-                        <a href="#about" className="w3-bar-item w3-button">Services</a>
+                        <a href="#services" className="w3-bar-item w3-button">Services</a>
                         <a href="#address" className="w3-bar-item w3-button">Address</a>
 					</div>
 				</div>

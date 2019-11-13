@@ -15,7 +15,7 @@ const Service = () =>{
         scrollLeft(document.getElementById('content'), 300, 1000); 
     }
          
-    function scrollLeft(element, change, duration) {
+    function scrollLeft(element, change, duration) { 
         var start = element.scrollLeft,
             currentTime = 0,
             increment = 20;
@@ -46,43 +46,61 @@ const Service = () =>{
 
     return (
         <React.Fragment>
-            <div className="left">
-                left div
-                <button id="left-button" onClick={onClickLeft}>
-                    swipe left
-                </button>
+            <div className="w3-container w3-padding-32" id="services">
+                <h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">Services</h3>
+                <p>Lets get in touch and talk about your next project.</p>
+                <div className="left">
+                    <button className="left-button" onClick={onClickLeft}>
+                        <i className="fas fa-arrow-left"></i>
+                    </button>
                 </div>
                 <div className="center" id="content">
                     <div className='internal'>
-                        div 1
+                        <div class="vertical-center">
+                            <p>I am vertically centered.</p>
+                        </div>
                     </div>
                     <div className='internal'>
-                        div 2
+                        <div class="vertical-center">
+                            <p>I am vertically centered.</p>
+                        </div>
                     </div>
                     <div className='internal'>
-                        div 3
+                        <div class="vertical-center">
+                            <p>I am vertically centered.</p>
+                        </div>
                     </div>
                     <div className='internal'>
-                        div 4
+                        <div class="vertical-center">
+                            <p>I am vertically centered.</p>
+                        </div>
                     </div>
                     <div className='internal'>
-                        div 5
+                        <div class="vertical-center">
+                            <p>I am vertically centered.</p>
+                        </div>
                     </div>
                     <div className='internal'>
-                        div 6
+                        <div class="vertical-center">
+                            <p>I am vertically centered.</p>
+                        </div>
                     </div>
                     <div className='internal'>
-                        div 7
+                        <div class="vertical-center">
+                            <p>I am vertically centered.</p>
+                        </div>
                     </div>
                     <div className='internal'>
-                        div 8
+                        <div class="vertical-center">
+                            <p>I am vertically centered.</p>
+                        </div>
                     </div>
                 </div>
                 <div className="right">
-                <button id="right-button" onClick={onClickRight}>
-                    swipe right
-                </button>
-                right div
+                    <button className="right-button" onClick={onClickRight}>
+                        <i className="fas fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
         </React.Fragment>
     )
