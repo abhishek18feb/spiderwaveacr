@@ -56,42 +56,42 @@ const Service = () =>{
                 </div>
                 <div className="center" id="content">
                     <div className='internal'>
-                        <div class="vertical-center">
+                        <div className="vertical-center">
                             <p>I am vertically centered.</p>
                         </div>
                     </div>
                     <div className='internal'>
-                        <div class="vertical-center">
+                        <div className="vertical-center">
                             <p>I am vertically centered.</p>
                         </div>
                     </div>
                     <div className='internal'>
-                        <div class="vertical-center">
+                        <div className="vertical-center">
                             <p>I am vertically centered.</p>
                         </div>
                     </div>
                     <div className='internal'>
-                        <div class="vertical-center">
+                        <div className="vertical-center">
                             <p>I am vertically centered.</p>
                         </div>
                     </div>
                     <div className='internal'>
-                        <div class="vertical-center">
+                        <div className="vertical-center">
                             <p>I am vertically centered.</p>
                         </div>
                     </div>
                     <div className='internal'>
-                        <div class="vertical-center">
+                        <div className="vertical-center">
                             <p>I am vertically centered.</p>
                         </div>
                     </div>
                     <div className='internal'>
-                        <div class="vertical-center">
+                        <div className="vertical-center">
                             <p>I am vertically centered.</p>
                         </div>
                     </div>
                     <div className='internal'>
-                        <div class="vertical-center">
+                        <div className="vertical-center">
                             <p>I am vertically centered.</p>
                         </div>
                     </div>
