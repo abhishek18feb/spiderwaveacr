@@ -1,7 +1,7 @@
 const Email = require('email-templates');
 const nodemailer = require("nodemailer");
 
-exports.sendForgotEmail = (name, username, uuid)=>{
+exports.sendForgotEmail = (name, username, resetUrl)=>{
     const email = new Email({
       views: {
             options: {
@@ -32,7 +32,7 @@ exports.sendForgotEmail = (name, username, uuid)=>{
         },
         locals: {
           name: name,
-          url:'http://localhost:3000/admin/reset-password?reset='+uuid
+          url:resetUrl
         }
       })
       .then(console.log)

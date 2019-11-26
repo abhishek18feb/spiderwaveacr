@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const uuidv4 = require('uuid/v4');
 const emailTemplate = require('../middleware/forgot-email');
 const path = require('path');
+const configuration = require('../config/constant');
 
 exports.signup = function(req, res, next){
 	//console.log('req.body')
@@ -122,7 +123,8 @@ exports.forgot_password = function(req, res, next){
             const resetToken = uuidv4();
             Admin.updateOne({email: req.body.email },{resetToken:resetToken})
             .then(response=>{
-                emailTemplate.sendForgotEmail(admin[0].name,req.body.email,resetToken);
+                let resetUrl = configuration.Appurl+'/user/reset-password?reset='+resetToken
+                emailTemplate.sendForgotEmail(user[0].name,req.body.email,resetUrl);
                 return res.status(200).json({
                     message: 'Please check your email',
                     success:true
