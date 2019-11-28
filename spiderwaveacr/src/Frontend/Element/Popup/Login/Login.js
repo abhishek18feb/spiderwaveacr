@@ -20,14 +20,14 @@ const Login =props=>{
                     <div className="form-popup" id="myForm">
                         <Tabs>
                             <div label="Login" width="50%">
-                                <form action="/action_page.php" class="form-container">
+                                <form action="/action_page.php" className="form-container">
                                     {/* <h3>Login</h3> */}
-                                    <label for="email"><b>Email</b></label>
+                                    <label htmlFor="email"><b>Email</b></label>
                                     <input type="text" placeholder="Enter Email" name="email" required />
 
-                                    <label for="psw"><b>Password</b></label>
+                                    <label htmlFor="psw"><b>Password</b></label>
                                     <input type="password" placeholder="Enter Password" name="psw" required />
-                                    <button type="submit" class="btn">Login</button>
+                                    <button type="submit" className="btn">Login</button>
                                 </form>
                             </div>
                             <div label="Sign Up"  width="50%">
