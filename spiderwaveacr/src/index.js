@@ -8,7 +8,7 @@ import { createStore, applyMiddleware, compose,combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom'
-import { watchAuth,watchSiteSetting, watchCms, watchService } from './store/sagas';
+import { watchAuth,watchSiteSetting, watchCms, watchService,watchUser } from './store/sagas';
 import adminReducer from './store/reducers/admin';
 import siteSettingReducer from './store/reducers/site_setting';
 import cmsReducer from './store/reducers/cms';
@@ -33,6 +33,7 @@ sagaMiddleware.run(watchAuth);
 sagaMiddleware.run(watchSiteSetting);
 sagaMiddleware.run(watchCms);
 sagaMiddleware.run(watchService);
+sagaMiddleware.run(watchUser);
 
 ReactDOM.render(
 				<Provider store={store}>

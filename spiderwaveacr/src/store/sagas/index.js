@@ -1,9 +1,11 @@
 import { takeEvery, all, takeLatest } from 'redux-saga/effects'
 import * as actionTypes from '../actions/actionsTypes';
+import * as userActionTypes from '../actions/front/actionsTypes';
 import { logoutSaga, checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga,authForgotPwdSaga,adminResetPasswordSaga } from './admin';
 import { updateSiteSettingSaga, fetchSiteSettingSaga } from './site_setting';
 import {addCmsSaga, adminFetchCmsSaga, adminGetSingleCmsSaga, updateCmsSaga} from './cms';
 import {addServiceSaga, adminFetchServiceSaga, adminGetSingleServiceSaga, updateServiceSaga} from './service';
+import {userSignUpSaga} from './Front/user';
 
 export function* watchAuth(){
 	yield all([
@@ -39,5 +41,13 @@ export function* watchService(){
 		takeEvery(actionTypes.ADMIN_FETCH_SERVICE, adminFetchServiceSaga),
 		takeEvery(actionTypes.ADMIN_FETCH_SINGLE_SERVICE, adminGetSingleServiceSaga),
 		takeEvery(actionTypes.ADMIN_UPDATE_SERVICE, updateServiceSaga)
+	])
+}
+
+export function* watchUser(){
+	yield all([
+		takeEvery(userActionTypes.USER_SIGNUP, userSignUpSaga),  
+		// takeEvery(userActionTypes.AUTH_USER, userSignUpSuccessSaga),
+		// takeEvery(userActionTypes.AUTH_USER, userSignUpFailSaga),
 	])
 }

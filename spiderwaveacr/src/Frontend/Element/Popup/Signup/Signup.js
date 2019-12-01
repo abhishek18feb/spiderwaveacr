@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import FormValidator from '../../../../shared/FormValidator';
+import {connect} from 'react-redux';
+import * as actions from '../../../../store/actions/front/index';
 import './Signup.css';
 
-const Signup = ()=>{
+const Signup = props=>{
     
     let passwordMatch = (confirmation, state) => (state.password === confirmation)
     const[submitted, setFormSubmit] = useState(false)
@@ -64,14 +66,16 @@ const Signup = ()=>{
     
     const handleFormSubmit = event => {
         event.preventDefault();
-        console.log(user);
+        //console.log(user);
         validation = validator.validate({...user});
         setUserReg({...user, validation})
        
         setFormSubmit(true)
-        // if (validation.isValid) {
-        //     // handle actual form submission here
-        // }
+        if (validation.isValid) {
+            // handle actual form submission here
+            console.log(user);
+            props.userSingup(user);
+        }
     }
     
 
@@ -81,8 +85,7 @@ const Signup = ()=>{
                       // then check validity every time we render
                       user.validation
  
-    
-    return (
+    return ( 
         <React.Fragment>
             <form  className="form-container">
                 {/* <h3>Sign up</h3> */}
@@ -122,4 +125,16 @@ const Signup = ()=>{
     )
 }
 
-export default Signup;
+const mapStateToProps = state =>{
+    return {
+
+    }
+}
+
+const mapDispatchToProps = dispatch=>{
+    return{
+        userSingup :(signupData)=>dispatch(actions.userSingup(signupData))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Signup);
