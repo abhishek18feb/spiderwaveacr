@@ -3,6 +3,7 @@ import FormValidator from '../../../../shared/FormValidator';
 import {connect} from 'react-redux';
 import * as actions from '../../../../store/actions/front/index';
 import './Signup.css';
+import Loader from '../../Loader/Loader';
 
 const Signup = props=>{
     
@@ -87,6 +88,7 @@ const Signup = props=>{
  
     return ( 
         <React.Fragment>
+            <Loader />
             <form  className="form-container">
                 {/* <h3>Sign up</h3> */}
                 <div className={validation.name.isInvalid && 'has-error'}>
