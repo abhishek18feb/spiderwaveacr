@@ -8,6 +8,11 @@ export const userSingup = (signupData) =>{
     }
 }
 
+export const authStart =() =>{
+	return {
+		type: actionTypes.USER_AUTH_START
+	};
+};
 export const userSignupSuccess = (userToken, userId) => {
     return {
         type:actionTypes.USER_SIGNUP_SUCCESS,

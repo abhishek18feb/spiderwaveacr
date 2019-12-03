@@ -4,5 +4,6 @@ export {
     userSignupFail,
     checkAuthTimeout,
     setAuthRedirectPath,
-    authCheckState
+    authCheckState,
+    authStart,
 } from './user'; 
