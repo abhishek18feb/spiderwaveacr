@@ -47,7 +47,5 @@ export function* watchService(){
 export function* watchUser(){
 	yield all([
 		takeEvery(userActionTypes.USER_SIGNUP, userSignUpSaga),  
-		// takeEvery(userActionTypes.AUTH_USER, userSignUpSuccessSaga),
-		// takeEvery(userActionTypes.AUTH_USER, userSignUpFailSaga),
 	])
 }

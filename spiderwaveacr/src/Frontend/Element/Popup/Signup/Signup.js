@@ -4,9 +4,10 @@ import {connect} from 'react-redux';
 import * as actions from '../../../../store/actions/front/index';
 import './Signup.css';
 import Loader from '../../Loader/Loader';
+import { stat } from 'fs';
 
 const Signup = props=>{
-    
+    console.log('Current token value'+props.loading)
     let passwordMatch = (confirmation, state) => (state.password === confirmation)
     const[submitted, setFormSubmit] = useState(false)
     let validator = new FormValidator([
@@ -74,8 +75,8 @@ const Signup = props=>{
         setFormSubmit(true)
         if (validation.isValid) {
             // handle actual form submission here
-            console.log(user);
             props.userSingup(user);
+
         }
     }
     
@@ -88,7 +89,7 @@ const Signup = props=>{
  
     return ( 
         <React.Fragment>
-            <Loader />
+            <Loader loader={props.loading} />
             <form  className="form-container">
                 {/* <h3>Sign up</h3> */}
                 <div className={validation.name.isInvalid && 'has-error'}>
@@ -129,7 +130,10 @@ const Signup = props=>{
 
 const mapStateToProps = state =>{
     return {
-
+        userToken: state.user.userToken,
+        loading: state.user.loading,
+        userId: state.user.userId,
+	    error:state.user.error
     }
 }
 

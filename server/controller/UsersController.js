@@ -38,8 +38,10 @@ exports.signup = function(req, res, next){
                         result.password='';
                         const token = jwt.sign(
                         {
-                            email: result.email,
-                            userId: result._id
+                            email:  result.email,
+                            userId: result._id,
+                            name:   result.name,
+                            mobile: result.mobile,
                         },
                         "secret",
                         {

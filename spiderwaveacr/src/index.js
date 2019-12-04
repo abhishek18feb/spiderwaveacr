@@ -13,15 +13,19 @@ import adminReducer from './store/reducers/admin';
 import siteSettingReducer from './store/reducers/site_setting';
 import cmsReducer from './store/reducers/cms';
 import serviceReducer from './store/reducers/service';
+import userReducer from './store/reducers/front/user';
+import tosterReducer from './store/reducers/front/toster';
 
 const sagaMiddleware = createSagaMiddleware()
-//const composeEnhancers = process.env.NODE_ENV==='development'?window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__:null || compose;
-const composeEnhancers = compose;
+const composeEnhancers = process.env.NODE_ENV==='development'?window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__:null || compose;
+//const composeEnhancers = compose;
 const rootReducers = combineReducers({
 	admin: adminReducer,
 	siteSetting: siteSettingReducer,
 	cms: cmsReducer,
-	service: serviceReducer
+	service: serviceReducer,
+	user:userReducer,
+	toster:tosterReducer
 });
 
 const store = createStore( 

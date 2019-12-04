@@ -1,5 +1,6 @@
 import * as actionTypes from '../../actions/front/actionsTypes';
 import {updateObject} from '../../../shared/utility';
+import { stat } from 'fs';
 
 const initialState={
 	userToken: null,
@@ -11,7 +12,8 @@ const initialState={
 	resetResponse:null,
 	resetResponseMsg:null,
     authRedirectPath:"/",
-    expirationTime:null
+    expirationTime:null,
+    displaySessionMessage:false
 };
 
 const authStart=(state, action)=>{
@@ -27,7 +29,8 @@ const userSignupSuccess = (state, action)=>{
         userToken: action.userToken,
         userId: action.userId,
         error:null,
-        loading:false
+        loading:false,
+        displaySessionMessage:"Signup Successfully"
     })
 }
 
@@ -44,12 +47,15 @@ const checkAuthTimeout = (state, action)=>{
     })
 }
 
+
 const reducer = (state=initialState, action) =>{
     switch(action.type){
         case actionTypes.USER_AUTH_START: return authStart(state, action);
         case actionTypes.USER_SIGNUP_SUCCESS: return userSignupSuccess(state, action);
         case actionTypes.USER_SINGUP_FAIL: return userSignupFail(state, action);
+        default: return state;
     }
+    
 }
 
 export default reducer;
