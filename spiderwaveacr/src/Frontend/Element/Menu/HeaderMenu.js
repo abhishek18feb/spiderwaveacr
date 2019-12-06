@@ -1,14 +1,12 @@
 import React, {useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import Login from '../Popup/Login/Login';
-
 const HeaderMenu = props => {
 	const [showLoginPopup, displayPopup]=useState("none");
 
     return (
         <React.Fragment>
-			
-            <div className="w3-top">
+			<div className="w3-top">
 				<div className="w3-bar w3-white w3-wide w3-padding w3-card">
 					<a href="#home" className="w3-bar-item w3-button"><b>Spider</b> Waveacr</a>
 					

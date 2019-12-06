@@ -3,7 +3,7 @@ import {updateObject} from '../../../shared/utility';
 import { stat } from 'fs';
 
 const initialState={
-	message: null,
+	message: 'lkjljljkl lkjlk lkjljl',
 	success: null,
 	error: null
 };

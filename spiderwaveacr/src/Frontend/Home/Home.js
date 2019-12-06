@@ -12,9 +12,9 @@ import './Home.css'
 function Home(props){
 	return(
 		<React.Fragment>
-			<Toster />
 			<Header />
 			<HeaderMenu />
+			<Toster />
 			<div className="w3-content w3-padding" style={{maxWidth:"1564px"}}>
 				<Service />
 				<Contact />
