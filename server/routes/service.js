@@ -5,7 +5,7 @@ const checkAuth = require('../middleware/check-auth');
 const multer = require('multer');
 const upload = multer();
 
-router.get('/', checkAuth, ServiceController.get_all);
+router.get('/', ServiceController.get_all);
 
 router.post('/addService',  checkAuth, upload.none(), ServiceController.addService);
 

@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './Service.css';
-const Service = () =>{
+import {connect} from 'react-redux';
+import * as actions from '../../../store/actions/front/index';
+
+const Service = props =>{
     // document.getElementById('left-button').onclick = function () {
     //     scrollLeft(document.getElementById('content'), -300, 1000);   
     // }
@@ -44,6 +47,12 @@ const Service = () =>{
         return -c/2 * (t*(t-2) - 1) + b;
     };
 
+    const {customerFetchService} = props;   
+
+    useEffect(()=>{
+        customerFetchService()
+    },[customerFetchService])
+    console.log(props.customerService)
     return (
         <React.Fragment>
             <div className="w3-container w3-padding-32" id="services">
@@ -56,43 +65,45 @@ const Service = () =>{
                 </div>
                 <div className="center" id="content">
                     <div className='internal'>
-                        <div className="vertical-center">
-                            <p>I am vertically centered.</p>
+                        <div className="vertical-center card">
+                            <h3>Card 1</h3>
+                            <p>Some text</p>
+                            <p>Some text</p>
                         </div>
                     </div>
                     <div className='internal'>
-                        <div className="vertical-center">
-                            <p>I am vertically centered.</p>
+                        <div className="vertical-center card">
+                            <h3>Card 1</h3>
+                            <p>Some text</p>
+                            <p>Some text</p>
                         </div>
                     </div>
                     <div className='internal'>
-                        <div className="vertical-center">
-                            <p>I am vertically centered.</p>
+                        <div className="vertical-center card">
+                            <h3>Card 1</h3>
+                            <p>Some text</p>
+                            <p>Some text</p>
                         </div>
                     </div>
                     <div className='internal'>
-                        <div className="vertical-center">
-                            <p>I am vertically centered.</p>
+                        <div className="vertical-center card">
+                            <h3>Card 1</h3>
+                            <p>Some text</p>
+                            <p>Some text</p>
                         </div>
                     </div>
                     <div className='internal'>
-                        <div className="vertical-center">
-                            <p>I am vertically centered.</p>
+                        <div className="vertical-center card">
+                            <h3>Card 1</h3>
+                            <p>Some text</p>
+                            <p>Some text</p>
                         </div>
                     </div>
                     <div className='internal'>
-                        <div className="vertical-center">
-                            <p>I am vertically centered.</p>
-                        </div>
-                    </div>
-                    <div className='internal'>
-                        <div className="vertical-center">
-                            <p>I am vertically centered.</p>
-                        </div>
-                    </div>
-                    <div className='internal'>
-                        <div className="vertical-center">
-                            <p>I am vertically centered.</p>
+                        <div className="vertical-center card">
+                            <h3>Card 1</h3>
+                            <p>Some text</p>
+                            <p>Some text</p>
                         </div>
                     </div>
                 </div>
@@ -106,4 +117,17 @@ const Service = () =>{
     )
 }
 
-export default Service;
+const mapStateToProps = state =>{
+	return {
+        userToken: state.user.userToken,
+        customerService:state.customerService.serviceList
+	};
+};
+
+const mapDispatchToProps = dispatch =>{
+	return {
+		customerFetchService:()=>dispatch(actions.customerFetchService())
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps) (Service);

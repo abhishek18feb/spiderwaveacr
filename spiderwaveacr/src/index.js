@@ -15,6 +15,7 @@ import cmsReducer from './store/reducers/cms';
 import serviceReducer from './store/reducers/service';
 import userReducer from './store/reducers/front/user';
 import tosterReducer from './store/reducers/front/toster';
+import customerServiceReducer from './store/reducers/front/service';
 
 const sagaMiddleware = createSagaMiddleware()
 const composeEnhancers = process.env.NODE_ENV==='development'?window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__:null || compose;
@@ -25,7 +26,8 @@ const rootReducers = combineReducers({
 	cms: cmsReducer,
 	service: serviceReducer,
 	user:userReducer,
-	toster:tosterReducer
+	toster:tosterReducer,
+	customerService:customerServiceReducer
 });
 
 const store = createStore( 

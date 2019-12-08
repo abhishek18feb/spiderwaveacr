@@ -10,11 +10,16 @@ export {
     userLoginSuccess,
     userLoginFail,
     logout,
-    userLogoutSucceed
-
+    userLogoutSucceed,
 } from './user'; 
 
 export {
     setTosterMessage,
     resetTosterMessage
 } from './toster';
+
+export {
+    customerFetchService,
+    customerFetchServiceSuccess,
+    customerFetchServiceFail
+} from './service';

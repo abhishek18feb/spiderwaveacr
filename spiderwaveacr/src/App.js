@@ -56,7 +56,6 @@ class App extends React.Component{
             <Route path='/admin/forgot' component={Forgot} exact />
             <Route path="/admin" component={Login} exact />
             <Route path="/" exact component={Home} />
-            
           </Switch>
       );
       if(this.props.isAuthenticated){

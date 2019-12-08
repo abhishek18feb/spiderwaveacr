@@ -7,7 +7,7 @@ export const Validation = async (name, value, rules, token, id)=>{
         return true;
     }
 	if(rules.required){
-		isValid=value.trim()!='' && isValid
+		isValid=value.trim()!=='' && isValid
 		validationMsg = (!isValid)?[name]+' is required field':''
 	}
 	

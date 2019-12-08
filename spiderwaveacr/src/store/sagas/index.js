@@ -6,6 +6,7 @@ import { updateSiteSettingSaga, fetchSiteSettingSaga } from './site_setting';
 import {addCmsSaga, adminFetchCmsSaga, adminGetSingleCmsSaga, updateCmsSaga} from './cms';
 import {addServiceSaga, adminFetchServiceSaga, adminGetSingleServiceSaga, updateServiceSaga} from './service';
 import {userSignUpSaga, userLoginSaga, authUserCheckStateSaga, authUserLogoutSaga} from './Front/user';
+import { customerFetchServiceSaga } from './Front/service';
 
 export function* watchAuth(){
 	yield all([
@@ -50,5 +51,7 @@ export function* watchUser(){
 		takeEvery(userActionTypes.USER_LOGIN, userLoginSaga),
 		takeEvery(userActionTypes.USER_AUTH_CHECK_STATE, authUserCheckStateSaga),
 		takeEvery(userActionTypes.USER_AUTH_INITIATE_LOGOUT, authUserLogoutSaga),
+		takeEvery(userActionTypes.CUSTOMER_FETCH_SERVICE, customerFetchServiceSaga)
 	])
 }
+
