@@ -1,8 +1,13 @@
 import React, {useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
+import './HeaderMenu.css';
 import Login from '../Popup/Login/Login';
+import {connect} from 'react-redux';
+import * as actions from '../../../store/actions/front/index';
+
 const HeaderMenu = props => {
 	const [showLoginPopup, displayPopup]=useState("none");
+	let userName = localStorage.getItem('customerName')?localStorage.getItem('customerName').split(' ')[0]:null;
 
     return (
         <React.Fragment>
@@ -11,7 +16,20 @@ const HeaderMenu = props => {
 					<a href="#home" className="w3-bar-item w3-button"><b>Spider</b> Waveacr</a>
 					
 					<div className="w3-right w3-hide-small">
-						<a href="#projects" className="w3-bar-item w3-button" onClick={()=>displayPopup("block")}>Login/Signup</a>
+						{
+							(props.userToken)?
+							(<div className="w3-bar-item w3-button dropdown">
+								Hi {userName}
+								<div className="dropdown-content">
+									<a href={void(0)} className="w3-bar-item w3-button"
+									onClick={event=>props.onTryLogout()}
+									>Logout</a>
+								</div>
+							</div>)
+							:
+							<a href="#projects" className="w3-bar-item w3-button" onClick={()=>displayPopup("block")}>Login/Signup</a>
+						}
+						
 						<a href="#contact" className="w3-bar-item w3-button">Contact Us</a>
                         <a href="#services" className="w3-bar-item w3-button">Services</a>
                         <a href="#address" className="w3-bar-item w3-button">Address</a>
@@ -24,4 +42,16 @@ const HeaderMenu = props => {
     )
 }
 
-export default HeaderMenu
+const mapStateToProps = state => {
+	return {
+		userToken:state.user.userToken,
+	}
+}
+
+const mapDispatchToProps = dispatchEvent => {
+	return {
+		onTryLogout: ()=>dispatchEvent(actions.logout())
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (HeaderMenu)

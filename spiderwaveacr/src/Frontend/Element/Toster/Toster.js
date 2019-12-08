@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import './Toster.css';
 
 const Toster = props =>{
-    const [display, setDisplayProperty] = useState('none')
+    const [display, setDisplayProperty] = useState('block')
     useEffect(() => {
         if(props.tosterSuccess||props.tosterError){
             setDisplayProperty('block')
@@ -15,7 +15,7 @@ const Toster = props =>{
     
     return (
         <React.Fragment>
-            <div className="w3-top" style={{'display':display}}>
+            <div className="w3-top" style={{'display':display, zIndex: 3}}>
 				<div className="w3-bar w3-white w3-wide w3-padding w3-card">
                     {
                         props.tosterSuccess?(<div className="alert success">

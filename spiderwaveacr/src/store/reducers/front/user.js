@@ -11,7 +11,7 @@ const initialState={
 	forgotResponseMsg:null,
 	resetResponse:null,
 	resetResponseMsg:null,
-    authRedirectPath:"/",
+    customerRedirectPath:"/",
     expirationTime:null,
     displaySessionMessage:false
 };
@@ -22,6 +22,23 @@ const authStart=(state, action)=>{
 
 const setAuthRedirectPath = (state,action)=>{
 	return updateObject(state, {authRedirectPath: action.path})
+}
+
+const userLoginSuccess = (state, action)=>{
+    return updateObject(state, {
+        userToken: action.userToken,
+        userId: action.userId,
+        error:null,
+        loading:false,
+        displaySessionMessage:"Login Successfully"
+    })
+}
+
+const userLoginFail = (state,action)=>{
+    return updateObject (state, {
+        error:action.error,
+        loading:false
+    })
 }
 
 const userSignupSuccess = (state, action)=>{
@@ -47,15 +64,27 @@ const checkAuthTimeout = (state, action)=>{
     })
 }
 
+const userLogoutSucceed = (state, action)=>{
+    return updateObject(state, {
+        userToken: null,
+        userId: null,
+        error:null,
+        loading:false,
+        displaySessionMessage:"Logout Successfully"
+    })
+}
 
 const reducer = (state=initialState, action) =>{
     switch(action.type){
         case actionTypes.USER_AUTH_START: return authStart(state, action);
         case actionTypes.USER_SIGNUP_SUCCESS: return userSignupSuccess(state, action);
         case actionTypes.USER_SINGUP_FAIL: return userSignupFail(state, action);
+        case actionTypes.USER_LOGIN_SUCCESS: return userLoginSuccess(state, action);
+        case actionTypes.USER_LOGIN_FAIL: return userLoginFail(state, action);
+        case actionTypes.USER_AUTH_CHECK_TIMEOUT :return checkAuthTimeout(state,action);
+        case actionTypes.USER_AUTH_LOGOUT :return userLogoutSucceed(state, action);
         default: return state;
     }
-    
 }
 
 export default reducer;

@@ -6,6 +6,12 @@ export {
     setAuthRedirectPath,
     authCheckState,
     authStart,
+    userLogin,
+    userLoginSuccess,
+    userLoginFail,
+    logout,
+    userLogoutSucceed
+
 } from './user'; 
 
 export {

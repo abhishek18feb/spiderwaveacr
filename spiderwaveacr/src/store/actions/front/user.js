@@ -1,12 +1,35 @@
 import * as actionTypes from './actionsTypes';
 
+export const userLogin = (loginData) => {
+    console.log(loginData);
+    return {
+        type: actionTypes.USER_LOGIN,
+        loginData:loginData
+    }
+}
+
+export const userLoginSuccess = (userToken, userId) => {
+    return {
+        type:actionTypes.USER_LOGIN_SUCCESS,
+        userToken:userToken,
+        userId:userId
+    }
+}
+
+export const userLoginFail = (error) =>{
+    return {
+        type: actionTypes.USER_LOGIN_FAIL,
+        error:error
+    }
+}
+
 export const userSingup = (signupData) =>{
-    console.log(signupData);
     return {
         type: actionTypes.USER_SIGNUP,
         signupData:signupData
     }
 }
+
 
 export const authStart =() =>{
 	return {
@@ -46,4 +69,19 @@ export const authCheckState = () => {
 	return{
 		type: actionTypes.USER_AUTH_CHECK_STATE
 	}
+}
+
+export const logout =()=>{
+	// localStorage.removeItem('token')
+	// localStorage.removeItem('expirationTime')
+	// localStorage.removeItem('userId')
+	return{
+		type: actionTypes.USER_AUTH_INITIATE_LOGOUT
+	}
+}
+
+export const userLogoutSucceed = () =>{
+	return {
+		type: actionTypes.USER_AUTH_LOGOUT
+	};
 }

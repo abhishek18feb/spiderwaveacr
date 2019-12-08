@@ -7,6 +7,7 @@ import Login from './Backend/Login/Login';
 import {connect} from 'react-redux';
 import asyncComponent from './hoc/asyncComponent';
 import * as actions from './store/actions/index';
+import * as userActions from './store/actions/front/index';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Forgot = asyncComponent(()=>{
@@ -44,6 +45,7 @@ const ServiceEdit = asyncComponent(()=>{
 class App extends React.Component{
   componentDidMount(){
     this.props.onTryAutoSignup();
+    this.props.onTryAutoUserLogin();
   }
   render(){
       console.log(window.location.pathname)
@@ -92,13 +94,15 @@ const mapStateToProps = state => {
   return {
     error: state.admin.error,
     isAuthenticated: state.admin.admintoken !== null,
+    isUserAuthenticated: state.user.userToken !==null,
     authRedirectPath: state.admin.authRedirectPath
   };
 };
 
 const mapDispatchToProps = dispatch =>{
   return {
-    onTryAutoSignup: ()=>(dispatch(actions.authCheckState()))
+    onTryAutoSignup: ()=>(dispatch(actions.authCheckState())),
+    onTryAutoUserLogin: ()=>(dispatch(userActions.authCheckState()))
   };
 };
 
