@@ -52,7 +52,32 @@ const Service = props =>{
     useEffect(()=>{
         customerFetchService()
     },[customerFetchService])
+
+    const selectService = serviceId =>{
+        console.log('button hit'+serviceId)
+    }
     console.log(props.customerService)
+    let services = <div className='internal'>
+                        <div className="vertical-center card">
+                            <h3>Card 1</h3>
+                            <p>Some text</p>
+                            <p>Some text</p>
+                        </div>
+                    </div>
+    if(props.customerService){
+        services=props.customerService.service.map(function(el){
+            return (
+                        <div className='internal' key={el._id}>
+                            <div className="vertical-center card">
+                                <h3>{el.title}</h3>
+                                <button  onClick={()=>selectService(el._id)}>Request</button>
+                                <p></p>
+                            </div>
+                        </div>
+                    )
+                });
+
+    }
     return (
         <React.Fragment>
             <div className="w3-container w3-padding-32" id="services">
@@ -64,48 +89,7 @@ const Service = props =>{
                     </button>
                 </div>
                 <div className="center" id="content">
-                    <div className='internal'>
-                        <div className="vertical-center card">
-                            <h3>Card 1</h3>
-                            <p>Some text</p>
-                            <p>Some text</p>
-                        </div>
-                    </div>
-                    <div className='internal'>
-                        <div className="vertical-center card">
-                            <h3>Card 1</h3>
-                            <p>Some text</p>
-                            <p>Some text</p>
-                        </div>
-                    </div>
-                    <div className='internal'>
-                        <div className="vertical-center card">
-                            <h3>Card 1</h3>
-                            <p>Some text</p>
-                            <p>Some text</p>
-                        </div>
-                    </div>
-                    <div className='internal'>
-                        <div className="vertical-center card">
-                            <h3>Card 1</h3>
-                            <p>Some text</p>
-                            <p>Some text</p>
-                        </div>
-                    </div>
-                    <div className='internal'>
-                        <div className="vertical-center card">
-                            <h3>Card 1</h3>
-                            <p>Some text</p>
-                            <p>Some text</p>
-                        </div>
-                    </div>
-                    <div className='internal'>
-                        <div className="vertical-center card">
-                            <h3>Card 1</h3>
-                            <p>Some text</p>
-                            <p>Some text</p>
-                        </div>
-                    </div>
+                    {services}
                 </div>
                 <div className="right">
                     <button className="right-button" onClick={onClickRight}>
