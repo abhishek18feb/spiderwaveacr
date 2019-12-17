@@ -13,6 +13,7 @@ var adminRouter = require('./routes/admins');
 var cmsRouter = require('./routes/cms');
 var serviceRouter = require('./routes/service');
 var siteSettingRouter = require('./routes/sitesetting');
+var contactRouter = require('./routes/contact');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use('/admins', adminRouter);
 app.use('/site-setting', siteSettingRouter);
 app.use('/cms', cmsRouter);
 app.use('/service', serviceRouter);
+app.use('/contact', contactRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

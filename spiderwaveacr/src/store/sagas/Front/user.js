@@ -16,9 +16,9 @@ export function* userSignUpSaga(action){
         yield localStorage.setItem('customerToken', response.data.token);
 		yield localStorage.setItem('expirationTime', expirationTime);
         yield localStorage.setItem('userId', response.data._id);
-        yield localStorage.setItem('customerName', response.data.name);
-        yield localStorage.setItem('customerMobile', response.data.mobile);
-		yield put(actions.userSignupSuccess(response.data.token,response.data._id));
+        yield localStorage.setItem('customerName', response.data.data.name);
+        yield localStorage.setItem('customerMobile', response.data.data.mobile);
+		yield put(actions.userSignupSuccess(response.data.token,response.data.data._id));
 		yield put(actions.checkAuthTimeout(response.data.expiresIn)) 
         yield put(actions.setAuthRedirectPath('/')) 
         yield put(actions.setTosterMessage("SignUp Successful", true, false))
