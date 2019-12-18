@@ -56,7 +56,7 @@ const Service = props =>{
     const selectService = serviceId =>{
         console.log('button hit'+serviceId)
     }
-    console.log(props.customerService)
+    //console.log(props.customerService)
     let services = <div className='internal'>
                         <div className="vertical-center card">
                             <h3>Card 1</h3>
