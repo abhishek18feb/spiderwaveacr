@@ -47,6 +47,7 @@ const Contact = props=>{
         
         if (validation.isValid) {
             // handle actual form submission here
+            props.addContact(contact)
             console.log(contact)
 
         }
@@ -89,5 +90,10 @@ const Contact = props=>{
     )
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        addContact :(constactData)=>dispatch(actions.customerAddContact(constactData))
+    }
+} 
 
-export default Contact;
+export default connect(null, mapDispatchToProps) (Contact); 

@@ -7,6 +7,7 @@ import {addCmsSaga, adminFetchCmsSaga, adminGetSingleCmsSaga, updateCmsSaga} fro
 import {addServiceSaga, adminFetchServiceSaga, adminGetSingleServiceSaga, updateServiceSaga} from './service';
 import {userSignUpSaga, userLoginSaga, authUserCheckStateSaga, authUserLogoutSaga} from './Front/user';
 import { customerFetchServiceSaga } from './Front/service';
+import { addContactSaga } from './Front/contact';
 
 export function* watchAuth(){
 	yield all([
@@ -55,3 +56,8 @@ export function* watchUser(){
 	])
 }
 
+export function* watchContact(){
+	yield all([
+		takeEvery(userActionTypes.CUSTOMER_ADD_CONTACT, addContactSaga)
+	])
+}

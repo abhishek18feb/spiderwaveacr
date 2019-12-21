@@ -23,3 +23,9 @@ export {
     customerFetchServiceSuccess,
     customerFetchServiceFail
 } from './service';
+
+export {
+    customerAddContact,
+    customerAddContactSuccess,
+    customerAddContactFail
+} from './contact'

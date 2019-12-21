@@ -8,7 +8,7 @@ import { createStore, applyMiddleware, compose,combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom'
-import { watchAuth,watchSiteSetting, watchCms, watchService,watchUser } from './store/sagas';
+import { watchAuth,watchSiteSetting, watchCms, watchService,watchUser, watchContact } from './store/sagas';
 import adminReducer from './store/reducers/admin';
 import siteSettingReducer from './store/reducers/site_setting';
 import cmsReducer from './store/reducers/cms';
@@ -16,6 +16,7 @@ import serviceReducer from './store/reducers/service';
 import userReducer from './store/reducers/front/user';
 import tosterReducer from './store/reducers/front/toster';
 import customerServiceReducer from './store/reducers/front/service';
+import frontContactReducer from './store/reducers/front/contact';
 
 const sagaMiddleware = createSagaMiddleware()
 //const composeEnhancers = process.env.NODE_ENV==='development'?window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__:null || compose;
@@ -27,7 +28,8 @@ const rootReducers = combineReducers({
 	service: serviceReducer,
 	user:userReducer,
 	toster:tosterReducer,
-	customerService:customerServiceReducer
+	customerService:customerServiceReducer,
+	frontContact:frontContactReducer
 });
 
 const store = createStore( 
@@ -40,6 +42,7 @@ sagaMiddleware.run(watchSiteSetting);
 sagaMiddleware.run(watchCms);
 sagaMiddleware.run(watchService);
 sagaMiddleware.run(watchUser);
+sagaMiddleware.run(watchContact);
 
 ReactDOM.render(
 				<Provider store={store}>
