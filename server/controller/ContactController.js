@@ -2,20 +2,24 @@ const Contact = require('../model/Contact');
 const mongoose = require('mongoose');
 
 exports.get_all = (req, res, next)=>{
+  console.log(req.body)
 	Contact.find()
-	.select('name email subject content _id')
+  .select('name email subject content _id')
+  .skip((req.body.page-1)*10)
+  .limit(20)
 	.exec()
 	.then(result=>{
 		console.log(result)
 		const response={
 				count: result.length,
-				contact:result.map(result=>{
+				messages:result.map(result=>{
 				return {
 					_id: result._id,
 					name: result.name,
 					email:result.email,
 					subject: result.subject,
-					comment: result.comment
+          comment: result.comment,
+          status: result.status
 				}
 			})
 		}
