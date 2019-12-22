@@ -17,6 +17,7 @@ import userReducer from './store/reducers/front/user';
 import tosterReducer from './store/reducers/front/toster';
 import customerServiceReducer from './store/reducers/front/service';
 import frontContactReducer from './store/reducers/front/contact';
+import adminMessageReducer from './store/reducers/messages';
 
 const sagaMiddleware = createSagaMiddleware()
 //const composeEnhancers = process.env.NODE_ENV==='development'?window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__:null || compose;
@@ -29,7 +30,8 @@ const rootReducers = combineReducers({
 	user:userReducer,
 	toster:tosterReducer,
 	customerService:customerServiceReducer,
-	frontContact:frontContactReducer
+	frontContact:frontContactReducer,
+	message: adminMessageReducer
 });
 
 const store = createStore( 

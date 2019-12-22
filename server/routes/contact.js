@@ -5,7 +5,7 @@ const checkAuth = require('../middleware/check-auth');
 const multer = require('multer');
 const upload = multer();
 
-router.get('/',  ContactController.get_all);
+router.get('/',  checkAuth, ContactController.get_all);
 
 router.post('/addContact',  ContactController.addContact);
 

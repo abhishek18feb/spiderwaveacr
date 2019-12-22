@@ -54,3 +54,15 @@ export {
 	updateServiceSuccess,
 	updateServiceFail
 } from './service'
+
+export {
+	adminFetchMessage,
+	adminFetchMessageSuccess,
+	adminFetchMessageFail,
+	adminGetSingleMessage,
+	adminGetSingleMessageSuccess,
+	adminGetSingleMessageFail,
+	updateMessage,
+	updateMessageSuccess,
+	updateMessageFail
+} from './messages'

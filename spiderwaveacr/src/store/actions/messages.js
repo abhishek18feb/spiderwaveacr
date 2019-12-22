@@ -66,7 +66,7 @@ export const updateMessageSuccess = (updateMessageResponse, updateMessageRespons
 
 export const updateMessageFail  = (updateMessageResponse, updateMessageResponseMsg) =>{
 	return {
-		type: actionTypes.ADMIN_UPDATE_CMS_FAIL,
+		type: actionTypes.ADMIN_UPDATE_MESSAGE_FAIL,
 		updateMessageResponse: updateMessageResponse,
 		updateMessageResponseMsg: updateMessageResponseMsg
 	}

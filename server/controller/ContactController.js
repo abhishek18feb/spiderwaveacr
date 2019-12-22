@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 exports.get_all = (req, res, next)=>{
   console.log(req.body)
 	Contact.find()
-  .select('name email subject content _id')
+  .select('name email subject status comment _id')
   .skip((req.body.page-1)*10)
-  .limit(20)
+  .limit(10)
 	.exec()
 	.then(result=>{
 		console.log(result)

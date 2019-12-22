@@ -34,22 +34,23 @@ class List extends Component{
 		let listRow=<tr><td colSpan="5">No Record Found</td></tr>
 		if(this.props.messageResponse){
 			console.log(this.props.messageResponse.messages)
-			listRow = this.props.cmsResponse.cms.map((el, index)=>{
+			listRow = this.props.messageResponse.messages.map((el, index)=>{
 				return (
 					<tr key={index}>
 						<td>{index+1}</td>
-						<td>{el.page_slug}</td>
-						<td>{el.page_name}</td>
-						<td>{el.title}</td>
-						<td><Button btnType="Button" click={()=>this.editCmsHandler(el._id)} disabled={false} btnText="Edit" /></td>
+						<td>{el.name}</td>
+						<td>{el.email}</td>
+						<td>{el.subject}</td>
+            <td>{el.status}</td>
+						<td><Button btnType="Button" click={()=>this.editMessageHandler(el._id)} disabled={false} btnText="Edit" /></td>
 					</tr>
 				)
 			})
 		}
 		return(
-			<Layout windowHeight={this.state.height-160} windowWidth={this.state.width}  activeKey="cms">
+			<Layout windowHeight={this.state.height-160} windowWidth={this.state.width}  activeKey="messages">
 				<article style={{minHeight:this.state.height-160}}>
-			    	<h1>Cms List</h1>
+			    	<h1>Message List</h1>
 					<table>
 						<thead>
 							<tr key="1">
@@ -94,7 +95,7 @@ const mapStateToProps = state =>{
 
 const mapDispatchToProps = dispatch =>{
 	return {
-		fetchMessageData:(adminToken)=>dispatch(actions.adminFetchMessages(adminToken))
+		fetchMessageData:(adminToken)=>dispatch(actions.adminFetchMessage(adminToken))
 	};
 };
 

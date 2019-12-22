@@ -41,7 +41,9 @@ const ServiceList = asyncComponent(()=>{
 const ServiceEdit = asyncComponent(()=>{
                   return import('./Backend/Service/Edit/Edit');
                 })
-
+const messagesList = asyncComponent(()=>{
+          return import('./Backend/Messages/List/List');
+        })
 class App extends React.Component{
   componentDidMount(){
     this.props.onTryAutoSignup();
@@ -69,6 +71,7 @@ class App extends React.Component{
             <Route path='/admin/cms/add' component={CMSAdd} exact />
             <Route path='/admin/cms/list' component={CMSList} exact />
             <Route path='/admin/cms/edit/:cmsId' component={CMSEdit} exact />
+            <Route path='/admin/messages/list' component={messagesList} exact />
             <Route path='/admin/settings' component={Setting} exact />
             <Route path='/admin/logout' component={Logout} exact />
             <Route path="/admin" component={Login} exact />
