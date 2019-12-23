@@ -46,6 +46,7 @@ const messagesList = asyncComponent(()=>{
         })
 class App extends React.Component{
   componentDidMount(){
+    console.log('app did mount called'+this.props.isAuthenticated)
     this.props.onTryAutoSignup();
     this.props.onTryAutoUserLogin();
   }

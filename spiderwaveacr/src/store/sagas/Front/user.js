@@ -90,7 +90,7 @@ export function* authUserLogoutSaga(action){
         yield put(actions.resetTosterMessage(null))
     }
     yield call([localStorage, 'removeItem'], 'customerToken')
-	yield call([localStorage, 'removeItem'], 'expirationTime')
+	yield call([localStorage, 'removeItem'], 'customerTokenExpirationTime')
     yield call([localStorage, 'removeItem'], 'customerId')
     yield call([localStorage, 'removeItem'], 'customerName')
     yield call([localStorage, 'removeItem'], 'customerMobile')
