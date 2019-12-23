@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import {Redirect} from 'react-router-dom';
 import Button  from '../../../component/UI/Button/Button';
+import Pagination from '../../../component/UI/Pagination/Pagination';
 import './List.css';
 
 
@@ -29,9 +30,12 @@ class List extends Component{
 		console.log(messageId)
 		this.props.history.push(`/admin/message/edit/${messageId}`);
 	}
-
+	pageChangeHandler = pageNo =>{
+		console.log(pageNo)
+	}
 	render(){
 		let listRow=<tr><td colSpan="5">No Record Found</td></tr>
+		let totalRecords = 0;
 		if(this.props.messageResponse){
 			console.log(this.props.messageResponse)
 			listRow = this.props.messageResponse.messages.map((el, index)=>{
@@ -46,6 +50,7 @@ class List extends Component{
 					</tr>
 				)
 			})
+			totalRecords = this.props.messageResponse.count;
 		}
 		return(
 			<Layout windowHeight={this.state.height-160} windowWidth={this.state.width}  activeKey="messages">
@@ -58,26 +63,15 @@ class List extends Component{
 								<th>Name</th>
 								<th>Email</th>
 								<th>Subject</th>
-                <th>Status</th>
+                				<th>Status</th>
 								<th colSpan="1">Action</th>
 							</tr>
 						</thead>
 						<tbody>
 							{listRow}
-							
-							
 						</tbody>
 					</table>
-					<div className="pagination">
-					  <a href="#">&laquo;</a>
-					  <a href="#">1</a>
-					  <a href="#" className="active">2</a>
-					  <a href="#">3</a>
-					  <a href="#">4</a>
-					  <a href="#">5</a>
-					  <a href="#">6</a>
-					  <a href="#">&raquo;</a>
-					</div>
+				<Pagination totalRecords = {totalRecords} currentPage="6" pageChangeHandler={this.pageChangeHandler} />
 			  </article>
 			</Layout>
 		)
