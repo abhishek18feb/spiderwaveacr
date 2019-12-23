@@ -33,7 +33,7 @@ class List extends Component{
 	render(){
 		let listRow=<tr><td colSpan="5">No Record Found</td></tr>
 		if(this.props.messageResponse){
-			console.log(this.props.messageResponse.messages)
+			console.log(this.props.messageResponse)
 			listRow = this.props.messageResponse.messages.map((el, index)=>{
 				return (
 					<tr key={index}>

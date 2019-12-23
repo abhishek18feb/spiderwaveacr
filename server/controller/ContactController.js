@@ -1,8 +1,10 @@
 const Contact = require('../model/Contact');
 const mongoose = require('mongoose');
 
-exports.get_all = (req, res, next)=>{
+exports.get_all = async (req, res, next)=>{
   console.log(req.body)
+  var totalRecords = await Contact.countDocuments();
+  console.log(totalRecords);
 	Contact.find()
   .select('name email subject status comment _id')
   .skip((req.body.page-1)*10)
@@ -11,7 +13,7 @@ exports.get_all = (req, res, next)=>{
 	.then(result=>{
 		console.log(result)
 		const response={
-				count: result.length,
+				count: totalRecords,
 				messages:result.map(result=>{
 				return {
 					_id: result._id,
@@ -19,8 +21,8 @@ exports.get_all = (req, res, next)=>{
 					email:result.email,
 					subject: result.subject,
           comment: result.comment,
-          status: result.status
-				}
+          status: result.status,
+        }
 			})
 		}
 		return res.status(201).json({
