@@ -5,7 +5,12 @@ const contactSchema = mongoose.Schema({
 	name: {type:String, Require:true},
 	email: {type:String, Require:true},
 	subject: {type:String, Require:true},
-    comment: {type:String, Require:true},
+	comment: {type:String, Require:true},
+	created: {
+		type: Date,
+		// `Date.now()` returns the current unix timestamp as a number
+		default: Date.now
+	  },
     status:{type:String, enum: ['New', 'View', 'Replied'], default: 'New'}
 });
 

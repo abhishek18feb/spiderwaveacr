@@ -6,7 +6,8 @@ exports.get_all = async (req, res, next)=>{
   var totalRecords = await Contact.countDocuments();
   console.log(totalRecords);
 	Contact.find()
-  .select('name email subject status comment _id')
+  .select('name email subject status comment _id created')
+  .sort({created: -1})
   .skip((req.body.page-1)*10)
   .limit(10)
 	.exec()
@@ -22,6 +23,7 @@ exports.get_all = async (req, res, next)=>{
 					subject: result.subject,
           comment: result.comment,
           status: result.status,
+          created: result.created
         }
 			})
 		}

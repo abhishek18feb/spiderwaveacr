@@ -30,9 +30,9 @@ const Pagination =({totalRecords, currentPage, pageChangeHandler}) =>{
     return (
         <React.Fragment>
             <div className="pagination">
-                <a href="javascript:;" onClick={pageChangeHandler(1)} key="firstPage">&laquo;</a>
+                <a onClick={()=>pageChangeHandler(1)} key="firstPage" style={{cursor: 'pointer'}}>&laquo;</a>
                 {pagination.map((page, index)=>{
-                    return(<a href="javascript:;" onClick={pageChangeHandler(page)} key={page}>{pagination[index - 1] + 2 < page ? `...${page}` : page}</a>)
+                    return(<a onClick={()=>pageChangeHandler(page)} key={page} style={{cursor: 'pointer'}}>{pagination[index - 1] + 2 < page ? `...${page}` : page}</a>)
                 })}
                 {/* <a href="#">1</a>
                 <a href="#" className="active">2</a>
@@ -41,7 +41,7 @@ const Pagination =({totalRecords, currentPage, pageChangeHandler}) =>{
                 <a href="#">5</a>
                 <a href="#">6</a> */}
 
-                <a href="javascript:;" onClick={pageChangeHandler(total)} key="lastPage">&raquo;</a>
+                <a onClick={()=>pageChangeHandler(total)} key="lastPage" style={{cursor: 'pointer'}}>&raquo;</a>
             </div>
         </React.Fragment>
     )
