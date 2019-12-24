@@ -1,9 +1,10 @@
 import * as actionTypes from './actionsTypes';
 
-export const adminFetchMessage = (adminToken)=>{
+export const adminFetchMessage = (page, adminToken)=>{
 	return {
 		type: actionTypes.ADMIN_FETCH_MESSAGES,
-		adminToken:adminToken
+		adminToken:adminToken,
+		page:page
 	};
 };
 

@@ -18,7 +18,7 @@ class List extends Component{
 		this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 	}
 	componentDidMount() {
-		this.props.fetchMessageData(this.props.admintoken)
+		this.props.fetchMessageData(1, this.props.admintoken)
 		this.updateWindowDimensions();
 	  	window.addEventListener('resize', this.updateWindowDimensions);
 	}
@@ -32,6 +32,7 @@ class List extends Component{
 	}
 	pageChangeHandler = pageNo =>{
 		console.log(pageNo)
+		this.props.fetchMessageData(pageNo, this.props.admintoken)
 	}
 	render(){
 		let listRow=<tr><td colSpan="5">No Record Found</td></tr>
@@ -89,7 +90,7 @@ const mapStateToProps = state =>{
 
 const mapDispatchToProps = dispatch =>{
 	return {
-		fetchMessageData:(adminToken)=>dispatch(actions.adminFetchMessage(adminToken))
+		fetchMessageData:(page, adminToken)=>dispatch(actions.adminFetchMessage(page, adminToken))
 	};
 };
 

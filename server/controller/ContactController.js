@@ -8,7 +8,7 @@ exports.get_all = async (req, res, next)=>{
 	Contact.find()
   .select('name email subject status comment _id created')
   .sort({created: -1})
-  .skip((req.body.page-1)*10)
+  .skip((req.query.page-1)*10)
   .limit(10)
 	.exec()
 	.then(result=>{
