@@ -28,14 +28,18 @@ class List extends Component{
 	  this.setState({ width: window.innerWidth, height: window.innerHeight });
 	}
 	editMessageHandler=(messageId)=>{
-		this.props.history.push(`/admin/message/edit/${messageId}`);
+		console.log(messageId);
+		//this.props.history.push(`/admin/message/edit/${messageId}`);
+	}
+	deleteMessageHandler = (messageId) =>{
+		console.log(messageId);
 	}
 	pageChangeHandler = pageNo =>{
 		this.setState({pageNo:pageNo})
 		this.props.fetchMessageData(pageNo, this.props.admintoken)
 	}
 	render(){
-		let listRow=<tr><td colSpan="5">No Record Found</td></tr>
+		let listRow=<tr><td colSpan="7">No Record Found</td></tr>
 		let totalRecords = 0;
 		if(this.props.messageResponse){
 			listRow = this.props.messageResponse.messages.map((el, index)=>{
@@ -45,16 +49,17 @@ class List extends Component{
 						<td>{el.name}</td>
 						<td>{el.email}</td>
 						<td>{el.subject}</td>
-            <td>{el.status}</td>
+            			<td>{el.status}</td>
 						<td><Button btnType="Button" click={()=>this.editMessageHandler(el._id)} disabled={false} btnText="Edit" /></td>
+						<td><Button btnType="Button" click={()=>this.deleteMessageHandler(el._id)} disabled={false} btnText="Delete" /></td>
 					</tr>
 				)
 			})
 			totalRecords = this.props.messageResponse.count;
 		}
 		return(
-			<Layout windowHeight={this.state.height-160} windowWidth={this.state.width}  activeKey="messages">
-				<article style={{minHeight:this.state.height-160}}>
+			<Layout windowHeight={this.state.height} windowWidth={this.state.width}  activeKey="messages">
+				<article style={{minHeight:this.state.height}}>
 			    	<h1>Message List</h1>
 					<table>
 						<thead>
@@ -64,7 +69,7 @@ class List extends Component{
 								<th>Email</th>
 								<th>Subject</th>
                 				<th>Status</th>
-								<th colSpan="1">Action</th>
+								<th colSpan="2">Action</th>
 							</tr>
 						</thead>
 						<tbody>
