@@ -13,7 +13,8 @@ class List extends Component{
 		super(props);
 		this.state = {
 			width: 0, 
-			height: 0 
+			height: 0,
+			pageNo:1 
 		}
 		this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 	}
@@ -27,18 +28,16 @@ class List extends Component{
 	  this.setState({ width: window.innerWidth, height: window.innerHeight });
 	}
 	editMessageHandler=(messageId)=>{
-		console.log(messageId)
 		this.props.history.push(`/admin/message/edit/${messageId}`);
 	}
 	pageChangeHandler = pageNo =>{
-		console.log(pageNo)
+		this.setState({pageNo:pageNo})
 		this.props.fetchMessageData(pageNo, this.props.admintoken)
 	}
 	render(){
 		let listRow=<tr><td colSpan="5">No Record Found</td></tr>
 		let totalRecords = 0;
 		if(this.props.messageResponse){
-			console.log(this.props.messageResponse)
 			listRow = this.props.messageResponse.messages.map((el, index)=>{
 				return (
 					<tr key={index}>
@@ -72,7 +71,7 @@ class List extends Component{
 							{listRow}
 						</tbody>
 					</table>
-				<Pagination totalRecords = {totalRecords} currentPage="6" pageChangeHandler={this.pageChangeHandler} />
+				<Pagination totalRecords = {totalRecords} currentPage={this.state.pageNo} pageChangeHandler={this.pageChangeHandler} />
 			  </article>
 			</Layout>
 		)

@@ -46,12 +46,12 @@ const messagesList = asyncComponent(()=>{
         })
 class App extends React.Component{
   componentDidMount(){
-    console.log('app did mount called'+this.props.isAuthenticated)
+    //console.log('app did mount called'+this.props.isAuthenticated)
     this.props.onTryAutoSignup();
     this.props.onTryAutoUserLogin();
   }
   render(){
-      console.log(window.location.pathname)
+      //console.log(window.location.pathname)
       let routes = (
           <Switch>
             <Route path='/admin/logout' component={Logout} exact />
@@ -62,7 +62,7 @@ class App extends React.Component{
           </Switch>
       );
       if(this.props.isAuthenticated){
-          console.log('authenticated')
+          //console.log('authenticated')
           routes =(
           <Switch>
             <Route path='/admin/dashboard' component={Dashboard} exact />

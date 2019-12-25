@@ -1,16 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import './Pagination.css';
 const Pagination =({totalRecords, currentPage, pageChangeHandler}) =>{
-    console.log(totalRecords)
-    console.log(currentPage)
-    console.log(pageChangeHandler)
+    console.log('jllljll'+ currentPage)
     const [total, setTotalPages] = useState(0)
     const [pagination, setPagination] = useState([]);
     const [activePage, setActivePage] = useState(1);
 
     useEffect(()=>{
         if(totalRecords>0){
-            console.log(parseInt(totalRecords/10))
             setActivePage(currentPage)
             setTotalPages(parseInt(totalRecords/10))
             let totalPages = parseInt(totalRecords/10)
@@ -26,6 +23,7 @@ const Pagination =({totalRecords, currentPage, pageChangeHandler}) =>{
                   }
             }
         }
+        console.log(pagination);
     }, [totalRecords, currentPage])
     return (
         <React.Fragment>
@@ -47,4 +45,4 @@ const Pagination =({totalRecords, currentPage, pageChangeHandler}) =>{
     )
 }
 
-export default React.memo(Pagination);
+export default Pagination;
