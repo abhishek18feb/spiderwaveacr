@@ -64,5 +64,8 @@ export {
 	adminGetSingleMessageFail,
 	updateMessage,
 	updateMessageSuccess,
-	updateMessageFail
+	updateMessageFail,
+	admindeleteMessage,
+	deleteMessageSuccess,
+	deleteMessageFail
 } from './messages'

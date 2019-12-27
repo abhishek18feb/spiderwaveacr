@@ -72,3 +72,27 @@ export const updateMessageFail  = (updateMessageResponse, updateMessageResponseM
 		updateMessageResponseMsg: updateMessageResponseMsg
 	}
 }
+
+export const admindeleteMessage = (id, adminToken) =>{
+	return {
+		type: actionTypes.ADMIN_DELETE_MESSAGE,
+		id:id,
+		adminToken:adminToken
+	}
+}
+
+export const deleteMessageSuccess = (deleteMessageResponse, deleteMessageResponseMsg) =>{
+	return {
+		type: actionTypes.ADMIN_DELETE_MESSAGE_SUCCESS,
+		deleteMessageResponse: deleteMessageResponse,
+		deleteMessageResponseMsg: deleteMessageResponseMsg
+	}
+}
+
+export const deleteMessageFail  = (deleteMessageResponse, deleteMessageResponseMsg) =>{
+	return {
+		type: actionTypes.ADMIN_DELETE_MESSAGE_FAIL,
+		deleteMessageResponse: deleteMessageResponse,
+		deleteMessageResponseMsg: deleteMessageResponseMsg
+	}
+}

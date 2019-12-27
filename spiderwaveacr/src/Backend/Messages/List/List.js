@@ -32,11 +32,14 @@ class List extends Component{
 		//this.props.history.push(`/admin/message/edit/${messageId}`);
 	}
 	deleteMessageHandler = (messageId) =>{
+		this.props.deleteMessageData(messageId, this.props.admintoken)
+		this.props.fetchMessageData(this.state.pageNo, this.props.admintoken) 
+		//this.pageChangeHandler(this.state.pageNo);
 		console.log(messageId);
 	}
 	pageChangeHandler = pageNo =>{
 		this.setState({pageNo:pageNo})
-		this.props.fetchMessageData(pageNo, this.props.admintoken)
+		this.props.fetchMessageData(pageNo, this.props.admintoken) 
 	}
 	render(){
 		let listRow=<tr><td colSpan="7">No Record Found</td></tr>
@@ -94,7 +97,8 @@ const mapStateToProps = state =>{
 
 const mapDispatchToProps = dispatch =>{
 	return {
-		fetchMessageData:(page, adminToken)=>dispatch(actions.adminFetchMessage(page, adminToken))
+		fetchMessageData:(page, adminToken)=>dispatch(actions.adminFetchMessage(page, adminToken)),
+		deleteMessageData:(id, adminToken)=>dispatch(actions.admindeleteMessage(id, adminToken))
 	};
 };
 
