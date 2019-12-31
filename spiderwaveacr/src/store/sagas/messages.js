@@ -5,7 +5,7 @@ import axios from '../../axios';
 
 export function* adminFetchMessageSaga(action){
 	let url = "/contact/"
-	console.log('action value in saga '+action.page)
+	//console.log('action value in saga '+action.page)
 	try{
 		const response = yield axios({
 			method:'get',
@@ -13,11 +13,27 @@ export function* adminFetchMessageSaga(action){
 			params: {page:action.page},
 			headers:  {'Authorization': 'Berear '+action.adminToken}
 		})
-		console.log(response);
+		//console.log(response);
 		yield put(actions.adminFetchMessageSuccess(response.data.data, response.data.message))
 	}catch(error){
-		console.log(error);
+		//console.log(error);
 		yield put(actions.adminFetchMessageFail(null, error.response.data.message)) 
+	}
+}
+
+export function* adminFetchSingleMessageSaga(action){
+	let url = `/contact/get_single_contact/${action.id}`
+
+	try{
+		const response = yield axios({
+			method:'get',
+			url:url,
+			headers: {'Authorization':'Berear '+action.adminToken}
+		})
+		console.log(response.data)
+		yield put(action.adminGetSingleMessageSuccess(response.data.data, response.data.message))
+	}catch(error){
+		yield put(actions.adminGetSingleMessageFail(null, error.response.data.message)) 
 	}
 }
 

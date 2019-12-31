@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../../Layout/Layout';
-import Input from '../../../component/UI/Input/Input';
-import {updateObject, checkValidity} from '../../../shared/utility';
-import Button from '../../../component/UI/Button/Button';
-import {Danger} from '../../../component/UI/Alert/Alert';
+
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import {Redirect} from 'react-router-dom';

@@ -5,6 +5,8 @@ import * as actions from '../../../store/actions/index';
 import {Redirect} from 'react-router-dom';
 import Button  from '../../../component/UI/Button/Button';
 import Pagination from '../../../component/UI/Pagination/Pagination';
+import Toster from '../../../Frontend/Element/Toster/Toster';
+
 import './List.css';
 
 
@@ -29,7 +31,7 @@ class List extends Component{
 	}
 	editMessageHandler=(messageId)=>{
 		console.log(messageId);
-		//this.props.history.push(`/admin/message/edit/${messageId}`);
+		this.props.history.push(`/admin/messages/edit/${messageId}`);
 	}
 	deleteMessageHandler = (messageId) =>{
 		this.props.deleteMessageData(messageId, this.props.admintoken)
@@ -37,7 +39,7 @@ class List extends Component{
 		//this.pageChangeHandler(this.state.pageNo);
 		console.log(messageId);
 	}
-	pageChangeHandler = pageNo =>{
+	pageChangeHandler = pageNo =>{ 
 		this.setState({pageNo:pageNo})
 		this.props.fetchMessageData(pageNo, this.props.admintoken) 
 	}
@@ -62,6 +64,7 @@ class List extends Component{
 		}
 		return(
 			<Layout windowHeight={this.state.height} windowWidth={this.state.width}  activeKey="messages">
+				<Toster />
 				<article style={{minHeight:this.state.height}}>
 			    	<h1>Message List</h1>
 					<table>
@@ -91,7 +94,7 @@ const mapStateToProps = state =>{
 		admintoken: state.admin.admintoken,
 		messageResponse:state.message.messageResponse,
 		messageResponseMsg:state.message.messageResponseMsg,
-		messageError:state.message.cmsError
+		messageError:state.message.messageError
 	};
 };
 

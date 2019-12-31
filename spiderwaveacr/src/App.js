@@ -44,6 +44,9 @@ const ServiceEdit = asyncComponent(()=>{
 const messagesList = asyncComponent(()=>{
           return import('./Backend/Messages/List/List');
         })
+const messagesEdit = asyncComponent(()=>{
+          return import('./Backend/Messages/Edit/Edit');
+        })
 class App extends React.Component{
   componentDidMount(){
     //console.log('app did mount called'+this.props.isAuthenticated)
@@ -73,6 +76,7 @@ class App extends React.Component{
             <Route path='/admin/cms/list' component={CMSList} exact />
             <Route path='/admin/cms/edit/:cmsId' component={CMSEdit} exact />
             <Route path='/admin/messages/list' component={messagesList} exact />
+            <Route path='/admin/messages/edit/:messageId' component={messagesEdit} exact />
             <Route path='/admin/settings' component={Setting} exact />
             <Route path='/admin/logout' component={Logout} exact />
             <Route path="/admin" component={Login} exact />

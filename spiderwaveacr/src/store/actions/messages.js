@@ -28,9 +28,9 @@ export const adminGetSingleMessage = (id, adminToken)=>{
 	return{
 		type: actionTypes.ADMIN_FETCH_SINGLE_MESSAGE,
 		id:id,
-		adminToken: adminToken
+		adminToken: adminToken 
 	};
-};
+}; 
 
 export const adminGetSingleMessageSuccess = (messageResponse, messageResponseMsg)=>{
 	return {
