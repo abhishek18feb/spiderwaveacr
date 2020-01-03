@@ -9,8 +9,9 @@ const Pagination =({totalRecords, currentPage, pageChangeHandler}) =>{
     useEffect(()=>{
         if(totalRecords>0){
             setActivePage(currentPage)
-            setTotalPages(parseInt(totalRecords/10))
-            let totalPages = parseInt(totalRecords/10)
+            let additionalPages = parseInt(totalRecords%10)>=1 ?1:0
+            setTotalPages(parseInt(totalRecords/10)+additionalPages)
+            let totalPages = parseInt(totalRecords/10)+additionalPages
             if (totalPages < 7) {
                 setPagination([1, 2, 3, 4, 5, 6])
             }else{

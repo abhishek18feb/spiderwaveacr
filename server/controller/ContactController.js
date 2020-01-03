@@ -70,7 +70,7 @@ exports.addContact = (req, res, next)=>{
 
 exports.get_single_contact = (req, res, next)=>{
     console.log(req.params.contactId)
-    Contact.findOne({_id: req.params.contactId}).select('name email subject content _id')
+    Contact.findOne({_id: req.params.contactId}).select('name email subject comment _id')
     .exec()
     .then(result=>{
       if(result){

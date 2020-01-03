@@ -9,28 +9,39 @@ import './Edit.css'
 
 const  Edit = props => {
 	const [windowVar, setWindowVar] = useState({windowHeight:40, windowWidth:20})
+	const [messageData, setMessageData] = useState({_id:'', name:null, email:'', subject:'', comment:''});
 	console.log(props.match.params)
-	//useEffect();
-
+	useEffect(()=>{
+		props.getMessageData(props.match.params.messageId, props.admintoken);
+	}, []);
+	
+	useEffect(()=>{
+		console.log(props.messageResponse);
+		if(props.messageResponse){
+			console.log(messageData)
+			setMessageData(props.messageResponse)
+		}
+		
+	}, [props.messageResponse])
 
 	return(
 		<Layout windowHeight={windowVar.windowHeight} windowWidth={windowVar.windowWidth} activeKey="messages">
 			<article style={{minHeight:windowVar.windowHeight}}>
-				<h3>Add New Cms</h3>
+				<h3>Edit Message</h3>
 				<div className="Add">
 					<form>
-						<label htmlFor="lname">CMS Name</label>
-						<input type="text" id="lname" name="page_name" placeholder="Enter Page Name" />
+						<label htmlFor="lname">Name</label>
+						<input type="text" name="name" placeholder="Customer Name" value={messageData.name} readonly />
 						
-						<label htmlFor="title">CMS Title</label>
-						<input type="text" id="title" name="title" placeholder="Enter Cms Title" />
+						<label htmlFor="title">Email</label>
+						<input type="text" name="email" placeholder="Customer Email" value={messageData.email} readonly />
 						
-						<label htmlFor="title">Meta Keywords</label>
-						<input type="text" id="meta_keywords" name="meta_keywords" placeholder="Enter Meta Keywords" />
-
-						<label htmlFor="title">Meta Description</label>
-						<input type="text" id="meta_desc" name="meta_desc" placeholder="Enter Meta Description" />
-
+						<label htmlFor="title">Subject</label><br />
+						<textarea name="subject" value={messageData.subject} readonly rows="4" cols="100"></textarea>
+						<br />
+						<label htmlFor="title">comment</label><br />
+						<textarea name="comment" value={messageData.comment} readonly rows="4" cols="100"></textarea>
+						
 						<input type="submit" value="Submit" />
 					</form>
 				</div>
@@ -49,11 +60,11 @@ const mapStateToProps =state=>{
 	};
 };
 
-const mapDispatchToProps = dispatch=>{
+const mapDispatchToProps = dispatch=>{ 
 	return {
 		getMessageData: (id, admintoken)=>dispatch(actions.adminGetSingleMessage(id, admintoken)),
 		updateMessage:  (id, formData, adminToken)=>dispatch(actions.updateMessage(id, formData, adminToken))
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (Edit);
+export default React.memo(connect(mapStateToProps, mapDispatchToProps) (Edit));

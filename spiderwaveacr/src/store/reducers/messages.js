@@ -32,6 +32,7 @@ const fetchMessageFail = (state, action)=>{
 };
 
 const fetchSingleMessageSuccess = (state,action) =>{
+	console.log(action);
 	return updateObject(state, {
 			singleMessageResponse: action.messageResponse,
 			singleMessageResponseMsg:action.messageResponseMsg,

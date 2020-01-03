@@ -29,12 +29,11 @@ export function* adminFetchSingleMessageSaga(action){
 			method:'get',
 			url:url,
 			headers: {'Authorization':'Berear '+action.adminToken}
-		})
-		console.log(response.data)
-		yield put(action.adminGetSingleMessageSuccess(response.data.data, response.data.message))
+		}) 
+		yield put(actions.adminGetSingleMessageSuccess(response.data.result, response.data.message))
 	}catch(error){
-		yield put(actions.adminGetSingleMessageFail(null, error.response.data.message)) 
-	}
+		yield put(actions.adminGetSingleMessageFail(null, 'Unable to fetch data')) 
+	} 
 }
 
 export function* adminDeleteMessageSaga(action){
