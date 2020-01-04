@@ -11,7 +11,7 @@ const contactSchema = mongoose.Schema({
 		// `Date.now()` returns the current unix timestamp as a number
 		default: Date.now
 	  },
-    status:{type:String, enum: ['New', 'View', 'Replied'], default: 'New'}
+    status:{type:String, enum: ['New', 'Viewed', 'Replied'], default: 'New'}
 });
 
 module.exports = mongoose.model('Contact', contactSchema);

@@ -9,7 +9,7 @@ import './Edit.css'
 
 const  Edit = props => {
 	const [windowVar, setWindowVar] = useState({windowHeight:40, windowWidth:20})
-	const [messageData, setMessageData] = useState({_id:'', name:null, email:'', subject:'', comment:''});
+	const [messageData, setMessageData] = useState({_id:'', name:'', email:'', subject:'', comment:'', status:''});
 	console.log(props.match.params)
 	useEffect(()=>{
 		props.getMessageData(props.match.params.messageId, props.admintoken);
@@ -24,24 +24,37 @@ const  Edit = props => {
 		
 	}, [props.messageResponse])
 
+	const handleSubmit = event =>{
+		event.preventDefault();
+		console.log(messageData);
+	}
+
 	return(
 		<Layout windowHeight={windowVar.windowHeight} windowWidth={windowVar.windowWidth} activeKey="messages">
 			<article style={{minHeight:windowVar.windowHeight}}>
 				<h3>Edit Message</h3>
 				<div className="Add">
-					<form>
+					<form onSubmit={handleSubmit}>
 						<label htmlFor="lname">Name</label>
-						<input type="text" name="name" placeholder="Customer Name" value={messageData.name} readonly />
+						<input type="text" name="name" placeholder="Customer Name" 
+						value={messageData.name} readOnly />
 						
 						<label htmlFor="title">Email</label>
-						<input type="text" name="email" placeholder="Customer Email" value={messageData.email} readonly />
+						<input type="text" name="email" placeholder="Customer Email" value={messageData.email} readOnly />
 						
 						<label htmlFor="title">Subject</label><br />
-						<textarea name="subject" value={messageData.subject} readonly rows="4" cols="100"></textarea>
+						<textarea name="subject" value={messageData.subject} rows="4" cols="100" readOnly />
 						<br />
 						<label htmlFor="title">comment</label><br />
-						<textarea name="comment" value={messageData.comment} readonly rows="4" cols="100"></textarea>
-						
+						<textarea name="comment" value={messageData.comment} rows="4" cols="100" readOnly />
+						<br />
+						<label>
+							Status
+							<select value={messageData.status} name="status" onChange={event=>setMessageData({...messageData, [event.target.name]:event.target.value})}>
+								<option value="New">New</option>
+								<option value="Viewed">Viewed</option>
+							</select>
+						</label>
 						<input type="submit" value="Submit" />
 					</form>
 				</div>
@@ -67,4 +80,4 @@ const mapDispatchToProps = dispatch=>{
 	}
 }
 
-export default React.memo(connect(mapStateToProps, mapDispatchToProps) (Edit));
+export default connect(mapStateToProps, mapDispatchToProps) (Edit);
