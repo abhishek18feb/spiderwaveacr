@@ -4,6 +4,15 @@ import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/front/index';
 
 const Contact = props=>{
+    let isMobile =  (mobile, state) => {
+        console.log('confirmation', mobile)
+        console.log('state', state)
+        let regex = /^[0-9]{1,15}$/
+        if(regex.test(mobile)){
+            return false
+        }
+        return true
+    }
     const[submitted, setFormSubmit] = useState(false)
     let validator = new FormValidator([
         { 
@@ -11,6 +20,18 @@ const Contact = props=>{
             method: 'isEmpty', 
             validWhen: false, 
             message: 'Name is required.' 
+        },
+        { 
+            field: 'mobile', 
+            method: isMobile, 
+            validWhen: false, 
+            message: 'Enter a valid mobile number.' 
+        },
+        { 
+            field: 'mobile', 
+            method: 'isEmpty', 
+            validWhen: false, 
+            message: 'Mobile is required.' 
         },
         { 
           field: 'email', 
@@ -37,7 +58,7 @@ const Contact = props=>{
           message: 'Comment confirmation is required.'
         }
     ]);
-    const [contact, setContact] = useState({name:'', email:"", subject:"", comment:"", validation: validator.valid()});
+    const [contact, setContact] = useState({name:'', mobile:"" ,email:"", subject:"", comment:"", validation: validator.valid()});
 
     const handleFormSubmit = event =>{
         event.preventDefault();
@@ -68,6 +89,10 @@ const Contact = props=>{
                     <div className={validation.name.isInvalid?'has-error':''}>
                         <input className="w3-input w3-border" type="text" placeholder="Name" required name="name" onChange={event=>setContact({...contact, [event.target.name]:event.target.value})} />
                         <span className="help-block">{validation.name.message}</span>
+                    </div>
+                    <div className={validation.mobile.isInvalid?'has-error':''}>
+                        <input className="w3-input w3-section w3-border" type="text" placeholder="Mobile" required name="mobile" onChange={event=>setContact({...contact, [event.target.name]:event.target.value})} />
+                        <span className="help-block">{validation.mobile.message}</span>
                     </div>
                     <div className={validation.email.isInvalid?'has-error':''}>
                         <input className="w3-input w3-section w3-border" type="text" placeholder="Email" required name="email" onChange={event=>setContact({...contact, [event.target.name]:event.target.value})} />

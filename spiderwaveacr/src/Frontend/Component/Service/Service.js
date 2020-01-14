@@ -81,7 +81,7 @@ const Service = props =>{
     return (
         <React.Fragment>
             <div className="w3-container w3-padding-32" id="services">
-                <h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">Services</h3>
+                <h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">Services we provide</h3>
                 <p>Lets get in touch and talk about your next project.</p>
                 <div className="left">
                     <button className="left-button" onClick={onClickLeft}>
