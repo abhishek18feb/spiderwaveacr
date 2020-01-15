@@ -58,3 +58,28 @@ export function* adminDeleteMessageSaga(action){
         yield put(tosterActions.resetTosterMessage(null))
 	}
 }
+
+export function* adminUpdateMessageSaga(action){
+	let url = "/contact/update_contact/"+action.id
+	console.log(action)
+	try{
+		const response = yield axios({
+			method:'patch',
+			url:url, 
+			data: action.formData,
+			headers: {'Authorization': 'Berear '+action.adminToken}
+		})
+		console.log(response); 
+		yield put(tosterActions.setTosterMessage("Message Updated Successfully", true, false))
+        yield delay(6000) 
+        yield put(tosterActions.resetTosterMessage(null))
+		yield put(actions.updateMessageSuccess(response.data.data, response.data.message));
+	}catch(error){
+		console.log(error);
+		yield put(tosterActions.setTosterMessage(error.response.data.message, false, true))
+        yield delay(6000) 
+        yield put(tosterActions.resetTosterMessage(null))
+		yield put(actions.updateMessageFail(null, error.response.data.message));
+		
+	}
+}

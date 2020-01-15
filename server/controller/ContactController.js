@@ -6,7 +6,7 @@ exports.get_all = async (req, res, next)=>{
   var totalRecords = await Contact.countDocuments();
   console.log(totalRecords);
 	Contact.find()
-  .select('name email subject status comment _id created')
+  .select('name email mobile subject status comment _id created')
   .sort({created: -1})
   .skip((req.query.page-1)*10)
   .limit(10)
@@ -19,7 +19,8 @@ exports.get_all = async (req, res, next)=>{
 				return {
 					_id: result._id,
 					name: result.name,
-					email:result.email,
+          email:result.email,
+          mobile:result.mobile,
 					subject: result.subject,
           comment: result.comment,
           status: result.status,
@@ -43,6 +44,7 @@ exports.addContact = (req, res, next)=>{
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         email: req.body.email,
+        mobile: req.body.mobile,
         subject: req.body.subject,
         comment: req.body.comment
       })
@@ -54,6 +56,7 @@ exports.addContact = (req, res, next)=>{
             createdContact: {
                 name: result.name,
                 email: result.email,
+                mobile: result.mobile,
                 subject: result.subject,
                 comment: result.comment,
                 _id: result._id
@@ -70,7 +73,7 @@ exports.addContact = (req, res, next)=>{
 
 exports.get_single_contact = (req, res, next)=>{
     console.log(req.params.contactId)
-    Contact.findOne({_id: req.params.contactId}).select('name email subject comment status _id')
+    Contact.findOne({_id: req.params.contactId}).select('name email mobile subject comment status _id')
     .exec()
     .then(result=>{
       if(result){

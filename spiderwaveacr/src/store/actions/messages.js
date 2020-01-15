@@ -53,7 +53,7 @@ export const updateMessage = (id,formData, adminToken) =>{
 		type: actionTypes.ADMIN_UPDATE_MESSAGE,
 		id:id,
 		formData: formData,
-		adminToken:adminToken
+		adminToken:adminToken 
 	}
 }
 

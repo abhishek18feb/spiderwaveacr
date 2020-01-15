@@ -53,9 +53,10 @@ class List extends Component{
 						<td>{index+1}</td>
 						<td>{el.name}</td>
 						<td>{el.email}</td>
+						<td>{el.mobile}</td>
 						<td>{el.subject}</td>
             			<td>{el.status}</td>
-						<td><Button btnType="Button" click={()=>this.editMessageHandler(el._id)} disabled={false} btnText="Edit" /></td>
+						<td><Button btnType="Button" click={()=>this.editMessageHandler(el._id)} disabled={false} btnText="View" /></td>
 						<td><Button btnType="Button" click={()=>this.deleteMessageHandler(el._id)} disabled={false} btnText="Delete" /></td>
 					</tr>
 				)
@@ -73,6 +74,7 @@ class List extends Component{
 								<th>S No.</th>
 								<th>Name</th>
 								<th>Email</th>
+								<th>Mobile</th>
 								<th>Subject</th>
                 				<th>Status</th>
 								<th colSpan="2">Action</th>

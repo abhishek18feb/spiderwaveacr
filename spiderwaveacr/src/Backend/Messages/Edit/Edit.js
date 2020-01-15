@@ -3,6 +3,7 @@ import Layout from '../../Layout/Layout';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import {Redirect} from 'react-router-dom';
+import Toster from '../../../Frontend/Element/Toster/Toster';
 import './Edit.css'
 
 
@@ -10,7 +11,7 @@ import './Edit.css'
 const  Edit = props => {
 	const [windowVar, setWindowVar] = useState({windowHeight:40, windowWidth:20})
 	const [messageData, setMessageData] = useState({_id:'', name:'', email:'', subject:'', comment:'', status:''});
-	console.log(props.match.params)
+	//console.log(props.match.params)
 	useEffect(()=>{
 		props.getMessageData(props.match.params.messageId, props.admintoken);
 	}, []);
@@ -26,11 +27,14 @@ const  Edit = props => {
 
 	const handleSubmit = event =>{
 		event.preventDefault();
-		console.log(messageData);
+		//console.log(messageData);
+		props.updateMessage(props.match.params.messageId, messageData, props.admintoken);
 	}
-
+	let redirect = (props.updateMessageResponse)?<Redirect to="/admin/messages/list" />:''
 	return(
 		<Layout windowHeight={windowVar.windowHeight} windowWidth={windowVar.windowWidth} activeKey="messages">
+			<Toster />
+			{redirect}
 			<article style={{minHeight:windowVar.windowHeight}}>
 				<h3>Edit Message</h3>
 				<div className="Add">
@@ -73,11 +77,11 @@ const mapStateToProps =state=>{
 	};
 };
 
-const mapDispatchToProps = dispatch=>{ 
+const mapDispatchToProps = dispatch=>{  
 	return {
 		getMessageData: (id, admintoken)=>dispatch(actions.adminGetSingleMessage(id, admintoken)),
 		updateMessage:  (id, formData, adminToken)=>dispatch(actions.updateMessage(id, formData, adminToken))
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (Edit);
+export default connect(mapStateToProps, mapDispatchToProps) (Edit); 
