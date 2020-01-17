@@ -57,3 +57,16 @@
     height: 100%;
     cursor: pointer;
   }
+
+  .service-request:link, .service-request:visited {
+    background-color:  #57af50;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .service-request:hover, .service-request:active {
+    background-color: green;
+  }

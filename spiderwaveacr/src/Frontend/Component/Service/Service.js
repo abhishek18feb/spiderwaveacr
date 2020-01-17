@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './Service.css';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/front/index';
+import { Link } from "react-router-dom";
 
 const Service = props =>{
     // document.getElementById('left-button').onclick = function () {
@@ -70,7 +71,8 @@ const Service = props =>{
                         <div className='internal' key={el._id}>
                             <div className="vertical-center card">
                                 <h3>{el.title}</h3>
-                                <button  onClick={()=>selectService(el._id)}>Request</button>
+                                <Link to="/" target="_blank" className="service-request">Request</Link>
+                                {/* <button  onClick={()=>selectService(el._id)}>Request</button> */}
                                 <p></p>
                             </div>
                         </div>
