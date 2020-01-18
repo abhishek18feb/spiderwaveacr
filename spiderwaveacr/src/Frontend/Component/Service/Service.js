@@ -67,11 +67,12 @@ const Service = props =>{
                     </div>
     if(props.customerService){
         services=props.customerService.service.map(function(el){
+            let serviceId = el._id
             return (
                         <div className='internal' key={el._id}>
                             <div className="vertical-center card">
                                 <h3>{el.title}</h3>
-                                <Link to="/" target="_blank" className="service-request">Request</Link>
+                                <Link to={"/servicedetails/"+serviceId} target="_blank" className="service-request">Request</Link>
                                 {/* <button  onClick={()=>selectService(el._id)}>Request</button> */}
                                 <p></p>
                             </div>

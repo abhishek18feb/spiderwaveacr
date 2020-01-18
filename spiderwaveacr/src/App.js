@@ -4,6 +4,7 @@ import './App.css';
 import Home from './Frontend/Home/Home';
 import Dashboard from './Backend/Dashboard/Dashboard';
 import Login from './Backend/Login/Login';
+import ServiceDetails from './Frontend/Pages/ServiceDetail/ServiceDetail';
 import {connect} from 'react-redux';
 import asyncComponent from './hoc/asyncComponent';
 import * as actions from './store/actions/index';
@@ -61,6 +62,7 @@ class App extends React.Component{
             <Route path='/admin/reset-password' component={Reset} exact />
             <Route path='/admin/forgot' component={Forgot} exact />
             <Route path="/admin" component={Login} exact />
+            <Route path="/servicedetails/:serviceId" component={ServiceDetails} exact />
             <Route path="/" exact component={Home} />
           </Switch>
       );
