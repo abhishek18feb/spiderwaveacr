@@ -21,7 +21,10 @@ export {
 export {
     customerFetchService,
     customerFetchServiceSuccess,
-    customerFetchServiceFail
+    customerFetchServiceFail,
+    getServiceDetails,
+    getServiceDetailSuccess,
+    getServiceDetailFail
 } from './service';
 
 export {

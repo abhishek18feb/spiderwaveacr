@@ -11,7 +11,9 @@ router.post('/addService',  checkAuth, upload.none(), ServiceController.addServi
 
 router.post('/check_unique',  checkAuth, ServiceController.check_unique);
 
-router.get('/get_single_service/:serviceId', checkAuth, ServiceController.get_single_service);
+router.get('/get_single_service/:serviceId',  checkAuth, ServiceController.get_single_service);
+
+router.get('/service_detail/:serviceId',  ServiceController.get_single_service);
 
 router.patch('/update_service/:serviceId',  checkAuth, ServiceController.update_service);
 

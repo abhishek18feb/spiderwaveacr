@@ -21,3 +21,27 @@ export const customerFetchServiceFail = (serviceResponse, serviceResponseMsg)=>{
 		serviceResponseMsg: serviceResponseMsg
 	}
 }
+
+export const getServiceDetails = (serviceId) =>{
+	console.log('service id'+ serviceId)
+	return{
+		type: actionTypes.GET_SERVICE_DETAILS,
+		serviceId:serviceId
+	}
+}
+
+export const getServiceDetailSuccess =  (serviceResponse, serviceResponseMsg)=>{
+	return {
+		type: actionTypes.GET_SERVICE_DETAILS_SUCCESS,
+		serviceResponse: serviceResponse,
+		serviceResponseMsg: serviceResponseMsg
+	}
+}
+
+export const getServiceDetailFail = (serviceResponse, serviceResponseMsg)=>{
+	return {
+		type: actionTypes.GET_SERVICE_DETAILS_FAIL,
+		serviceResponse: serviceResponse,
+		serviceResponseMsg: serviceResponseMsg
+	}
+}
