@@ -66,7 +66,7 @@ const Login =props=>{
                     <span  className="w3-button w3-display-topright" 
                         onClick={()=>displayPopup(false)}
                     >×</span>
-                    <h2>Modal Header</h2>
+                    <h2>Login/Signup</h2>
                 </header>
                 <div className="w3-container">
                     <div className="form-popup" id="myForm">
@@ -95,9 +95,7 @@ const Login =props=>{
                         
                     </div>
                 </div>
-                <footer className="w3-container w3-teal">
-                    <p>Modal Footer</p>
-                </footer>
+                
                 </div>
             </div>
         </React.Fragment>

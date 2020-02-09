@@ -27,7 +27,7 @@ const HeaderMenu = props => {
 								</div>
 							</div>)
 							:
-							<a href="#projects" className="w3-bar-item w3-button" onClick={()=>displayPopup("block")}>Login/Signup</a>
+							<a href={void(0)} className="w3-bar-item w3-button" onClick={()=>displayPopup("block")}>Login/Signup</a>
 						}
 						
 						<a href="#contact" className="w3-bar-item w3-button">Contact Us</a>
