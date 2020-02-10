@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import LayoutNoHeader from '../../Home/LayoutNoHeader';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/front/index';
+import ServiceForm from '../Popup/ServiceForm';
 
 const ServiceDetails = props =>{
     const handleSubmit = event =>{
         event.preventDefault();
         console.log('Hanljlkjlk') 
     }
-    const selectService = serviceId =>{
-        console.log(serviceId)
-    }
+    // const selectService = serviceId =>{
+    //     console.log(serviceId)
+    // }
 
     useEffect(() => {
         props.getServiceData(props.match.params.serviceId)
@@ -20,6 +21,7 @@ const ServiceDetails = props =>{
     useEffect(() => {
         console.log(props.singleServiceResponse);
     }, [props.singleServiceResponse]);
+    const [showServiceForm, setShowServiceForm]=useState("none");
 
     return (
         <React.Fragment>
@@ -31,25 +33,12 @@ const ServiceDetails = props =>{
                     <div className="content" dangerouslySetInnerHTML={{ __html: props.singleServiceResponse?props.singleServiceResponse.content:'Loading..........' }}>
                     </div>
                     <div className="vertical-center card">
-                        <button onClick={()=>selectService(props.match.params.serviceId)}>Request</button>
+                        <button onClick={()=>setShowServiceForm("block")}>Request</button>
+                        {/* <button onClick={()=>selectService(props.match.params.serviceId)} onClick={()=>displayPopup("block")}>Request</button> */}
                     </div>
                 </div>
-                {/* <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor="firstName">First Name</label>
-                        <Field name="firstName" component="input" type="text" />
-                    </div>
-                    <div>
-                        <label htmlFor="lastName">Last Name</label>
-                        <Field name="lastName" component="input" type="text" />
-                    </div>
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <Field name="email" component="input" type="email" />
-                    </div>
-                    <button type="submit">Submit</button>
-                </form> */}
             </LayoutNoHeader>
+            <ServiceForm show={showServiceForm} displayPopup={setShowServiceForm} serviceId={props.match.params.serviceId} serviceTitle={props.singleServiceResponse?props.singleServiceResponse.title:''} />
         </React.Fragment>
     )
 }

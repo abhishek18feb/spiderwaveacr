@@ -14,6 +14,8 @@ const ServiceForm =props=>{
             displayPopup(false)
         }
     }, [props.userToken, displayPopup])
+
+
     const[submitted, setFormSubmit] = useState(false)
     let validator = new FormValidator([
         { 
@@ -33,35 +35,49 @@ const ServiceForm =props=>{
             method: 'isEmpty', 
             validWhen: false, 
             message: 'Type of Service is required.'
-          },
-          { 
-            field: 'address', 
+        },
+        { 
+            field: 'serviceTitle', 
             method: 'isEmpty', 
             validWhen: false, 
             message: 'Type of Service is required.'
-          },
+        },
+        { 
+            field: 'address', 
+            method: 'isEmpty', 
+            validWhen: false, 
+            message: 'Address Field is required.'
+        },
     ]);
 
     const handleFormSubmit = event => {
         event.preventDefault();
-        //console.log(user);
+        console.log(user);
         validation = validator.validate({...user});
         setUserRequest({...user, validation})
        
-        setFormSubmit(true)
-        if (validation.isValid) {
-            // handle actual form submission here
-            props.userLogin(user);
+        // setFormSubmit(true)
+        // if (validation.isValid) {
+        //     // handle actual form submission here
+        //     props.userLogin(user);
 
-        }
+        // }
     }
     
-    const [user, setUserRequest] = useState({name:'', mobile:'',serviceId:'',address:'', validation: validator.valid()});
+    const [user, setUserRequest] = useState({name:'', mobile:'',serviceId:'',serviceTitle:'',address:'', validation: validator.valid()});
+    useEffect(()=>{
+        if(props.serviceTitle){
+            let newProps={serviceId:props.serviceId, serviceTitle:props.serviceTitle}
+            setUserRequest({...user, ...newProps})
+        }
+    }, [props.serviceTitle, setUserRequest])
+    
     let validation = submitted ?                         
                     // if the form has been submitted at least once
                       validator.validate(user) :   
                       // then check validity every time we render
                       user.validation
+    
     
     return (
         <React.Fragment> 
@@ -90,10 +106,10 @@ const ServiceForm =props=>{
                                     <span className="help-block">{validation.mobile.message}</span>
                                 </div>
 
-                                <div className={validation.serviceId.isInvalid?'has-error':''}>
-                                    <label htmlFor="serviceId"><b>Type of Service</b></label>
-                                    <input type="text" placeholder="Type of Service" name="serviceId" value={user.serviceId} onChange={event=>setUserRequest({...user, [event.target.name]:event.target.value})}  />
-                                    <span className="help-block">{validation.serviceId.message}</span>
+                                <div className={validation.serviceTitle.isInvalid?'has-error':''}>
+                                    <label htmlFor="serviceTitle"><b>Type of Service</b></label>
+                                    <input type="text" placeholder="Type of Service" name="serviceTitle" value={user.serviceTitle} onChange={event=>setUserRequest({...user, [event.target.name]:event.target.value})} readOnly={true} />
+                                    <span className="help-block">{validation.serviceTitle.message}</span>
                                 </div>
 
                                 <div className={validation.address.isInvalid?'has-error':''}>
@@ -107,9 +123,9 @@ const ServiceForm =props=>{
                         </div>
                     </div>
                 </div>
-                <footer className="w3-container w3-teal">
+                {/* <footer className="w3-container w3-teal">
                     <p>Modal Footer</p>
-                </footer>
+                </footer> */}
                 </div>
             </div>
         </React.Fragment>
