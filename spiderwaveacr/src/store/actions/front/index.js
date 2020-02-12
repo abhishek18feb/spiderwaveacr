@@ -32,3 +32,9 @@ export {
     customerAddContactSuccess,
     customerAddContactFail
 } from './contact'
+
+export {
+    ServiceRequest,
+    addServiceRequestSuccess,
+    addServiceRequestFail
+} from './servicerequest'

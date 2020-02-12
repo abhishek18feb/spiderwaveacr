@@ -9,12 +9,10 @@ const ServiceForm =props=>{
     
     const {show, displayPopup} = props;
     
+    
     useEffect(()=>{
-        if(props.userToken){
-            displayPopup(false)
-        }
-    }, [props.userToken, displayPopup])
-
+        displayPopup(false)
+    }, [props.successFlag, displayPopup])
 
     const[submitted, setFormSubmit] = useState(false)
     let validator = new FormValidator([
@@ -52,16 +50,15 @@ const ServiceForm =props=>{
 
     const handleFormSubmit = event => {
         event.preventDefault();
-        console.log(user);
         validation = validator.validate({...user});
         setUserRequest({...user, validation})
        
-        // setFormSubmit(true)
-        // if (validation.isValid) {
-        //     // handle actual form submission here
-        //     props.userLogin(user);
+        setFormSubmit(true)
+        if (validation.isValid) {
+            // handle actual form submission here
+            props.ServiceRequest(user);
 
-        // }
+        }
     }
     
     const [user, setUserRequest] = useState({name:'', mobile:'',serviceId:'',serviceTitle:'',address:'', validation: validator.valid()});
@@ -134,16 +131,13 @@ const ServiceForm =props=>{
 
 const mapStateToProps = state =>{
     return {
-        userToken: state.user.userToken,
-        loading: state.user.loading,
-        userId: state.user.userId,
-	    error:state.user.error
+        successFlag: state.serviceRequest.success
     }
 }
 
 const mapDispatchToProps = dispatch=>{
     return{
-        userLogin :(signupData)=>dispatch(actions.userLogin(signupData))
+        ServiceRequest :(RequestData)=>dispatch(actions.ServiceRequest(RequestData))
     }
 }
 

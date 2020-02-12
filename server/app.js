@@ -14,6 +14,7 @@ var cmsRouter = require('./routes/cms');
 var serviceRouter = require('./routes/service');
 var siteSettingRouter = require('./routes/sitesetting');
 var contactRouter = require('./routes/contact');
+var addServiceRequestRouter = require('./routes/servicerequest');
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/site-setting', siteSettingRouter);
 app.use('/cms', cmsRouter);
 app.use('/service', serviceRouter);
 app.use('/contact', contactRouter);
+app.use('/service_request', addServiceRequestRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
