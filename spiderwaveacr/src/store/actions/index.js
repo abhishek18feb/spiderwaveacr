@@ -69,3 +69,18 @@ export {
 	deleteMessageSuccess,
 	deleteMessageFail
 } from './messages'
+
+export {
+	adminFetchServiceReq,
+	adminFetchServiceReqSuccess,
+	adminFetchServiceReqFail,
+	adminGetSingleServiceReq,
+	adminGetSingleServiceReqSuccess,
+	adminGetSingleServiceReqFail,
+	updateServiceReq,
+	updateServiceReqSuccess,
+	updateServiceReqFail,
+	admindeleteServiceReq,
+	deleteServiceReqSuccess,
+	deleteServiceReqFail
+} from './service_req'

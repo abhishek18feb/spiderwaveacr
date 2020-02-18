@@ -61,13 +61,26 @@ class Layout extends React.PureComponent{
 						<li key="messages" 
 							className={((this.state.activeKey==="messages")||(this.props.activeKey==="messages"))?styles.active_sub_menu:styles.inactive_sub_menu}
 							onClick={(e)=>this.toggleList("messages")} >
-							<Link to='/admin/messages/list'>messages</Link>
+							<Link to='/admin/messages/list'>Messages</Link>
 							<ul className="sub-menu">
 					      		<li><NavLink to='/admin/messages/list' activeClassName={styles.active}>List</NavLink></li>
 					      		{/*<li><NavLink to='/admin/cms/add/' activeClassName={styles.active}>Add</NavLink></li>*/}
 							</ul>
 						</li>
 					</ul>
+
+					<ul className={styles.menu}>
+						<li key="service-req" 
+							className={((this.state.activeKey==="service-req")||(this.props.activeKey==="service-req"))?styles.active_sub_menu:styles.inactive_sub_menu}
+							onClick={(e)=>this.toggleList("service-req")} >
+							<Link to='/admin/service-req/list'>Service Request</Link>
+							<ul className="sub-menu">
+					      		<li><NavLink to='/admin/service-req/list' activeClassName={styles.active}>List</NavLink></li>
+					      		{/*<li><NavLink to='/admin/cms/add/' activeClassName={styles.active}>Add</NavLink></li>*/}
+							</ul>
+						</li>
+					</ul>
+
 			    </ul>
 			  </nav>
 			  {this.props.children}

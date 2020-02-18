@@ -13,6 +13,6 @@ router.get('/get_single_service_request/:ServiceRequestId', checkAuth, ServiceRe
 
 router.patch('/update_service_request/:ServiceRequestId',  checkAuth, ServiceRequestController.update_service_request);
 
-router.delete('/delete_ServiceRequest/:ServiceRequestId',  checkAuth, ServiceRequestController.delete_ServiceRequest);
+router.delete('/delete_service_request/:ServiceRequestId',  checkAuth, ServiceRequestController.delete_ServiceRequest);
 
-module.exports = router; 
+module.exports = router;  

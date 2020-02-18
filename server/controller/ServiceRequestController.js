@@ -15,7 +15,7 @@ exports.get_all = async (req, res, next)=>{
 		console.log(result)
 		const response={
 				count: totalRecords,
-				messages:result.map(result=>{
+				serviceReq:result.map(result=>{
 				return {
 					_id: result._id,
 					name: result.name,

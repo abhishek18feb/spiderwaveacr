@@ -10,6 +10,7 @@ import { customerFetchServiceSaga, getServiceDetailsSaga } from './Front/service
 import { addContactSaga } from './Front/contact';
 import { adminFetchMessageSaga, adminDeleteMessageSaga, adminFetchSingleMessageSaga, adminUpdateMessageSaga } from './messages';
 import { addServiceRequestSaga } from './Front/service_request';
+import {adminFetchServiceReqSaga, adminFetchSingleServiceReqSaga, adminDeleteServiceReqSaga, adminUpdateServiceReqSaga} from './service_req';
 
 export function* watchAuth(){
 	yield all([
@@ -72,6 +73,10 @@ export function* watchContact(){
 export function* watchServiceRequest(){
 	yield all([
 		takeEvery(userActionTypes.ADD_SERVICE_REQUEST, addServiceRequestSaga),
+		takeEvery(actionTypes.ADMIN_FETCH_SERVICE_REQ, adminFetchServiceReqSaga),
+		takeEvery(actionTypes.ADMIN_FETCH_SINGLE_SERVICE_REQ, adminFetchSingleServiceReqSaga),
+		takeEvery(actionTypes.ADMIN_DELETE_SERVICE_REQ, adminDeleteServiceReqSaga),
+		takeEvery(actionTypes.ADMIN_UPDATE_SERVICE_REQ, adminUpdateServiceReqSaga),
 	])
 }
 

@@ -19,6 +19,7 @@ import customerServiceReducer from './store/reducers/front/service';
 import frontContactReducer from './store/reducers/front/contact';
 import adminMessageReducer from './store/reducers/messages';
 import serviceRequestReducer from './store/reducers/front/service_request';
+import adminServiceRequestReducer from './store/reducers/service_req';
 
 const sagaMiddleware = createSagaMiddleware()
 //const composeEnhancers = process.env.NODE_ENV==='development'?window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__:null || compose;
@@ -33,7 +34,8 @@ const rootReducers = combineReducers({
 	customerService:customerServiceReducer,
 	frontContact:frontContactReducer,
 	message: adminMessageReducer,
-	serviceRequest: serviceRequestReducer
+	serviceRequest: serviceRequestReducer,
+	adminSerReq: adminServiceRequestReducer
 
 });
 
